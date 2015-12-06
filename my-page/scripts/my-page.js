@@ -2,19 +2,6 @@
 
 window.onload = function(){
 
-  //SET THE SECTION HEIGHT IF CSS calc() IS NOT SUPPORTED//
-  function fixHeight(){
-    var
-      section       = document.querySelector("section"),
-      navbar        = document.querySelector("nav"),
-      navHeight     = navbar.offsetHeight,
-      windowHeight  = window.outerHeight;
-
-      section.style.height = (windowHeight - navHeight)+ "px";
-      // alert("working");
-  };
-  // fixHeight();
-  //SET THE SECTION HEIGHT IF CSS calc() IS NOT SUPPORTED//
 
 
   function navBar(){
@@ -27,6 +14,24 @@ window.onload = function(){
 
 
 //jQuery//
+
+
+  //SET THE SECTION HEIGHT IF CSS calc() IS NOT SUPPORTED//
+if($("#viewport_test").width() !== 2){
+  function fixHeight(){
+    var
+      section       = document.querySelector(".projects_area"),
+      navbar        = document.querySelector("nav"),
+      navHeight     = navbar.offsetHeight,
+      windowHeight  = window.outerHeight;
+
+      section.style.height = (windowHeight - navHeight)+ "px";
+  };
+  fixHeight();
+  alert("Calc is not supported");
+}  //SET THE SECTION HEIGHT IF CSS calc() IS NOT SUPPORTED//
+
+
 
 var Menu = {
   open_close : function(event){

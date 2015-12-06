@@ -19,6 +19,8 @@
 
     <main>
 
+    <div hidden id="viewport_test"></div>
+
       <nav>
 
         <div class="menu_area">
@@ -37,8 +39,8 @@
 
 
 
-      <section>
-        <ul class="my_projects">
+      <section class="projects_area">
+        <!-- <ul class="my_projects">
           <li class="project"></li>
           <li class="project"></li>
           <li class="project"></li>
@@ -46,7 +48,7 @@
           <li class="project"></li>
           <li class="project"></li>
           <li class="project"></li>
-        </ul>
+        </ul> -->
       </section>
 
 

@@ -13,6 +13,9 @@ html, body {
   height: 100%; }
 
 /*GLOBAL STYLES*/
+#viewport_test {
+  width: calc(1px + 1px); }
+
 .pre_container {
   height: 100%; }
 
