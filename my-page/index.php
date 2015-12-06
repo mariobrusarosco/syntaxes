@@ -19,18 +19,45 @@
 
     <main>
 
-      <nav>sdsa</nav>
+      <nav>
+
+        <div class="menu_area">
+          <button id="menu_btn" class="menu_btn">Menu</button>
+          <ul class="menu_options">
+            <li class="list_project">"fantasy game"</li>
+            <li class="list_project">chat generator</li>
+            <li class="list_project">Project 3</li>
+            <li class="list_project">Project 4</li>
+            <li class="list_project">Project 5</li>
+            <li class="list_project">Project 6</li>
+          </ul>
+        </div>
+
+      </nav>
+
+
 
       <section>
-        asddsa
+        <ul class="my_projects">
+          <li class="project"></li>
+          <li class="project"></li>
+          <li class="project"></li>
+          <li class="project"></li>
+          <li class="project"></li>
+          <li class="project"></li>
+          <li class="project"></li>
+        </ul>
       </section>
+
+
+
 
     </main>
   </div>
 
     <!--  jQuery -->
-
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
     <!--  my scripts -->
-
+    <script src="scripts/my-page.js"></script>
   </body>
 </html>

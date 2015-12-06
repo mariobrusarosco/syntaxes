@@ -20,11 +20,53 @@ main {
   height: 100%; }
 
 nav {
-  background: red; }
+  position: relative;
+  background: red;
+  height: 55px;
+  width: 100%; }
+  nav .menu_area {
+    position: relative;
+    height: 100%; }
+    nav .menu_area button {
+      background: blue;
+      color: white;
+      height: 100%;
+      padding: 10px;
+      width: 90px; }
+    nav .menu_area .menu_options {
+      position: relative;
+      background: deeppink;
+      width: 100vw;
+      display: none; }
+      nav .menu_area .menu_options .list_project {
+        background: yellow;
+        height: 40px;
+        text-align: center; }
+        nav .menu_area .menu_options .list_project:not(:first-child) {
+          margin-top: 10px; }
 
 section {
   background: orange;
-  height: 100%;
-  background-image: url(../img/nature.jpg); }
+  height: calc(100vh - 55px);
+  width: 100vw; }
+  section .my_projects {
+    background: lightgreen;
+    height: auto;
+    width: 100%;
+    margin-top: -10px; }
+    section .my_projects .project {
+      background: tomato;
+      display: inline-block;
+      width: 50%;
+      height: 140px;
+      float: left; }
+      section .my_projects .project:nth-child(2) {
+        background: gold; }
+      section .my_projects .project:nth-child(3) {
+        background: pink; }
+      section .my_projects .project:nth-child(4) {
+        background: deeppink; }
+      section .my_projects .project:nth-child(5) {
+        background: darkblue; }
 
 /*# sourceMappingURL=my-page-frame.css.map */
