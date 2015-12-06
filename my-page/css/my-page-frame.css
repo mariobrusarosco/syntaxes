@@ -1,0 +1,30 @@
+/* VARIABLES */
+/* VARIABLES */
+/*GLOBAL STYLES*/
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+  list-style: none;
+  outline: none;
+  border: none; }
+
+html, body {
+  height: 100%; }
+
+/*GLOBAL STYLES*/
+.pre_container {
+  height: 100%; }
+
+main {
+  height: 100%; }
+
+nav {
+  background: red; }
+
+section {
+  background: orange;
+  height: 100%;
+  background-image: url(../img/nature.jpg); }
+
+/*# sourceMappingURL=my-page-frame.css.map */

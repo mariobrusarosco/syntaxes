@@ -9,24 +9,25 @@
     <link rel="stylesheet" type="text/css" href="css/bootstrap/bootstrap.min.css">
 
     <!-- my CSS -->
-    <link rel="stylesheet" type="text/css" href="css/my-page.css">
+    <link rel="stylesheet" type="text/css" href="css/my-page-frame.css">
 
 
   </head>
   <body>
 
+  <div class="pre_container">
+
     <main>
 
-      <nav>
-
-      </nav>
+      <nav>sdsa</nav>
 
       <section>
-
-
+        asddsa
       </section>
 
     </main>
+  </div>
+
     <!--  jQuery -->
 
     <!--  my scripts -->
