@@ -1,7 +1,8 @@
 // VARIABLES //
-$viewportHeight : 100vh;
-$viewportWidth  : 100vw;
-$navbarHeight   : 55px;
+$viewportHeight   : 100vh;
+$viewportWidth    : 100vw;
+$navbarHeight     : 55px;
+$navbarHeightLg   : 70px; //FOR +1024px DISPLAYS
 // VARIABLES //
 
 
@@ -20,6 +21,18 @@ html,body{
 }
 //GLOBAL STYLES//
 
+//HELPER CLASSES//
+.center_block{
+  margin: 0 auto;
+}
+.hide_over{
+  overflow: hidden;
+}
+.clearfix{
+  clear: both;
+}
+//HELPER CLASSES//
+
 #viewport_test{
   width: calc(1px + 1px);
 }
@@ -30,57 +43,66 @@ html,body{
 
 main{
   height: 100%;
-}
 
-nav{
-  position: relative;
-  background: red;
-  height: 55px;
-  width: 100%;
-
-  .menu_area{
+  header{
     position: relative;
-    height: 100%;
+    height: 60px;
+    background: green;
 
-    button{
-      background: blue;
-      color: white;
+    .menu_btn{
+      background: yellow;
       height: 100%;
-      padding: 10px;
-      width: 90px;
+      width: 50%;
+      float: right;
     }
 
-    .menu_options{
-      position: relative;
-      background: deeppink;
-      width: 100vw;
+    nav{
       display: none;
+      position: absolute;
+      top: 60px;
+      right: 0;
+      z-index: 1;
+      width: 90%;
+      background: red;
+      color: white;
 
-      .list_project{
-        background: yellow;
-        height: 40px;
+      .menu_options{
+        background: orange;
+        // padding:15px;
+        width: 100%;
         text-align: center;
 
-        &:not(:first-child){
-          margin-top: 10px;
+        .list_project{
+
+          .project_icon{
+
+          }
+
+          a{
+            display: inline-block;
+            width: 100%;
+            height: 60px;
+            padding: 10px;
+            text-decoration: none;
+            cursor: pointer;
+            line-height: 3em;
+            background: pink;
+          }
         }
       }
-    }
-  }
-
-
-}
+    }//END OF <nav>//
+  }//END OF <header>//
+}//END OF <main>//
 
 section{
   background: orange;
   height: calc(100vh - #{$navbarHeight});
-  width: 100vw;
+  width: 100%;
 
   .my_projects{
     background: lightgreen;
     height: auto;
     width: 100%;
-    margin-top: -10px;
 
     .project{
       background: tomato;
@@ -105,11 +127,11 @@ section{
       }
 
       &:nth-child(3){
-        // background: pink;
+        background: pink;
       }
 
       &:nth-child(4){
-        // background: gold;
+        background: gold;
       }
 
       &:nth-child(5){
@@ -124,343 +146,234 @@ section{
         font-size: 1.1em;
         color: white;
         width: 100%;
-        margin: 0 auto;
       }
     }
   } //END OF .my_projects
 
 } //END OF section
 
-
 // DEVICES -->  WIDTH + 500px
-@media ONLY screen AND (min-width: 501px){
-  .pre_container{
-    // height: 100%;
-  }
-
+@media ONLY screen AND(min-width:501px){
   main{
     // height: 100%;
-  }
 
-  nav{
-    // position: relative;
-    // background: red;
-    // height: 55px;
-    // width: 100%;
+    header{
+      // height: 60px;
+      // background: green;
 
-    .menu_area{
-      // position: relative;
-      // height: 100%;
-
-      button{
-        // background: blue;
-        // color: white;
+      .menu_btn{
+        // background: yellow;
         // height: 100%;
-        // padding: 10px;
-        // width: 90px;
+        width: 210px;
+        // float: right;
       }
 
-      .menu_options{
-        // position: relative;
-        // background: deeppink;
-        // width: 100vw;
-        // display: none;
+      nav{
+        // float: right;
+        // clear: right;
+        width: 360px;
+        // background: red;
+        // color: white;
 
-        .list_project{
-          // background: yellow;
-          // height: 40px;
+        .menu_options{
+          // background: orange;
+          // padding:15px;
+          // width: 90%;
           // text-align: center;
 
-          &:not(:first-child){
-            // margin-top: 10px;
+          .list_project{
+            // padding: 15px;
+            // background: pink;
+
+            .project_icon{
+
+            }
           }
         }
-      }
-    }
-
-
-  }
-
-  section{
-    // background: orange;
-    // height: calc(100vh - #{$navbarHeight});
-    width: 90vw;
-    margin: 0 auto;
-
-    .my_projects{
-      // background: lightgreen;
-      // height: auto;
-      // width: 100%;
-      // margin-top: -10px;
-
-      .project{
-        // background: tomato;
-        // position: relative;
-        // display: inline-block;
-        // // width: 162px;
-        // width: 50%;
-        height: 180px;
-        // float: left;
-        // text-align: center;
-        // background-repeat: no-repeat;
-        background-size: 105px 100px;
-        // background-position: 50% 30%;
-
-        &:nth-child(1){
-          // background-color: forestgreen;
-          // background-image: url(../img/fantasy-game-157x168.png);
-        }
-
-        &:nth-child(2){
-          // background: gold;
-        }
-
-        &:nth-child(3){
-          // background: pink;
-        }
-
-        &:nth-child(4){
-          // background: deeppink;
-        }
-
-        &:nth-child(5){
-          // background: darkblue;
-        }
-
-        span{
-          // position: absolute;
-          // display: inline-block;
-          // bottom: 10px;
-          // left: 0;
-          font-size: 1.2em;
-          // color: white;
-          // width: 100%;
-          // margin: 0 auto;
-        }
-      }
-    } //END OF .my_projects
-
-  } //END OF section
+      }//END OF <nav>//
+    }//END OF <header>
+  }//END OF <main>//
 }
+
 
 // DEVICES -->  WIDTH + 600px
-@media ONLY screen AND (min-width: 601px){
-  .pre_container{
-    // height: 100%;
-  }
-
+@media ONLY screen AND(min-width:601px){
   main{
     // height: 100%;
-  }
 
-  nav{
-    // position: relative;
-    // background: red;
-    // height: 55px;
-    // width: 100%;
+    header{
+      // height: 60px;
+      // background: green;
 
-    .menu_area{
-      // position: relative;
-      // height: 100%;
-
-      button{
-        // background: blue;
-        // color: white;
+      .menu_btn{
+        // background: yellow;
         // height: 100%;
-        // padding: 10px;
-        // width: 90px;
+        width: 190px;
+        // float: right;
       }
 
-      .menu_options{
-        // position: relative;
-        // background: deeppink;
-        // width: 100vw;
-        // display: none;
+      nav{
+        // float: right;
+        // clear: right;
+        width: 340px;
+        // background: red;
+        // color: white;
 
-        .list_project{
-          // background: yellow;
-          // height: 40px;
+        .menu_options{
+          // background: orange;
+          // padding:15px;
+          // width: 90%;
           // text-align: center;
 
-          &:not(:first-child){
-            // margin-top: 10px;
+          .list_project{
+            // padding: 15px;
+            // background: pink;
+
+            .project_icon{
+
+            }
           }
         }
-      }
-    }
-
-
-  }
-
-  section{
-    // background: orange;
-    // height: calc(100vh - #{$navbarHeight});
-    width: 82vw;
-    // margin: 0 auto;
-
-    .my_projects{
-      // background: lightgreen;
-      // height: auto;
-      // width: 100%;
-      // margin-top: -10px;
-
-      .project{
-        // background: tomato;
-        // position: relative;
-        // display: inline-block;
-        // // width: 162px;
-        // width: 50%;
-        height: 190px;
-        // float: left;
-        // text-align: center;
-        // background-repeat: no-repeat;
-        // background-size: 105px 100px;
-        // background-position: 50% 30%;
-
-        &:nth-child(1){
-          // background-color: forestgreen;
-          // background-image: url(../img/fantasy-game-157x168.png);
-        }
-
-        &:nth-child(2){
-          // background: gold;
-        }
-
-        &:nth-child(3){
-          // background: pink;
-        }
-
-        &:nth-child(4){
-          // background: deeppink;
-        }
-
-        &:nth-child(5){
-          // background: darkblue;
-        }
-
-        span{
-          // position: absolute;
-          // display: inline-block;
-          // bottom: 10px;
-          // left: 0;
-          // font-size: 1.2em;
-          // color: white;
-          // width: 100%;
-          // margin: 0 auto;
-        }
-      }
-    } //END OF .my_projects
-
-  } //END OF section
+      }//END OF <nav>//
+    }//END OF <header>
+  }//END OF <main>//
 }
 
-// DEVICES -->  WIDTH + 700px
-@media ONLY screen AND (min-width: 701px){
-  .pre_container{
-    // height: 100%;
-  }
 
+// DEVICES -->  WIDTH + 800px
+@media ONLY screen AND(min-width:801px){
   main{
     // height: 100%;
-  }
 
-  nav{
-    // position: relative;
-    // background: red;
-    // height: 55px;
-    // width: 100%;
+    header{
+      // height: 60px;
+      // background: green;
 
-    .menu_area{
-      // position: relative;
-      // height: 100%;
-
-      button{
-        // background: blue;
-        // color: white;
+      .menu_btn{
+        // background: yellow;
         // height: 100%;
-        // padding: 10px;
-        // width: 90px;
+        width: 150px;
+        // float: right;
       }
 
-      .menu_options{
-        // position: relative;
-        // background: deeppink;
-        // width: 100vw;
-        // display: none;
+      nav{
+        // float: right;
+        // clear: right;
+        width: 300px;
+        // background: red;
+        // color: white;
 
-        .list_project{
-          // background: yellow;
-          // height: 40px;
+        .menu_options{
+          // background: orange;
+          // padding:15px;
+          // width: 90%;
           // text-align: center;
 
-          &:not(:first-child){
-            // margin-top: 10px;
+          .list_project{
+            // padding: 15px;
+            // background: pink;
+
+            .project_icon{
+
+            }
           }
         }
+      }//END OF <nav>//
+    }//END OF <header>
+  }//END OF <main>//
+}
+
+// DEVICES -->  WIDTH + 900px
+@media ONLY screen AND(min-width:901px){
+  main{
+    // height: 100%;
+
+    header{
+      // height: 60px;
+      // background: green;
+
+      .menu_btn{
+        // background: yellow;
+        // height: 100%;
+        width: 100px;
+        // float: right;
       }
-    }
 
+      nav{
+        // float: right;
+        // clear: right;
+        width: 270px;
+        // background: red;
+        // color: white;
 
-  }
+        .menu_options{
+          // background: orange;
+          // padding:15px;
+          // width: 90%;
+          // text-align: center;
 
-  section{
-    // background: orange;
-    // height: calc(100vh - #{$navbarHeight});
-    width: 70vw;
-    // margin: 0 auto;
+          .list_project{
+            // padding: 15px;
+            // background: pink;
 
-    .my_projects{
-      // background: lightgreen;
-      // height: auto;
-      // width: 100%;
-      // margin-top: -10px;
+            .project_icon{
 
-      .project{
-        // background: tomato;
-        // position: relative;
-        // display: inline-block;
-        // // width: 162px;
-        // width: 50%;
-        height: 190px;
-        // float: left;
-        // text-align: center;
-        // background-repeat: no-repeat;
-        // background-size: 105px 100px;
-        // background-position: 50% 30%;
-
-        &:nth-child(1){
-          // background-color: forestgreen;
-          // background-image: url(../img/fantasy-game-157x168.png);
+            }
+          }
         }
+      }//END OF <nav>//
+    }//END OF <header>
+  }//END OF <main>//
+}
 
-        &:nth-child(2){
-          // background: gold;
-        }
+// DEVICES -->  WIDTH + 1024px
+@media ONLY screen AND(min-width:1025px){
+  main{
+    // height: 100%;
 
-        &:nth-child(3){
-          // background: pink;
-        }
+    header{
+      // height: 60px;
+      // background: green;
 
-        &:nth-child(4){
-          // background: deeppink;
-        }
-
-        &:nth-child(5){
-          // background: darkblue;
-        }
-
-        span{
-          // position: absolute;
-          // display: inline-block;
-          // bottom: 10px;
-          // left: 0;
-          // font-size: 1.2em;
-          // color: white;
-          // width: 100%;
-          // margin: 0 auto;
-        }
+      .menu_btn{
+        // background: yellow;
+        // height: 100%;
+        // width: 30%;
+        display: none;
       }
-    } //END OF .my_projects
 
-  } //END OF section
+      nav{
+        display: block;
+        position: absolute;
+        top: 0;
+        right:0;
+        height: 60px;
+        width: 100%;
+        // background: red;
+        // color: white;
+
+        .menu_options{
+          // background: orange;
+          // padding:15px;
+          // width: 90%;
+          // text-align: center;
+
+          .list_project{
+            display: inline-block;
+            // padding: 15px;
+
+            .project_icon{
+
+            }
+
+            a{
+              background: blue;
+              color: red;
+
+            }
+          }
+        }
+      }//END OF <nav>//
+    }//END OF <header>
+  }//END OF <main>//
 }

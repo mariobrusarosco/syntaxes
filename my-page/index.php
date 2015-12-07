@@ -17,32 +17,31 @@
 
   <div class="pre_container">
 
-    <main>
+    <main class="center_block">
 
     <div hidden id="viewport_test"></div>
 
-      <nav>
-
-        <div class="menu_area">
-          <button id="menu_btn" class="menu_btn">Menu</button>
-          <ul class="menu_options">
-            <li class="list_project">"fantasy game"</li>
-            <li class="list_project">chat generator</li>
-            <li class="list_project">Project 3</li>
-            <li class="list_project">Project 4</li>
-            <li class="list_project">Project 5</li>
-            <li class="list_project">Project 6</li>
-          </ul>
-        </div>
-
-      </nav>
-
+      <header>
+        <button id="menu_btn" class="menu_btn">Menu</button>
+        <nav>
+            <ul class="menu_options">
+              <li class="list_project"><span class="project_icon"></span><a href="#">brasileiro 2016</a></li>
+              <li class="list_project"><span class="project_icon"></span><a href="#">chat generator</a></li>
+              <li class="list_project"><span class="project_icon"></span><a href="#">Tic Tac Toe</a></li>
+              <li class="list_project"><span class="project_icon"></span><a href="#">Tracker</a></li>
+              <li class="list_project"><span class="project_icon"></span><a href="#">Project 5</a></li>
+              <li class="list_project"><span class="project_icon"></span><a href="#">Project 6</a></li>
+              <li class="list_project"><span class="project_icon"></span><a href="#">Project 5</a></li>
+              <li class="list_project"><span class="project_icon"></span><a href="#">Project 6</a></li>
+            </ul>
+        </nav>
+      </header>
 
 
       <section class="projects_area">
-        <ul class="my_projects">
-          <li class="project"><span>brasileiro 2016</span></li>
-          <li class="project"><span>chat generator</span></li>
+        <ul class="my_projects hide_over">
+          <li class="project"><span class="center_block">brasileiro 2016</span></li>
+          <li class="project"><span class="center_block">chat generator</span></li>
           <li class="project"></li>
           <li class="project"></li>
           <li class="project"></li>
