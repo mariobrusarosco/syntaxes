@@ -37,7 +37,7 @@ var Menu = {
   open_close : function(event){
                   var
                     $node = $(this),
-                    $list = $node.next(".menu_options").fadeToggle(700);
+                    $list = $node.next(".menu_options").fadeToggle(300);
 
                     // console.log($node);
                     // console.log($list.html());

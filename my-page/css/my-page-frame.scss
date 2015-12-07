@@ -1,11 +1,11 @@
-/* VARIABLES */
+// VARIABLES //
 $viewportHeight : 100vh;
 $viewportWidth  : 100vw;
 $navbarHeight   : 55px;
-/* VARIABLES */
+// VARIABLES //
 
 
-/*GLOBAL STYLES*/
+//GLOBAL STYLES//
 *{
   box-sizing: border-box;
   padding: 0;
@@ -18,7 +18,7 @@ $navbarHeight   : 55px;
 html,body{
   height: 100%;
 }
-/*GLOBAL STYLES*/
+//GLOBAL STYLES//
 
 #viewport_test{
   width: calc(1px + 1px);
@@ -84,39 +84,383 @@ section{
 
     .project{
       background: tomato;
+      position: relative;
       display: inline-block;
       // width: 162px;
       width: 50%;
-      height: 140px;
+      height: 150px;
       float: left;
+      text-align: center;
+      background-repeat: no-repeat;
+      background-size: 85px 80px;
+      background-position: 50% 30%;
+
+      &:nth-child(1){
+        background-color: forestgreen;
+        background-image: url(../img/fantasy-game-157x168.png);
+      }
 
       &:nth-child(2){
-        background: gold;
-      }
-
-      &:nth-child(3){
-        background: pink;
-      }
-
-      &:nth-child(4){
         background: deeppink;
       }
 
+      &:nth-child(3){
+        // background: pink;
+      }
+
+      &:nth-child(4){
+        // background: gold;
+      }
+
       &:nth-child(5){
-        background: darkblue;
+        // background: darkblue;
+      }
+
+      span{
+        position: absolute;
+        display: inline-block;
+        bottom: 10px;
+        left: 0;
+        font-size: 1.1em;
+        color: white;
+        width: 100%;
+        margin: 0 auto;
+      }
+    }
+  } //END OF .my_projects
+
+} //END OF section
+
+
+// DEVICES -->  WIDTH + 500px
+@media ONLY screen AND (min-width: 501px){
+  .pre_container{
+    // height: 100%;
+  }
+
+  main{
+    // height: 100%;
+  }
+
+  nav{
+    // position: relative;
+    // background: red;
+    // height: 55px;
+    // width: 100%;
+
+    .menu_area{
+      // position: relative;
+      // height: 100%;
+
+      button{
+        // background: blue;
+        // color: white;
+        // height: 100%;
+        // padding: 10px;
+        // width: 90px;
+      }
+
+      .menu_options{
+        // position: relative;
+        // background: deeppink;
+        // width: 100vw;
+        // display: none;
+
+        .list_project{
+          // background: yellow;
+          // height: 40px;
+          // text-align: center;
+
+          &:not(:first-child){
+            // margin-top: 10px;
+          }
+        }
       }
     }
 
+
   }
 
-  //
+  section{
+    // background: orange;
+    // height: calc(100vh - #{$navbarHeight});
+    width: 90vw;
+    margin: 0 auto;
+
+    .my_projects{
+      // background: lightgreen;
+      // height: auto;
+      // width: 100%;
+      // margin-top: -10px;
+
+      .project{
+        // background: tomato;
+        // position: relative;
+        // display: inline-block;
+        // // width: 162px;
+        // width: 50%;
+        height: 180px;
+        // float: left;
+        // text-align: center;
+        // background-repeat: no-repeat;
+        background-size: 105px 100px;
+        // background-position: 50% 30%;
+
+        &:nth-child(1){
+          // background-color: forestgreen;
+          // background-image: url(../img/fantasy-game-157x168.png);
+        }
+
+        &:nth-child(2){
+          // background: gold;
+        }
+
+        &:nth-child(3){
+          // background: pink;
+        }
+
+        &:nth-child(4){
+          // background: deeppink;
+        }
+
+        &:nth-child(5){
+          // background: darkblue;
+        }
+
+        span{
+          // position: absolute;
+          // display: inline-block;
+          // bottom: 10px;
+          // left: 0;
+          font-size: 1.2em;
+          // color: white;
+          // width: 100%;
+          // margin: 0 auto;
+        }
+      }
+    } //END OF .my_projects
+
+  } //END OF section
+}
+
+// DEVICES -->  WIDTH + 600px
+@media ONLY screen AND (min-width: 601px){
+  .pre_container{
+    // height: 100%;
+  }
+
+  main{
+    // height: 100%;
+  }
+
+  nav{
+    // position: relative;
+    // background: red;
+    // height: 55px;
+    // width: 100%;
+
+    .menu_area{
+      // position: relative;
+      // height: 100%;
+
+      button{
+        // background: blue;
+        // color: white;
+        // height: 100%;
+        // padding: 10px;
+        // width: 90px;
+      }
+
+      .menu_options{
+        // position: relative;
+        // background: deeppink;
+        // width: 100vw;
+        // display: none;
+
+        .list_project{
+          // background: yellow;
+          // height: 40px;
+          // text-align: center;
+
+          &:not(:first-child){
+            // margin-top: 10px;
+          }
+        }
+      }
+    }
 
 
+  }
+
+  section{
+    // background: orange;
+    // height: calc(100vh - #{$navbarHeight});
+    width: 82vw;
+    // margin: 0 auto;
+
+    .my_projects{
+      // background: lightgreen;
+      // height: auto;
+      // width: 100%;
+      // margin-top: -10px;
+
+      .project{
+        // background: tomato;
+        // position: relative;
+        // display: inline-block;
+        // // width: 162px;
+        // width: 50%;
+        height: 190px;
+        // float: left;
+        // text-align: center;
+        // background-repeat: no-repeat;
+        // background-size: 105px 100px;
+        // background-position: 50% 30%;
+
+        &:nth-child(1){
+          // background-color: forestgreen;
+          // background-image: url(../img/fantasy-game-157x168.png);
+        }
+
+        &:nth-child(2){
+          // background: gold;
+        }
+
+        &:nth-child(3){
+          // background: pink;
+        }
+
+        &:nth-child(4){
+          // background: deeppink;
+        }
+
+        &:nth-child(5){
+          // background: darkblue;
+        }
+
+        span{
+          // position: absolute;
+          // display: inline-block;
+          // bottom: 10px;
+          // left: 0;
+          // font-size: 1.2em;
+          // color: white;
+          // width: 100%;
+          // margin: 0 auto;
+        }
+      }
+    } //END OF .my_projects
+
+  } //END OF section
+}
+
+// DEVICES -->  WIDTH + 700px
+@media ONLY screen AND (min-width: 701px){
+  .pre_container{
+    // height: 100%;
+  }
+
+  main{
+    // height: 100%;
+  }
+
+  nav{
+    // position: relative;
+    // background: red;
+    // height: 55px;
+    // width: 100%;
+
+    .menu_area{
+      // position: relative;
+      // height: 100%;
+
+      button{
+        // background: blue;
+        // color: white;
+        // height: 100%;
+        // padding: 10px;
+        // width: 90px;
+      }
+
+      .menu_options{
+        // position: relative;
+        // background: deeppink;
+        // width: 100vw;
+        // display: none;
+
+        .list_project{
+          // background: yellow;
+          // height: 40px;
+          // text-align: center;
+
+          &:not(:first-child){
+            // margin-top: 10px;
+          }
+        }
+      }
+    }
 
 
+  }
 
+  section{
+    // background: orange;
+    // height: calc(100vh - #{$navbarHeight});
+    width: 70vw;
+    // margin: 0 auto;
 
+    .my_projects{
+      // background: lightgreen;
+      // height: auto;
+      // width: 100%;
+      // margin-top: -10px;
 
+      .project{
+        // background: tomato;
+        // position: relative;
+        // display: inline-block;
+        // // width: 162px;
+        // width: 50%;
+        height: 190px;
+        // float: left;
+        // text-align: center;
+        // background-repeat: no-repeat;
+        // background-size: 105px 100px;
+        // background-position: 50% 30%;
 
+        &:nth-child(1){
+          // background-color: forestgreen;
+          // background-image: url(../img/fantasy-game-157x168.png);
+        }
 
+        &:nth-child(2){
+          // background: gold;
+        }
+
+        &:nth-child(3){
+          // background: pink;
+        }
+
+        &:nth-child(4){
+          // background: deeppink;
+        }
+
+        &:nth-child(5){
+          // background: darkblue;
+        }
+
+        span{
+          // position: absolute;
+          // display: inline-block;
+          // bottom: 10px;
+          // left: 0;
+          // font-size: 1.2em;
+          // color: white;
+          // width: 100%;
+          // margin: 0 auto;
+        }
+      }
+    } //END OF .my_projects
+
+  } //END OF section
 }

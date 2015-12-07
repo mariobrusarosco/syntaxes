@@ -40,15 +40,15 @@
 
 
       <section class="projects_area">
-        <!-- <ul class="my_projects">
+        <ul class="my_projects">
+          <li class="project"><span>brasileiro 2016</span></li>
+          <li class="project"><span>chat generator</span></li>
           <li class="project"></li>
           <li class="project"></li>
           <li class="project"></li>
           <li class="project"></li>
           <li class="project"></li>
-          <li class="project"></li>
-          <li class="project"></li>
-        </ul> -->
+        </ul>
       </section>
 
 
