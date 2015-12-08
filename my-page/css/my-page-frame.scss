@@ -118,24 +118,34 @@ section{
       background-position: 50% 30%;
 
       &:nth-child(1){
-        background-color: forestgreen;
+        background-color: rgb(0, 229, 255);
         background-image: url(../img/fantasy-game-157x168.png);
       }
 
       &:nth-child(2){
-        background: deeppink;
+        background-color: deeppink;
+        background-image: url(../img/fantasy-game-157x168.png);
       }
 
       &:nth-child(3){
-        background: pink;
+        background-color: pink;
+        background-image: url(../img/fantasy-game-157x168.png);
       }
 
       &:nth-child(4){
-        background: gold;
+        background-image: url(../img/fantasy-game-157x168.png);
+        background-color: gold;
       }
 
       &:nth-child(5){
-        // background: darkblue;
+        background-color: darkblue;
+        background-image: url(../img/fantasy-game-157x168.png);
+      }
+
+      &:nth-child(6){
+        background-color: rgb(219, 36, 0);
+        background-image: url(../img/fantasy-game-157x168.png);
+
       }
 
       span{
@@ -193,6 +203,68 @@ section{
       }//END OF <nav>//
     }//END OF <header>
   }//END OF <main>//
+
+  section{
+    // background: orange;
+    // height: calc(100vh - #{$navbarHeight});
+    width: 500px;
+
+    .my_projects{
+      // background: lightgreen;
+      // height: auto;
+      // width: 100%;
+
+      .project{
+        // background: tomato;
+        // position: relative;
+        // display: inline-block;
+        // // width: 162px;
+        // width: 50%;
+        height: 160px;
+        // float: left;
+        // text-align: center;
+        // background-repeat: no-repeat;
+        // background-size: 85px 80px;
+        // background-position: 50% 30%;
+
+        &:nth-child(1){
+          // background-color: rgb(0, 229, 255);
+          // background-image: url(../img/fantasy-game-157x168.png);
+        }
+
+        &:nth-child(2){
+          // background-color: deeppink;
+          // background-image: url(../img/fantasy-game-157x168.png);
+        }
+
+        &:nth-child(3){
+          // background-color: pink;
+          // background-image: url(../img/fantasy-game-157x168.png);
+        }
+
+        &:nth-child(4){
+          // background-image: url(../img/fantasy-game-157x168.png);
+          // background-color: gold;
+        }
+
+        &:nth-child(5){
+          // background-color: darkblue;
+          // background-image: url(../img/fantasy-game-157x168.png);
+        }
+
+        span{
+          // position: absolute;
+          // display: inline-block;
+          // bottom: 10px;
+          // left: 0;
+          // font-size: 1.1em;
+          // color: white;
+          // width: 100%;
+        }
+      }
+    } //END OF .my_projects
+  } //END OF <section>
+
 }
 
 
@@ -237,8 +309,175 @@ section{
       }//END OF <nav>//
     }//END OF <header>
   }//END OF <main>//
+
+  section{
+    // background: orange;
+    // height: calc(100vh - #{$navbarHeight});
+    width: 490px;
+
+    .my_projects{
+      // background: lightgreen;
+      // height: auto;
+      // width: 100%;
+
+      .project{
+        // background: tomato;
+        // position: relative;
+        // display: inline-block;
+        // // width: 162px;
+        // width: 50%;
+        // height: 150px;
+        // float: left;
+        // text-align: center;
+        // background-repeat: no-repeat;
+        // background-size: 85px 80px;
+        // background-position: 50% 30%;
+
+        &:nth-child(1){
+          // background-color: rgb(0, 229, 255);
+          // background-image: url(../img/fantasy-game-157x168.png);
+        }
+
+        &:nth-child(2){
+          // background-color: deeppink;
+          // background-image: url(../img/fantasy-game-157x168.png);
+        }
+
+        &:nth-child(3){
+          // background-color: pink;
+          // background-image: url(../img/fantasy-game-157x168.png);
+        }
+
+        &:nth-child(4){
+          // background-image: url(../img/fantasy-game-157x168.png);
+          // background-color: gold;
+        }
+
+        &:nth-child(5){
+          // background-color: darkblue;
+          // background-image: url(../img/fantasy-game-157x168.png);
+        }
+
+        span{
+          // position: absolute;
+          // display: inline-block;
+          // bottom: 10px;
+          // left: 0;
+          // font-size: 1.1em;
+          // color: white;
+          // width: 100%;
+        }
+      }
+    } //END OF .my_projects
+  } //END OF <section>
+
 }
 
+
+// DEVICES -->  WIDTH + 700px
+@media ONLY screen AND(min-width:701px){
+  main{
+    // height: 100%;
+
+    header{
+      // height: 60px;
+      // background: green;
+
+      .menu_btn{
+        // background: yellow;
+        // height: 100%;
+        width: 190px;
+        // float: right;
+      }
+
+      nav{
+        // float: right;
+        // clear: right;
+        width: 340px;
+        // background: red;
+        // color: white;
+
+        .menu_options{
+          // background: orange;
+          // padding:15px;
+          // width: 90%;
+          // text-align: center;
+
+          .list_project{
+            // padding: 15px;
+            // background: pink;
+
+            .project_icon{
+
+            }
+          }
+        }
+      }//END OF <nav>//
+    }//END OF <header>
+  }//END OF <main>//
+
+  section{
+    // background: orange;
+    // height: calc(100vh - #{$navbarHeight});
+    width: 650px;
+
+    .my_projects{
+      // background: lightgreen;
+      // height: auto;
+      // width: 100%;
+
+      .project{
+        // background: tomato;
+        // position: relative;
+        // display: inline-block;
+        // // width: 162px;
+        width: 33.33%;
+        height: 170px;
+        // float: left;
+        // text-align: center;
+        // background-repeat: no-repeat;
+        // background-size: 85px 80px;
+        // background-position: 50% 30%;
+
+        &:nth-child(1){
+          // background-color: rgb(0, 229, 255);
+          // background-image: url(../img/fantasy-game-157x168.png);
+        }
+
+        &:nth-child(2){
+          // background-color: deeppink;
+          // background-image: url(../img/fantasy-game-157x168.png);
+        }
+
+        &:nth-child(3){
+          // background-color: pink;
+          // background-image: url(../img/fantasy-game-157x168.png);
+        }
+
+        &:nth-child(4){
+          // background-image: url(../img/fantasy-game-157x168.png);
+          // background-color: gold;
+        }
+
+        &:nth-child(5){
+          // background-color: darkblue;
+          // background-image: url(../img/fantasy-game-157x168.png);
+        }
+
+        span{
+          // position: absolute;
+          // display: inline-block;
+          // bottom: 10px;
+          // left: 0;
+          // font-size: 1.1em;
+          // color: white;
+          // width: 100%;
+        }
+      }
+    } //END OF .my_projects
+  } //END OF <section>
+
+}
 
 // DEVICES -->  WIDTH + 800px
 @media ONLY screen AND(min-width:801px){
@@ -281,6 +520,68 @@ section{
       }//END OF <nav>//
     }//END OF <header>
   }//END OF <main>//
+
+  section{
+    // background: orange;
+    // height: calc(100vh - #{$navbarHeight});
+    width: 750px;
+    padding-top: 50px;
+
+    .my_projects{
+      // background: lightgreen;
+      // height: auto;
+      // width: 100%;
+
+      .project{
+        // background: tomato;
+        // position: relative;
+        // display: inline-block;
+        // // width: 162px;
+        width: 25%;
+        height: 180px;
+        // float: left;
+        // text-align: center;
+        // background-repeat: no-repeat;
+        // background-size: 85px 80px;
+        // background-position: 50% 30%;
+
+        &:nth-child(1){
+          // background-color: rgb(0, 229, 255);
+          // background-image: url(../img/fantasy-game-157x168.png);
+        }
+
+        &:nth-child(2){
+          // background-color: deeppink;
+          // background-image: url(../img/fantasy-game-157x168.png);
+        }
+
+        &:nth-child(3){
+          // background-color: pink;
+          // background-image: url(../img/fantasy-game-157x168.png);
+        }
+
+        &:nth-child(4){
+          // background-image: url(../img/fantasy-game-157x168.png);
+          // background-color: gold;
+        }
+
+        &:nth-child(5){
+          // background-color: darkblue;
+          // background-image: url(../img/fantasy-game-157x168.png);
+        }
+
+        span{
+          // position: absolute;
+          // display: inline-block;
+          // bottom: 10px;
+          // left: 0;
+          // font-size: 1.1em;
+          // color: white;
+          // width: 100%;
+        }
+      }
+    } //END OF .my_projects
+  } //END OF <section>
 }
 
 // DEVICES -->  WIDTH + 900px
@@ -324,6 +625,68 @@ section{
       }//END OF <nav>//
     }//END OF <header>
   }//END OF <main>//
+
+  section{
+    // background: orange;
+    // height: calc(100vh - #{$navbarHeight});
+    width: 850px;
+    padding-top: 150px;
+
+    .my_projects{
+      // background: lightgreen;
+      // height: auto;
+      // width: 100%;
+
+      .project{
+        // background: tomato;
+        // position: relative;
+        // display: inline-block;
+        // // width: 162px;
+        width: 20%;
+        height: 150px;
+        // float: left;
+        // text-align: center;
+        // background-repeat: no-repeat;
+        // background-size: 85px 80px;
+        // background-position: 50% 30%;
+
+        &:nth-child(1){
+          // background-color: rgb(0, 229, 255);
+          // background-image: url(../img/fantasy-game-157x168.png);
+        }
+
+        &:nth-child(2){
+          // background-color: deeppink;
+          // background-image: url(../img/fantasy-game-157x168.png);
+        }
+
+        &:nth-child(3){
+          // background-color: pink;
+          // background-image: url(../img/fantasy-game-157x168.png);
+        }
+
+        &:nth-child(4){
+          // background-image: url(../img/fantasy-game-157x168.png);
+          // background-color: gold;
+        }
+
+        &:nth-child(5){
+          // background-color: darkblue;
+          // background-image: url(../img/fantasy-game-157x168.png);
+        }
+
+        span{
+          // position: absolute;
+          // display: inline-block;
+          // bottom: 10px;
+          // left: 0;
+          // font-size: 1.1em;
+          // color: white;
+          // width: 100%;
+        }
+      }
+    } //END OF .my_projects
+  } //END OF <section>
 }
 
 // DEVICES -->  WIDTH + 1024px

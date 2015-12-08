@@ -38,15 +38,15 @@
       </header>
 
 
-      <section class="projects_area">
+      <section class="projects_area center_block">
         <ul class="my_projects hide_over">
           <li class="project"><span class="center_block">brasileiro 2016</span></li>
           <li class="project"><span class="center_block">chat generator</span></li>
-          <li class="project"></li>
-          <li class="project"></li>
-          <li class="project"></li>
-          <li class="project"></li>
-          <li class="project"></li>
+          <li class="project"><span class="center_block">tic tac toe</span></li>
+          <li class="project"><span class="center_block">tracker</span></li>
+          <li class="project"><span class="center_block">chat generator</span></li>
+          <li class="project"><span class="center_block">chat generator</span></li>
+          <li class="project"><span class="center_block">chat generator</span></li>
         </ul>
       </section>
 
