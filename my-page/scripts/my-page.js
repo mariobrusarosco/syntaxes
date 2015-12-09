@@ -28,13 +28,13 @@ var Page = {
 };
 
 var Menu = {
-  open_close : function(event){
-                  var
-                    $node = $(this),
-                    $list = $node.next(".menu_options").fadeToggle(300);
-                    // console.log($node);
-                    // console.log($list.html());
-              }
+  // open_close : function(event){
+  //                 var
+  //                   $node = $(this),
+  //                   $list = $node.next(".menu_options").fadeToggle(300);
+  //                   // console.log($node);
+  //                   // console.log($list.html());
+  //             }
 };
 ///////////////////////// OBJECTS//////////////////////////////
 
@@ -44,10 +44,9 @@ var Menu = {
 
 $(function(){
 
-$("#menu_btn").click(Menu.open_close);//EVENT HANDLER FOR A CLICK ON THE PAGE'S MENU//
+// $("#menu_btn").click(Menu.open_close);//EVENT HANDLER FOR A CLICK ON THE PAGE'S MENU//
 
 $(window).scroll(Page.stickyBar);
-
 
 $(".my_projects").on("li:first-child",
                       {

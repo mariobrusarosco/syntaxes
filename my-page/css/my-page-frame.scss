@@ -74,22 +74,42 @@ main{
     background: green;
     z-index: 15;
 
+    //JUST HIDE THE CHECKBOX INPUT//
     .menu_btn{
+      position: absolute;
+      top: -100%;
+      left: -100%;
+    }
+
+    .menu_btn+label{
       background: yellow;
       height: 100%;
-      width: 50%;
-      float: right;
+      width: 30%;
+      text-align: center;
+      line-height: 60px;
+    }
+
+    .menu_btn+label:after{
+      content: "menu";
+    }
+
+    .menu_btn:checked+label:after{
+      content: "x";
+    }
+
+    .menu_btn:checked~nav{
+      left: 0;
     }
 
     nav{
-      display: none;
+      // display: none;
       position: absolute;
       top: 60px;
-      right: 0;
-      z-index: 16;
-      width: 90%;
+      left: -100%;
+      width: 100%;
       background: red;
       color: white;
+      transition: all 200ms ease;
 
       .menu_options{
         background: orange;

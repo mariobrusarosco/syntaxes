@@ -36,7 +36,8 @@
     </div>
 
       <header>
-        <button id="menu_btn" class="menu_btn">Menu</button>
+        <input id="menu_btn" class="menu_btn" type="checkbox">
+        <label for="menu_btn"></label>
         <nav>
             <ul class="menu_options">
               <li class="list_project"><span class="project_icon"></span><a href="#">brasileiro 2016</a></li>

@@ -49,19 +49,29 @@ main {
     background: green;
     z-index: 15; }
     main header .menu_btn {
+      position: absolute;
+      top: -100%;
+      left: -100%; }
+    main header .menu_btn + label {
       background: yellow;
       height: 100%;
-      width: 50%;
-      float: right; }
+      width: 30%;
+      text-align: center;
+      line-height: 60px; }
+    main header .menu_btn + label:after {
+      content: "menu"; }
+    main header .menu_btn:checked + label:after {
+      content: "x"; }
+    main header .menu_btn:checked ~ nav {
+      left: 0; }
     main header nav {
-      display: none;
       position: absolute;
       top: 60px;
-      right: 0;
-      z-index: 16;
-      width: 90%;
+      left: -100%;
+      width: 100%;
       background: red;
-      color: white; }
+      color: white;
+      transition: all 200ms ease; }
       main header nav .menu_options {
         background: orange;
         width: 100%;
