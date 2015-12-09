@@ -19,6 +19,10 @@ $navbarHeightLg   : 70px; //FOR +1024px DISPLAYS
 html,body{
   height: 100%;
 }
+
+body{
+  padding-top: 60px;
+}
 //GLOBAL STYLES//
 
 //HELPER CLASSES//
@@ -44,10 +48,31 @@ html,body{
 main{
   height: 100%;
 
+  .fixed_header{
+    height: 100px;
+    width: 100%;
+    position: fixed;
+    top: 0;
+    background: tomato;
+
+    div{
+      background: blue;
+      float: left;
+
+      p{
+        color: red;
+        background: white;
+      }
+    }
+  }
+
   header{
-    position: relative;
+    position: fixed;
+    top:0;
     height: 60px;
+    width: 100%;
     background: green;
+    z-index: 15;
 
     .menu_btn{
       background: yellow;
@@ -61,7 +86,7 @@ main{
       position: absolute;
       top: 60px;
       right: 0;
-      z-index: 1;
+      z-index: 16;
       width: 90%;
       background: red;
       color: white;

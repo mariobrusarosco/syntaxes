@@ -21,6 +21,20 @@
 
     <div hidden id="viewport_test"></div>
 
+    <div hidden id="fixed_header" class="fixed_header">
+      <div>
+        <p>aaaaaaaaaaaaaa</p>
+        <p>aaaaaaaaaaaaaa</p>
+        <p>aaaaaaaaaaaaaa</p>
+      </div>
+
+      <div>
+        <p>bbbbbbbbbbbbbb</p>
+        <p>bbbbbbbbbbbbbb</p>
+        <p>bbbbbbbbbbbbbb</p>
+      </div>
+    </div>
+
       <header>
         <button id="menu_btn" class="menu_btn">Menu</button>
         <nav>
@@ -40,6 +54,27 @@
 
       <section class="projects_area center_block">
         <ul class="my_projects hide_over">
+          <li class="project"><span class="center_block">brasileiro 2016</span></li>
+          <li class="project"><span class="center_block">chat generator</span></li>
+          <li class="project"><span class="center_block">tic tac toe</span></li>
+          <li class="project"><span class="center_block">tracker</span></li>
+          <li class="project"><span class="center_block">chat generator</span></li>
+          <li class="project"><span class="center_block">chat generator</span></li>
+          <li class="project"><span class="center_block">chat generator</span></li>
+          <li class="project"><span class="center_block">brasileiro 2016</span></li>
+          <li class="project"><span class="center_block">chat generator</span></li>
+          <li class="project"><span class="center_block">tic tac toe</span></li>
+          <li class="project"><span class="center_block">tracker</span></li>
+          <li class="project"><span class="center_block">chat generator</span></li>
+          <li class="project"><span class="center_block">chat generator</span></li>
+          <li class="project"><span class="center_block">chat generator</span></li>
+          <li class="project"><span class="center_block">brasileiro 2016</span></li>
+          <li class="project"><span class="center_block">chat generator</span></li>
+          <li class="project"><span class="center_block">tic tac toe</span></li>
+          <li class="project"><span class="center_block">tracker</span></li>
+          <li class="project"><span class="center_block">chat generator</span></li>
+          <li class="project"><span class="center_block">chat generator</span></li>
+          <li class="project"><span class="center_block">chat generator</span></li>
           <li class="project"><span class="center_block">brasileiro 2016</span></li>
           <li class="project"><span class="center_block">chat generator</span></li>
           <li class="project"><span class="center_block">tic tac toe</span></li>

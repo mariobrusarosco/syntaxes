@@ -15,6 +15,18 @@ if($("#viewport_test").width() !== 2){
 
 
 ///////////////////////// OBJECTS//////////////////////////////
+var Page = {
+  stickyBar   : function(event){
+
+                  if($("#fixed_header").attr("hidden") === true){
+
+                  }else{
+
+                  }
+                  console.log($(this).scrollTop());
+                }
+};
+
 var Menu = {
   open_close : function(event){
                   var
@@ -33,6 +45,9 @@ var Menu = {
 $(function(){
 
 $("#menu_btn").click(Menu.open_close);//EVENT HANDLER FOR A CLICK ON THE PAGE'S MENU//
+
+$(window).scroll(Page.stickyBar);
+
 
 $(".my_projects").on("li:first-child",
                       {
@@ -56,5 +71,4 @@ $(".my_projects").on("li:first-child",
                                  }
                           }
                       );
-
 });

@@ -9,6 +9,9 @@
 html, body {
   height: 100%; }
 
+body {
+  padding-top: 60px; }
+
 .center_block {
   margin: 0 auto; }
 
@@ -26,10 +29,25 @@ html, body {
 
 main {
   height: 100%; }
+  main .fixed_header {
+    height: 100px;
+    width: 100%;
+    position: fixed;
+    top: 0;
+    background: tomato; }
+    main .fixed_header div {
+      background: blue;
+      float: left; }
+      main .fixed_header div p {
+        color: red;
+        background: white; }
   main header {
-    position: relative;
+    position: fixed;
+    top: 0;
     height: 60px;
-    background: green; }
+    width: 100%;
+    background: green;
+    z-index: 15; }
     main header .menu_btn {
       background: yellow;
       height: 100%;
@@ -40,7 +58,7 @@ main {
       position: absolute;
       top: 60px;
       right: 0;
-      z-index: 1;
+      z-index: 16;
       width: 90%;
       background: red;
       color: white; }
