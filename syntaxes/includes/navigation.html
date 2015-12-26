@@ -1,0 +1,30 @@
+<input id="show_hide_nav_btn" class="show_hide_nav_btn" type="checkbox" checked>
+<label for="show_hide_nav_btn" class="show_hide_nav_label"></label>
+
+<nav id="main_navigation" class="main_navigation">
+  <form id="search_form" class="form search_form" action="./helpers/search-syntax.php" method="post">
+
+
+    <div class="lang_option_area">
+      <input id="java_search_option" class="lang_option_input" type="checkbox" name="lang[]" value="java">
+      <label for="java_search_option" class="lang_option_label java_label">Java</label>
+    </div>
+
+    <div class="lang_option_area">
+      <input id="php_search_option" class="lang_option_input" type="checkbox" name="lang[]" value="php">
+      <label for="php_search_option" class="lang_option_label php_label">PHP</label>
+    </div>
+
+    <div class="lang_option_area">
+      <input id="javascript_search_option" class="lang_option_input" type="checkbox" name="lang[]" value="javascript">
+      <label for="javascript_search_option" class="lang_option_label javascript_label">Javascript</label>
+    </div>
+
+    <div class="clearfix"></div>
+
+    <input id="search_field" class="search_field" type="search" name="" placeholder="Type a syntax or a simple description of an action">
+    <input id="submit_search_btn" class="submit_btn" type="submit" name="submit_lang_search" value="search">
+
+  </form>
+
+</nav>

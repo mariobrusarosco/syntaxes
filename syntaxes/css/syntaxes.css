@@ -1,0 +1,112 @@
+* {
+  padding: 0;
+  margin: 0;
+  border: 0;
+  box-sizing: border-box;
+  font-family: sans-serif; }
+
+.clearfix {
+  margin: 0 auto;
+  display: block;
+  clear: both; }
+
+nav {
+  width: 100%;
+  position: fixed;
+  top: -55px;
+  z-index: 1;
+  background: #326e88;
+  padding: 10px 0px 10px 15px;
+  overflow: hidden;
+  transition: top 200ms ease; }
+
+.search_form .search_field {
+  width: 1000px;
+  height: 30px;
+  padding: 10px 15px;
+  margin: 20px 0 5px 0;
+  font-size: 0.9em;
+  color: gray; }
+.search_form .submit_btn {
+  height: 30px;
+  padding: 6px 15px 6px;
+  color: white;
+  font-size: 1em;
+  background: #02b3ff;
+  cursor: pointer; }
+.search_form .lang_option_label {
+  display: inline-block;
+  float: left;
+  width: auto;
+  padding: 10px;
+  margin: 0 10px 0 0;
+  background-color: #006c9b;
+  border: 1px solid #02b3ff;
+  border-radius: 3px;
+  color: white;
+  text-align: center;
+  transition: background-color,color 200ms ease; }
+.search_form .lang_option_input:checked + label {
+  color: white;
+  background: #02b3ff;
+  border: 1px solid transparent; }
+.search_form .lang_option_input {
+  display: none; }
+
+.show_hide_nav_label {
+  position: fixed;
+  z-index: 2;
+  top: 8px;
+  right: 15px;
+  padding: 5px 15px;
+  border-radius: 4px;
+  background: #02b3ff;
+  color: white;
+  font-size: 1.6em;
+  cursor: pointer;
+  transition: all 200ms ease; }
+  .show_hide_nav_label::after {
+    content: "+"; }
+
+.show_hide_nav_btn {
+  display: none; }
+
+.show_hide_nav_btn:checked ~ nav {
+  top: 0; }
+
+.show_hide_nav_btn:checked + label {
+  top: 60px; }
+  .show_hide_nav_btn:checked + label::after {
+    content: "-";
+    padding: 0px 3px;
+    font-size: 1.1em; }
+
+section {
+  padding-top: 90px; }
+
+.results_area {
+  color: white; }
+
+.results_table {
+  border-collapse: collapse;
+  margin-left: 20px; }
+  .results_table thead tr {
+    color: darkcyan; }
+  .results_table thead th {
+    font-size: 0.9em;
+    padding: 5px; }
+  .results_table tbody {
+    font-size: 0.85em; }
+    .results_table tbody tr:nth-child(odd) {
+      background: rgba(0, 139, 139, 0.08); }
+    .results_table tbody tr {
+      color: darkcyan;
+      cursor: pointer;
+      transition: all 200ms ease; }
+      .results_table tbody tr:hover, .results_table tbody tr :active, .results_table tbody tr :focus {
+        color: #c5eaea;
+        background: #07364a; }
+    .results_table tbody td {
+      padding: 10px 15px; }
+
+/*# sourceMappingURL=syntaxes.css.map */
