@@ -4,12 +4,13 @@ class ConditionSQL extends FilterSQL{
   protected $field;
   protected $operator;
   protected $value;
-  protected $strCondition;
+  public  $strCondition;
 
     function __construct($field,$operator,$value){
       $this->field     = $field;
       $this->operator  = $operator;
       $this->value     = $value;
+      return $this;
     }
 
     function finishCondition(){

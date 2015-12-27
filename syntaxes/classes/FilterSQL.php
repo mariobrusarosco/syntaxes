@@ -2,22 +2,27 @@
 class FilterSQL{
 
   private $conditions = [];
-  private $strCondition;
+  // private $strCondition;
+  // protected $strFilter;
+  private $strFilter;
 
   function __construct(ConditionSQL $condition){
-    $this->strCondition = $condition->finishCondition();
+    $this->strFilter = $condition->strCondition;
+    return $this;
+    // $this->strFilter = $condition->finishCondition();
   }
 
   function addCondition($booleanOperator = NULL, ConditionSQL $condition){
-      $this->strCondition .= " {$booleanOperator} {$condition->finishCondition() }";
+      $this->strFilter .= " {$booleanOperator} {$condition->finishCondition() }";
+      return $this;
   }
 
   function finishFilter(){
-    return "({$this->strCondition})";
+    return "({$this->strFilter})";
   }
 
   function __tostring(){
-    return "{$this->strCondition}";
+    return "{$this->strFilter}";
 
   }
 

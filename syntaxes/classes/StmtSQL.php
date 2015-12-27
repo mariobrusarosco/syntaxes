@@ -2,7 +2,7 @@
 
 abstract class StmtSQL{
 
-  protected $table;
+  protected $tables;
   protected $fields;
   protected $values;
   protected $fieldsAndValues;
@@ -13,10 +13,12 @@ abstract class StmtSQL{
 
   public function where(FilterSQL $filter){
     $this->whereClause = "WHERE {$filter->finishFilter()}";
+    return $this;
   }
 
-  public function innerJoin($newTable){
-    $this->table = 
+  public function join($joinType,$joinedTable,$commonField){
+    $this->tables .= "{$joinType} JOIN {$joinedTable} USING({$commonField}) ";
+    return $this;
   }
   // abstract function setToString(){ }
 
