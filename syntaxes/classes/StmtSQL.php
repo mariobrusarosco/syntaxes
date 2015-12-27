@@ -14,6 +14,10 @@ abstract class StmtSQL{
   public function where(FilterSQL $filter){
     $this->whereClause = "WHERE {$filter->finishFilter()}";
   }
+
+  public function innerJoin($newTable){
+    $this->table = 
+  }
   // abstract function setToString(){ }
 
 }
