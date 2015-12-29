@@ -1,6 +1,6 @@
 <?php
-echo "<pre>";
-//print_r($chosenLang = $_POST['lang']);
+// echo "<pre>";
+// print_r($chosenLang = $_POST['lang']);
 
 //@param $selectedLangs --> an array containing all selected langs in a  HTML <form>//
 function getLangs($selectedLangs){
