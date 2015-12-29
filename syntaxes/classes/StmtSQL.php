@@ -16,6 +16,10 @@ abstract class StmtSQL{
     return $this;
   }
 
+  public function addWhere(){
+    
+  }
+
   public function join($joinType,$joinedTable,$commonField){
     $this->tables .= "{$joinType} JOIN {$joinedTable} USING({$commonField}) ";
     return $this;

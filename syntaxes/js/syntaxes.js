@@ -24,8 +24,10 @@ var Search = {
               event.preventDefault();
 
               //STORE SOME VARIABLES//
-              var selectedLangs = $("#search_form input[name='lang[]']:checked"),
+              var         $form = $("#search_form"),
+                  selectedLangs = $form.find("input[name='lang[]']:checked"),
                          values = [],
+                         string = $form.find("#search_field").val(),
                             url = "./helpers/search-syntax.php",
                     currentJSON = "";
               //STORE SOME VARIABLES//
@@ -43,7 +45,8 @@ var Search = {
                 "url"     : url,
                 "type"    : "post",
                 "data"    : {
-                              "lang" : values
+                              "lang"   : values,
+                              "string" : string
                             },
                 "success" : function(response,status,xhr){
                               console.log(response);
@@ -73,11 +76,11 @@ var Search = {
                   for(var i = 0; i < lengthJSON; i++){
                       //CREATE THE ROW'S CELLS//
                      var $langDesc    = $("<td/>").addClass("lang_description").text(currentJSON[i]['languageDesc']),
-                         $syntaxBody  = $("<td/>").addClass("syntax_body").text(currentJSON[i]['syntaxBody']),
                          $syntaxDesc  = $("<td/>").addClass("syntax_desc").text(currentJSON[i]['syntaxDesc']),
+                         $syntaxBody  = $("<td/>").addClass("syntax_body").text(currentJSON[i]['syntaxBody']),
                          $syntaxNotes = $("<td/>").addClass("syntax_notes").text(currentJSON[i]['syntaxNotes']),
                         //CREATE THE ROW//
-                        $row = $("<tr/>").append($langDesc,$syntaxBody,$syntaxDesc,$syntaxNotes);
+                        $row = $("<tr/>").append($langDesc,$syntaxDesc,$syntaxBody,$syntaxNotes);
                         //INSERT THE ROW INTO THE <tbody>//
                         $tbody.append($row);
                         // console.log(currentJSON[i]);
