@@ -26,7 +26,8 @@ var Search = {
               //STORE SOME VARIABLES//
               var selectedLangs = $("#search_form input[name='lang[]']:checked"),
                          values = [],
-                            url = "./hlpers/search-syntax.php";
+                            url = "./helpers/search-syntax.php",
+                    currentJSON = "";
               //STORE SOME VARIABLES//
 
               //FOR EACH CHECKBOX WITH THE STATUS OF 'CHECKED', INSERT ITS VALUE INTO AN ARRAY CALLED 'values'//
@@ -46,16 +47,42 @@ var Search = {
                             },
                 "success" : function(response,status,xhr){
                               console.log(response);
+                              //LOG THE RESULT//
                               Log.addSuccess(response,url);
+                              //CALL A METHOD TO GENERATE THE HTML//
+                              Search.loadResult(response);
                             },
                 "error"   : function(xhr,status,error){
+                              //LOG THE RESULT//
                               Log.addError(status,error,url);
                           }
               });
               //AJAX CALL//
 
               // return false;
-            }
+            },//END OF query()//
+ loadResult: function(givenJSON){
+                //PARSE THE JSON//
+                currentJSON = JSON.parse(givenJSON);
+                //STORE SOME VARIABLES//
+                  var lengthJSON = currentJSON.length,
+                          $tbody = $(".results_table tbody");
+                //CLEAR THE PREVIOUS TABLE'S CONTENT//
+                $tbody.empty();
+                //INSERT THE ROW AND CELLS//
+                  for(var i = 0; i < lengthJSON; i++){
+                      //CREATE THE ROW'S CELLS//
+                     var $langDesc    = $("<td/>").addClass("lang_description").text(currentJSON[i]['languageDesc']),
+                         $syntaxBody  = $("<td/>").addClass("syntax_body").text(currentJSON[i]['syntaxBody']),
+                         $syntaxDesc  = $("<td/>").addClass("syntax_desc").text(currentJSON[i]['syntaxDesc']),
+                         $syntaxNotes = $("<td/>").addClass("syntax_notes").text(currentJSON[i]['syntaxNotes']),
+                        //CREATE THE ROW//
+                        $row = $("<tr/>").append($langDesc,$syntaxBody,$syntaxDesc,$syntaxNotes);
+                        //INSERT THE ROW INTO THE <tbody>//
+                        $tbody.append($row);
+                        // console.log(currentJSON[i]);
+                  }//END OF for() LOOP//
+             }//END OF loadResult()//
 };
 //GLOBAL OBJECTS//
 
