@@ -14,57 +14,7 @@ require_once("includes/header.html");
     //TABLE OF A SEARCH RESULTS//
     require_once("includes/table-results.html");
   ?>
-    <!-- <section>
-      <ul>
-        <li>test</li>
-        <li>test</li>
-        <li>test</li>
-        <li>test</li>
-        <li>test</li>
-        <li>test</li>
-        <li>test</li>
-        <li>test</li>
-        <li>test</li>
-        <li>test</li>
-        <li>test</li>
-        <li>test</li>
-        <li>test</li>
-        <li>test</li>
-        <li>test</li>
-        <li>test</li>
-        <li>test</li>
-        <li>test</li>
-        <li>test</li>
-        <li>test</li>
-        <li>test</li>
-        <li>test</li>
-        <li>test</li>
-        <li>test</li>
-        <li>test</li>
-        <li>test</li>
-        <li>test</li>
-        <li>test</li>
-        <li>test</li>
-        <li>test</li>
-        <li>test</li>
-        <li>test</li>
-        <li>test</li>
-        <li>test</li>
-        <li>test</li>
-        <li>test</li>
-        <li>test</li>
-        <li>test</li>
-        <li>test</li>
-        <li>test</li>
-        <li>test</li>
-        <li>test</li>
-        <li>test</li>
-        <li>test</li>
-        <li>test</li>
-        <li>test</li>
-        <li>test</li>
-      </ul>
-    </section> -->
+  
   </main>
    <!-- //   FOOTER // -->
 

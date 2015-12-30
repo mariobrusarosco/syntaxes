@@ -21,6 +21,19 @@ main{
 
 }
 
+//====PAGE OVERLAY=====//
+#overlay{
+    position: absolute;
+    z-index: 1000;
+    top: 0;
+    left: 0;
+    width: 2000px;
+    height: 1800px;
+    background: rgba(111, 111, 111, 0.77);
+}
+//====PAGE OVERLAY=====//
+
+
 nav{
   width: 100%;
   position: fixed;
@@ -107,7 +120,7 @@ nav{
 
 }// END OF .search_form
 
-//NAVBAR OPTIONS//
+//===== NAVBAR OPTIONS=======//
 
   //HIDE AND SHOW THE NAVIGATION BAR//
   .show_hide_nav_label{
@@ -211,10 +224,9 @@ nav{
   .show_hide_nav_btn:checked~#unselect_all_btn{
     display: inline-block;
   }//BUTTONS: select all, unselect all, new syntax//
+//===== NAVBAR OPTIONS=======//
 
-//NAVBAR OPTIONS//
-
-//ALERT AREA//
+//===== ALERT AREA=======//
 .my_alert{
   width: 40%;
   height: 35px;
@@ -223,17 +235,17 @@ nav{
   border-radius: 5px;
   text-align: center;
 }
-
 .my_alert.warning{
   color: rgb(0, 140, 39);
   border: 1px solid rgb(0, 140, 39);
 }
-
 .my_alert.error{
   background: rgba(255, 0, 0, 0.7);
   color: #FFFFFF;
 }
-//ALERT AREA//
+//===== ALERT AREA=======//
+
+
 section{
   padding-top: 90px;
 }

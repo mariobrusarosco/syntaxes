@@ -54,8 +54,7 @@ var Search = {
                               Log.addSuccess(response,url);
                               //CALL A METHOD TO GENERATE THE HTML//
                               Search.loadResult(response);
-                              //RETURN THE NAVIGATION TO THE INITIAL STATE//
-                              $("#show_hide_nav_btn").prop("checked",false);
+
                             },
                 "error"   : function(xhr,status,error){
                               //LOG THE RESULT//
@@ -73,16 +72,13 @@ var Search = {
                 //===========================================================================//
                 //CHECK IF THE 'status' PROPERTY WAS PASSED WITHIN THE JSON OBJECT//
                 if(currentJSON.hasOwnProperty("status")){
+
                 //IF IT WAS, THAT MEANS NO RESULTS WERE FOUND ON THE PERFORMED QUERY. INFORM THE USER ABOUT THE QUERY'S STATUS//
                   //STORE SOME VARIABLES//
                       var status = currentJSON['status'],
                              msg = currentJSON['msg'],
                       $alertArea = $(".alert_area"),
                           $alert = $("<p/>").addClass("my_alert");
-                    console.log(status);
-                    if(status === "no language selected"){
-                      console.log("error");
-                    }
                   //DEFINE THE ALERT'S CORRESPONDENT CLASSE//
                     $alert.addClass(function(){
                       if(status == "no language selected" || status == "no string passed"){
@@ -119,7 +115,8 @@ var Search = {
                         // console.log(currentJSON[i]);
                   }//END OF for() LOOP//
                 //===========================================================================//
-
+                //RETURN THE NAVIGATION TO THE INITIAL STATE//
+                $("#show_hide_nav_btn").prop("checked",false);
              }//END OF loadResult()//
 };
 
@@ -133,13 +130,32 @@ var Navigation = {
                       };
                    }
 };
+
+var Page = {
+   createOverlay  : function(event){
+                      //CREATE THE OVERLAY HTML ELEMENT AND INSERT IT//
+                        var $overlay = $("<div id='overlay'> \
+                                            <span class='close_btn'>X</span> \
+                                          </div>");
+                            $("main").append($overlay);
+                      //BIND A CLICK EVENT TO IT, TO REMOVE IT...//
+                          $overlay.on("click",Page.removeOverlay);
+                    },
+
+    removeOverlay : function(event){
+                      $("main").find("#overlay").remove();
+                    }
+
+
+};
 //GLOBAL OBJECTS//
 
 $(document).ready(function(){
 
-//SEARCH SYNTAX BUTTON//
-$("main").on("click","#submit_search_btn",Search.query);
-
-//SELECT OR UNSELECT ALL//
-$("main").on("click","#unselect_all_btn,#select_all_btn",Navigation.toggleLangs);
+  //SEARCH SYNTAX BUTTON//
+  $("main").on("click","#submit_search_btn",Search.query);
+  //SELECT OR UNSELECT ALL//
+  $("main").on("click","#unselect_all_btn,#select_all_btn",Navigation.toggleLangs);
+  //CREATE NEW SYNTAX//
+  $("main").on("click","#new_syntax_btn",Page.createOverlay);
 });

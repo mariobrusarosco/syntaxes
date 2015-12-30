@@ -10,6 +10,15 @@
   display: block;
   clear: both; }
 
+#overlay {
+  position: absolute;
+  z-index: 1000;
+  top: 0;
+  left: 0;
+  width: 2000px;
+  height: 1800px;
+  background: rgba(111, 111, 111, 0.77); }
+
 nav {
   width: 100%;
   position: fixed;
