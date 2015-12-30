@@ -1,4 +1,5 @@
 <?php
+
 class SelectSQL extends StmtSQL{
 
   private $orderByClause = NULL;
@@ -22,7 +23,15 @@ class SelectSQL extends StmtSQL{
   }
 
   public function convertToStr(){
-    $this->strStmt = "SELECT {$this->fields} {$this->tables} {$this->whereClause} {$this->orderByClause} {$this->limitClause}";
+    if(sizeof($this->whereClause) <= 0){
+      $this->strStmt = "SELECT {$this->fields} {$this->tables} WHERE {$this->whereClause} {$this->orderByClause} {$this->limitClause}";
+    }else{
+      $this->strStmt = "SELECT {$this->fields} {$this->tables} WHERE";
+      foreach($this->whereClause as $filter){
+        $this->strStmt .= $filter;
+      }
+      $this->strStmt .= "{$this->orderByClause} {$this->limitClause}";
+    }
     return $this;
   }
 

@@ -28,6 +28,10 @@ class FilterSQL{
     return $this;
   }
 
+  function getBoollOp(){
+    return $this->booleanOperator;
+  }
+
   function finishFilter(){
     foreach($this->conditions as $condition){
       $this->strFilter .= " {$condition->booleanOperator} ({$condition->field} {$condition->operator} {$condition->value})";

@@ -7,18 +7,14 @@ abstract class StmtSQL{
   protected $values;
   protected $fieldsAndValues;
   protected $strStmt;
-  protected $whereClause;
+  protected $whereClause = [];
 
   function __construct(){}
 
   public function where(FilterSQL $filter){
-    $this->whereClause = "WHERE {$filter->finishFilter()}";
+    $this->whereClause[] = "{$filter->getBoollOp()} {$filter->finishFilter()}";
     return $this;
-  }
-
-  public function addWhere(){
-    
-  }
+  } 
 
   public function join($joinType,$joinedTable,$commonField){
     $this->tables .= "{$joinType} JOIN {$joinedTable} USING({$commonField}) ";
