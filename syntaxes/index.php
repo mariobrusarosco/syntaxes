@@ -7,6 +7,7 @@ require_once("includes/header.html");
 <body>
 
   <main>
+    
   <?php
     //    NAVIGATION   //
     require_once('includes/navigation.html');
@@ -14,7 +15,7 @@ require_once("includes/header.html");
     //TABLE OF A SEARCH RESULTS//
     require_once("includes/table-results.html");
   ?>
-  
+
   </main>
    <!-- //   FOOTER // -->
 

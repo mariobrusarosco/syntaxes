@@ -136,6 +136,7 @@ var Page = {
                       //CREATE THE OVERLAY HTML ELEMENT AND INSERT IT//
                         var $overlay = $("<div id='overlay'> \
                                             <span class='close_btn'>X</span> \
+                                            <div class='my_modal'>dasdasd adasd</div> \
                                           </div>");
                             $("main").append($overlay);
                       //BIND A CLICK EVENT TO IT, TO REMOVE IT...//
@@ -143,7 +144,10 @@ var Page = {
                     },
 
     removeOverlay : function(event){
-                      $("main").find("#overlay").remove();
+                    //EVERYTHING THAT HAS NOT A CLASS OF .my_modal, IF CLICKED, WILL CLOSE THE OVERLAY//
+                      if(!$(event.target).is(".my_modal")){
+                        $("main").find("#overlay").remove();
+                      }
                     }
 
 
@@ -158,4 +162,5 @@ $(document).ready(function(){
   $("main").on("click","#unselect_all_btn,#select_all_btn",Navigation.toggleLangs);
   //CREATE NEW SYNTAX//
   $("main").on("click","#new_syntax_btn",Page.createOverlay);
+
 });

@@ -25,7 +25,7 @@ $givenString = isset($_POST['string']) ? $_POST['string'] : null;
 
 //IF NO LANGUAGE IS SELECTED...ECHO A JSON 'LOG' AND CLOSE THE PROGRAM//
 if(empty($chosenLangs)){
-  echo json_encode(array("status"=>"no language selected","msg"=>"Plese, selected a least one language"));
+  echo json_encode(array("status"=>"no language selected","msg"=>"Plese, select least one language"));
   return false;
 }
 //IF NO TEXT IS PASSED TO PERFORM A SEARCH... ECHO A JSON 'LOG' AND CLOSE THE PROGRAM//
