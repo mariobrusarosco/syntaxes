@@ -69,6 +69,32 @@ var Search = {
  loadResult: function(givenJSON){
                 //PARSE THE JSON//
                 currentJSON = JSON.parse(givenJSON);
+                //CHECK IF THE 'status' PROPERTY WAS PASSED WITHIN THE JSON OBJECT//
+                if(currentJSON.hasOwnProperty("status")){
+
+                //IF IT WAS, THAT MEANS NO RESULTS WERE FOUND ON THE PERFORMED QUERY//
+                //INFORM THE USER ABOUT THE QUERY'S STATUS//
+                  //STORE SOME VARIABLES//
+                      var status = currentJSON['status'],
+                             msg = currentJSON['msg'],
+                      $alertArea = $(".alert_area"),
+                          $alert = $("<p/>").addClass("my_alert");
+                    console.log(status);
+                    if(status === "no language selected"){
+                      console.log("error");
+                    }
+                  //DEFINE THE ALERT'S CORRESPONDENT CLASSE//
+                    $alert.addClass(function(){
+                      if(status == "no language selected" || status == "no string passed"){
+                        return "error";
+                      }else{
+                        return "warning";
+                      }
+                    });
+                  //INSERT THE ALERT INTO THE PAGE//
+                  $alertArea.html($alert.text(msg));
+                  return false;
+                };
                 //STORE SOME VARIABLES//
                   var lengthJSON = currentJSON.length,
                           $tbody = $(".results_table tbody");
@@ -96,7 +122,7 @@ var Navigation = {
                       if($(event.target).attr("id") === "select_all_btn"){
                         $form.find(".lang_option_input").prop("checked",true);
                       }else{
-                        $form.find(".lang_option_input").prop("checked",false);  
+                        $form.find(".lang_option_input").prop("checked",false);
                       };
                    }
 };

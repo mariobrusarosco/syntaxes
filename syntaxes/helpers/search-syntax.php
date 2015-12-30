@@ -30,7 +30,7 @@ if(empty($chosenLangs)){
 }
 //IF NO TEXT IS PASSED TO PERFORM A SEARCH... ECHO A JSON 'LOG' AND CLOSE THE PROGRAM//
 if(empty($givenString)){
-  echo json_encode(array("status"=>"no string passed","msg"=>"Please, fill the search fill with some text."));
+  echo json_encode(array("status"=>"no string passed","msg"=>"Please, fill the search field with some text."));
   return false;
 }
 //IF AT LEAST ONE LANGUAGE IS SELECTED AND SOME TEXT IS TYPED...CONNECT TO A DATABASE//
@@ -56,7 +56,12 @@ $query = $conn->query($selectSQL);
 $affectedRows = $query->rowCount();
 //STORE THE RESULT IN AN ARRAY ($result)//
 $result = $query->fetchAll(PDO::FETCH_ASSOC);
-
+//IF NOTHING IS RETURNED... ECHO A JSON 'LOG' AND CLOSE THE PROGRAM//
+if(empty($result)){
+  echo json_encode(array("status"=>"no results found","msg"=>"No results were found. Please, type again"));
+  return false;
+}
+//ECHO THE QUERY RESULT//
 echo json_encode($result);
 
 // print_r($result);

@@ -13,7 +13,7 @@
 }
 
 //VARIABLES//
-$blue2Btn : rgb(2,179,255);
+$myDarkOcean : rgb(3,175,179);
 
 //VARIABLES///
 
@@ -26,10 +26,11 @@ nav{
   position: fixed;
   top: -55px;
   z-index: 1;
-  background: rgb(50,110,136);
+  background: white;
+  // background: rgb(50,110,136);
   padding: 10px 0px 10px 15px;
   overflow: hidden;
-  box-shadow: 0px 4px 4px 3px gray;
+  box-shadow: 0px 1px 13px 2px gray;
   transition: top 200ms ease;
 }
 
@@ -46,16 +47,27 @@ nav{
     height: 30px;
     padding: 10px 15px;
     margin: 20px 0 5px 0;
+    border: 1px solid lightgray;
+    border-radius: 3px;
     font-size: 0.9em;
     color: gray;
+
+    &:focus{
+      border: 1px solid $myDarkOcean;
+      outline: none;
+      // color: $myDarkOcean;
+    }
   }
 
   .submit_btn{
     height: 30px;
-    padding: 6px 15px 6px;
+    // background: white;
+    background: $myDarkOcean;
+    padding: 5px 15px;
+    // border: 1px solid gray;
+    border-radius: 3px;
     color: white;
     font-size: 1em;
-    background: $blue2Btn;
     cursor: pointer;
   }
 
@@ -66,20 +78,25 @@ nav{
     width: auto;
     padding: 10px;
     margin: 0 10px 0 0;
-    background-color: darken($blue2Btn, 20);
-    border: 1px solid $blue2Btn;
+    background: white;
+    border: 1px solid lightgray;
     border-radius: 3px;
-    color: white;
     text-align: center;
-
+    color:  $myDarkOcean;
+    cursor: pointer;
     transition: all 200ms ease;
+
+    &:hover, :active{
+      border: 1px solid $myDarkOcean;
+      color: darken($myDarkOcean, 20);
+    }
   }
 
   //ALL LANG OPTIONS WHEN THEIR CHECKED//
   .lang_option_input:checked+label{
+    border: 1px solid darken($myDarkOcean, 20);
+    background: darken($myDarkOcean, 20);
     color: white;
-    background:  $blue2Btn;
-    border: 1px solid transparent;
   }
 
   //HIDE THE CHECKBOX//
@@ -100,7 +117,7 @@ nav{
     right: 100px;
     padding: 5px 10px;
     border-radius: 4px;
-    background: #02b3ff;
+    background: $myDarkOcean;
     color: white;
     font-size: 0.95em;
     cursor: pointer;
@@ -118,6 +135,7 @@ nav{
   }
   .show_hide_nav_btn:checked+label{
     top: 10px;
+    right: 90px;
 
     &::after{
       content: "hide";
@@ -138,20 +156,27 @@ nav{
 
   #new_syntax_btn{
     right: 13px;
-    top: 12px;
-    padding: 8px 15px;
-    border-radius: 7px;
-    border: 2px solid white;
-    font-size: 1.1em;
-    background: #145B79;
+    top: 8px;
+    height: 40px;
+    width: 40px;
+    border-radius: 20px;
+    // border: 2px solid white;
+    box-shadow: 1px 1px 1px 0px gray;
+    font-size: 1.3em;
+    background: $myDarkOcean;
     transition: top 400ms ease;
 
     &:hover,:active{
-      background: $blue2Btn;
+      background: darken($myDarkOcean, 10);
     }
   }
   .show_hide_nav_btn:checked~#new_syntax_btn{
-    top: 45px;
+    top: 30px;
+    height: 60px;
+    width: 60px;
+    border-radius: 30px;
+    box-shadow: 1px 4px 2px 0px gray;
+    font-size: 1.6em;
   }
 
   #select_all_btn,
@@ -159,17 +184,19 @@ nav{
     display: none;
     right: 90px;
     padding: 4px 10px;
-    box-shadow: 0px 2px 7px -1px transparent inset;
+    // box-shadow: 0px 2px 7px -1px transparent inset;
+    border: 1px solid lightgray;
     border-radius: 2px;
     font-size: 0.9em;
-    color: white;
+    color: gray;
 
     &:hover, :active{
       // font-size: 1em;
       // font-weight: bold;
       // box-shadow: 0px 2px 7px -1px white inset;
-      box-shadow: 0px 2px 7px -1px $blue2Btn inset;
-      padding: 4px 10px;
+      border: 1px solid $myDarkOcean;
+      color: $myDarkOcean;
+      // box-shadow: 0px 2px 7px -1px $myDarkOcean inset;
     }
   }
   #select_all_btn{
@@ -187,6 +214,26 @@ nav{
 
 //NAVBAR OPTIONS//
 
+//ALERT AREA//
+.my_alert{
+  width: 40%;
+  height: 35px;
+  margin: 10px 0 0 0;
+  padding: 10px 15px;
+  border-radius: 5px;
+  text-align: center;
+}
+
+.my_alert.warning{
+  color: rgb(0, 140, 39);
+  border: 1px solid rgb(0, 140, 39);
+}
+
+.my_alert.error{
+  background: rgba(255, 0, 0, 0.7);
+  color: #FFFFFF;
+}
+//ALERT AREA//
 section{
   padding-top: 90px;
 }
