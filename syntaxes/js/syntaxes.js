@@ -69,11 +69,11 @@ var Search = {
  loadResult: function(givenJSON){
                 //PARSE THE JSON//
                 currentJSON = JSON.parse(givenJSON);
+
+                //===========================================================================//
                 //CHECK IF THE 'status' PROPERTY WAS PASSED WITHIN THE JSON OBJECT//
                 if(currentJSON.hasOwnProperty("status")){
-
-                //IF IT WAS, THAT MEANS NO RESULTS WERE FOUND ON THE PERFORMED QUERY//
-                //INFORM THE USER ABOUT THE QUERY'S STATUS//
+                //IF IT WAS, THAT MEANS NO RESULTS WERE FOUND ON THE PERFORMED QUERY. INFORM THE USER ABOUT THE QUERY'S STATUS//
                   //STORE SOME VARIABLES//
                       var status = currentJSON['status'],
                              msg = currentJSON['msg'],
@@ -95,6 +95,11 @@ var Search = {
                   $alertArea.html($alert.text(msg));
                   return false;
                 };
+                //===========================================================================//
+
+                //===========================================================================//
+                //CLEAR PREVIOUS ALERTS//
+                $alertArea = $(".alert_area").empty();
                 //STORE SOME VARIABLES//
                   var lengthJSON = currentJSON.length,
                           $tbody = $(".results_table tbody");
@@ -113,6 +118,8 @@ var Search = {
                         $tbody.append($row);
                         // console.log(currentJSON[i]);
                   }//END OF for() LOOP//
+                //===========================================================================//
+
              }//END OF loadResult()//
 };
 
