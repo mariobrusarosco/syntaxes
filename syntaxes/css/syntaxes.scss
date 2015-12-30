@@ -29,7 +29,7 @@ nav{
   background: rgb(50,110,136);
   padding: 10px 0px 10px 15px;
   overflow: hidden;
-
+  box-shadow: 0px 4px 4px 3px gray;
   transition: top 200ms ease;
 }
 
@@ -72,7 +72,7 @@ nav{
     color: white;
     text-align: center;
 
-    transition: background-color,color 200ms ease;
+    transition: all 200ms ease;
   }
 
   //ALL LANG OPTIONS WHEN THEIR CHECKED//
@@ -90,23 +90,24 @@ nav{
 
 }// END OF .search_form
 
-  //OPTIONS TO SHOW OR HIDE THE NAVBAR//
+//NAVBAR OPTIONS//
+
+  //HIDE AND SHOW THE NAVIGATION BAR//
   .show_hide_nav_label{
     position: fixed;
     z-index: 2;
-    top: 8px;
-    right: 15px;
-    padding: 5px 15px;
+    top: 18px;
+    right: 100px;
+    padding: 5px 10px;
     border-radius: 4px;
-    background: $blue2Btn;
+    background: #02b3ff;
     color: white;
-    font-size: 1.6em;
+    font-size: 0.95em;
     cursor: pointer;
-
     transition: all 200ms ease;
 
     &::after{
-      content: "+";
+      content: "show";
     }
   }
   .show_hide_nav_btn{
@@ -116,28 +117,52 @@ nav{
     top: 0;
   }
   .show_hide_nav_btn:checked+label{
-    top: 60px;
+    top: 10px;
 
     &::after{
-      content: "-";
+      content: "hide";
       padding: 0px 3px;
-      font-size: 1.1em;
+      font-size: 0.95em;
+    }
+  }//HIDE AND SHOW THE NAVIGATION BAR//
+
+  //BUTTONS: select all, unselect all, new syntax//
+  #new_syntax_btn,
+  #select_all_btn,
+  #unselect_all_btn{
+    z-index: 3;
+    position: absolute;
+    color: white;
+    cursor: pointer;
+  }
+
+  #new_syntax_btn{
+    right: 13px;
+    top: 12px;
+    padding: 8px 15px;
+    border-radius: 7px;
+    border: 2px solid white;
+    font-size: 1.1em;
+    background: #145B79;
+    transition: top 400ms ease;
+
+    &:hover,:active{
+      background: $blue2Btn;
     }
   }
-  //OPTIONS TO SHOW OR HIDE THE NAVBAR//
+  .show_hide_nav_btn:checked~#new_syntax_btn{
+    top: 45px;
+  }
 
   #select_all_btn,
   #unselect_all_btn{
     display: none;
-    z-index: 3;
-    position: absolute;
     right: 90px;
     padding: 4px 10px;
     box-shadow: 0px 2px 7px -1px transparent inset;
     border-radius: 2px;
     font-size: 0.9em;
     color: white;
-    cursor: pointer;
 
     &:hover, :active{
       // font-size: 1em;
@@ -150,6 +175,7 @@ nav{
   #select_all_btn{
     top:50px;
   }
+
   #unselect_all_btn{
     top: 80px;
   }
@@ -157,9 +183,9 @@ nav{
   .show_hide_nav_btn:checked~#select_all_btn,
   .show_hide_nav_btn:checked~#unselect_all_btn{
     display: inline-block;
-  }
+  }//BUTTONS: select all, unselect all, new syntax//
 
-
+//NAVBAR OPTIONS//
 
 section{
   padding-top: 90px;

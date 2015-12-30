@@ -18,6 +18,7 @@ nav {
   background: #326e88;
   padding: 10px 0px 10px 15px;
   overflow: hidden;
+  box-shadow: 0px 4px 4px 3px gray;
   transition: top 200ms ease; }
 
 .search_form .search_field {
@@ -45,7 +46,7 @@ nav {
   border-radius: 3px;
   color: white;
   text-align: center;
-  transition: background-color,color 200ms ease; }
+  transition: all 200ms ease; }
 .search_form .lang_option_input:checked + label {
   color: white;
   background: #02b3ff;
@@ -56,17 +57,17 @@ nav {
 .show_hide_nav_label {
   position: fixed;
   z-index: 2;
-  top: 8px;
-  right: 15px;
-  padding: 5px 15px;
+  top: 18px;
+  right: 100px;
+  padding: 5px 10px;
   border-radius: 4px;
   background: #02b3ff;
   color: white;
-  font-size: 1.6em;
+  font-size: 0.95em;
   cursor: pointer;
   transition: all 200ms ease; }
   .show_hide_nav_label::after {
-    content: "+"; }
+    content: "show"; }
 
 .show_hide_nav_btn {
   display: none; }
@@ -75,24 +76,44 @@ nav {
   top: 0; }
 
 .show_hide_nav_btn:checked + label {
-  top: 60px; }
+  top: 10px; }
   .show_hide_nav_btn:checked + label::after {
-    content: "-";
+    content: "hide";
     padding: 0px 3px;
-    font-size: 1.1em; }
+    font-size: 0.95em; }
+
+#new_syntax_btn,
+#select_all_btn,
+#unselect_all_btn {
+  z-index: 3;
+  position: absolute;
+  color: white;
+  cursor: pointer; }
+
+#new_syntax_btn {
+  right: 13px;
+  top: 12px;
+  padding: 8px 15px;
+  border-radius: 7px;
+  border: 2px solid white;
+  font-size: 1.1em;
+  background: #145B79;
+  transition: top 400ms ease; }
+  #new_syntax_btn:hover, #new_syntax_btn :active {
+    background: #02b3ff; }
+
+.show_hide_nav_btn:checked ~ #new_syntax_btn {
+  top: 45px; }
 
 #select_all_btn,
 #unselect_all_btn {
   display: none;
-  z-index: 3;
-  position: absolute;
   right: 90px;
   padding: 4px 10px;
   box-shadow: 0px 2px 7px -1px transparent inset;
   border-radius: 2px;
   font-size: 0.9em;
-  color: white;
-  cursor: pointer; }
+  color: white; }
   #select_all_btn:hover, #select_all_btn :active,
   #unselect_all_btn:hover,
   #unselect_all_btn :active {
