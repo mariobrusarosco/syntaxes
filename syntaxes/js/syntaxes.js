@@ -54,6 +54,8 @@ var Search = {
                               Log.addSuccess(response,url);
                               //CALL A METHOD TO GENERATE THE HTML//
                               Search.loadResult(response);
+                              //RETURN THE NAVIGATION TO THE INITIAL STATE//
+                              $("#show_hide_nav_btn").prop("checked",false);
                             },
                 "error"   : function(xhr,status,error){
                               //LOG THE RESULT//
@@ -87,6 +89,17 @@ var Search = {
                   }//END OF for() LOOP//
              }//END OF loadResult()//
 };
+
+var Navigation = {
+  toggleLangs    : function(event){
+                      var $form = $("#search_form");
+                      if($(event.target).attr("id") === "select_all_btn"){
+                        $form.find(".lang_option_input").prop("checked",true);
+                      }else{
+                        $form.find(".lang_option_input").prop("checked",false);  
+                      };
+                   }
+};
 //GLOBAL OBJECTS//
 
 $(document).ready(function(){
@@ -94,4 +107,6 @@ $(document).ready(function(){
 //SEARCH SYNTAX BUTTON//
 $("main").on("click","#submit_search_btn",Search.query);
 
+//SELECT OR UNSELECT ALL//
+$("main").on("click","#unselect_all_btn,#select_all_btn",Navigation.toggleLangs);
 });

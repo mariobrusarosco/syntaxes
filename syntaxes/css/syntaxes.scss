@@ -108,17 +108,13 @@ nav{
     &::after{
       content: "+";
     }
-
   }
-
-
   .show_hide_nav_btn{
     display: none;
   }
   .show_hide_nav_btn:checked~nav{
     top: 0;
   }
-
   .show_hide_nav_btn:checked+label{
     top: 60px;
 
@@ -128,6 +124,41 @@ nav{
       font-size: 1.1em;
     }
   }
+  //OPTIONS TO SHOW OR HIDE THE NAVBAR//
+
+  #select_all_btn,
+  #unselect_all_btn{
+    display: none;
+    z-index: 3;
+    position: absolute;
+    right: 90px;
+    padding: 4px 10px;
+    box-shadow: 0px 2px 7px -1px transparent inset;
+    border-radius: 2px;
+    font-size: 0.9em;
+    color: white;
+    cursor: pointer;
+
+    &:hover, :active{
+      // font-size: 1em;
+      // font-weight: bold;
+      // box-shadow: 0px 2px 7px -1px white inset;
+      box-shadow: 0px 2px 7px -1px $blue2Btn inset;
+      padding: 4px 10px;
+    }
+  }
+  #select_all_btn{
+    top:50px;
+  }
+  #unselect_all_btn{
+    top: 80px;
+  }
+
+  .show_hide_nav_btn:checked~#select_all_btn,
+  .show_hide_nav_btn:checked~#unselect_all_btn{
+    display: inline-block;
+  }
+
 
 
 section{
