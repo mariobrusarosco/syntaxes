@@ -15,7 +15,8 @@
 
 //VARIABLES//
 $myDarkOcean : rgb(3,175,179);
-
+$removeExampleColor: rgb(255, 66, 19);
+$transitionAll300ease: all 300ms ease;
 //VARIABLES///
 
 main{
@@ -26,8 +27,8 @@ main{
 .close_btn{
   position: relative;
   float: right;
-  top: 25px;
-  right: 35px;
+  top: 15px;
+  right: 25px;
   font-size: 2.4em;
   color: rgb(255,255,255);
   cursor: pointer;
@@ -38,23 +39,27 @@ main{
 }
 
 .my_modal{
-  width: 500px;
-  height: 300px;
-  box-shadow: 1px 1px 2px 2px gray;
+  width: 90%;
+  height: 550px;
+  // box-shadow: 1px 3px 5px 2px lightgray;
   background: rgb(255,255,255);
-  color: red;
+  margin: 0 auto;
+  margin-top: 75px;
+  overflow: scroll;
+
 }
 //=====GLOBAL ELEMENTS======/
 
 //====PAGE OVERLAY=====//
 #overlay{
-    position: absolute;
-    z-index: 1000;
+    position: fixed;
+    z-index: 10000;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(42, 43, 43, 0.84);
+    // background: rgba(42, 43, 43, 0.90);
+    background: rgba(5, 97, 86, 0.27);
 }
 //====PAGE OVERLAY=====//
 
@@ -268,6 +273,122 @@ nav{
   color: #FFFFFF;
 }
 //===== ALERT AREA=======//
+
+//=====NEW SYNTAX AREA=====//
+.new_syntax_area{
+  padding: 35px 0 0 0;
+}
+.new_syntax_form{
+
+  label{
+
+  }
+  input{
+
+  }
+  textarea{
+
+  }
+  select{
+    padding: 10px;
+    background: $myDarkOcean;
+    color: rgb(255,255,255);
+  }
+  option{
+
+  }
+}
+.syntax_section_box{
+  float: left;
+  margin: 0 20px 30px 20px;
+
+}
+
+.new_syntax_label{
+  display: inline-block;
+  position: relative;
+  top: -65px;
+  width: 170px;
+  padding-left: 10px;
+  margin-right: 10px;
+  color: gray;
+}
+
+// #syntax_body_label,
+#syntax_lang_label{
+  top: 0;
+}
+.text_field{
+  height: 80px;
+  width: 300px;
+  // max-width: 200px;
+  border: 1px solid lightgray;
+  border-radius: 3px;
+}
+
+.add_example_btn,
+.save_syntax_btn{
+  display: block;
+  margin: 20px 0 0 10px;
+  height: 40px;
+  padding: 5px 15px;
+  font-size: 0.85em;
+  border: 1px solid $myDarkOcean;
+  border-radius: 3px;
+  color: $myDarkOcean;
+  text-align: center;
+  background: rgb(255,255,255);
+  cursor: pointer;
+  transition: $transitionAll300ease;
+
+  &:hover,:active{
+    background: $myDarkOcean;
+    color: rgb(255,255,255);
+  }
+}
+.examples_area{
+  border-top: 1px solid lightgray;
+  padding: 15px 0 0 0;
+  max-width: 1140px;
+}
+.example{
+  width: 420px;
+  height: 260px;
+  padding: 10px 55px 0 0;
+  margin-bottom: 0;
+  // border-right: 1px solid lightgray;
+
+  span{
+    color: $myDarkOcean;
+  }
+  .example_title{
+
+  }
+  .remove_example_btn{
+    margin-left: 235px;
+    padding: 2px 7px;
+    border: 1px solid $removeExampleColor;
+    border-radius: 4px;
+    color: $removeExampleColor;
+    font-size: 0.8em;
+    cursor: pointer;
+    transition: $transitionAll300ease;
+
+    &:hover,:active,:focus{
+      background: $removeExampleColor;
+      color: rgb(255,255,255);
+    }
+  }
+  .example_text_field{
+    width: 380px;
+    max-width: 380px;
+    height: 190px;
+    max-height: 210px;
+    margin-top: 10px;
+  }
+}
+
+//=====NEW SYNTAX AREA=====//
 
 
 section{
