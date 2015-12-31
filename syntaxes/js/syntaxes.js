@@ -1,3 +1,10 @@
+// //====== AJAX SETUP FUNCTION ========//
+// $(document).ajaxError(function(xhr,status,error,url){
+                // Log.addError(status,error,url);
+// });
+//====== AJAX SETUP FUNCTION ========//
+
+
 //====START UP FUNCTION =====//
   //THIS FUNCTION IS SUPPOSED TO MAKE OTHER TO RUN//
 function StartUp(myObject){
@@ -56,7 +63,7 @@ var Search = {
                               "string" : string
                             },
                 "success" : function(response,status,xhr){
-                              console.log(response);
+                              // console.log(response);
                               //LOG THE RESULT//
                               Log.addSuccess(response,url);
                               //CALL A METHOD TO GENERATE THE HTML//
@@ -179,8 +186,19 @@ var Syntax = {
 
    newSyntax      : {
                         newSyntaxForm   : {
+                                            //THIS FUNCTION WILL SET ALL BEHAVIORS FOR THE FORM OF A NEW SYNTAX//
                                             run  : function(){
-                                                    // $()
+                                                             var $main = $("main"),
+                                                                 $form = $main.find("#new_syntax_form"),
+                                                         addExampleStr = "#add_example_btn", //STORE THIS ID AS A STRING, IN CASE YOU NEED TO USE MORE THAN ONCE//
+                                                        $addExampleBtn = $form.find(addExampleStr), //STORE THE jQuery OBJECT FOR THE ADD EXAMPLE BUTTON//
+                                                      removeExampleStr = ".remove_example_btn", //STORE THIS CLASS AS A STRING, IN CASE YOU NEED TO USE MORE THAN ONCE//
+                                                     $removeExamplebtn = $form.find(removeExampleStr);//STORE THE jQuery OBJECT FOR ALL 'REMOVE EXAMPLE BUTTONS'//
+
+                                                    //SET THE EVENT HANDLER FOR A NEW EXAMPLE//
+                                                     $main.on("click",addExampleStr,Syntax.newSyntax.example.add);
+                                                    //SET THE EVENT HANDLER FOR REMOVE AN EXAMPLE//
+                                                     $main.on("click",removeExampleStr,Syntax.newSyntax.example.remove);
                                                     console.log("newSyntaxForm is running");
                                                   }
                                           },
@@ -207,7 +225,31 @@ var Syntax = {
                                                     });
                                                     console.log("newSyntaxFields is running");
                                                   }
-                                        }
+                                        },//END OF newSyntaxFields///
+                        example     : {
+                                        add    : function(){
+                                                    var $examplesArea = $("#examples_area"),
+                                                                  url = "./includes/example.html";
+                                                             $.ajax({
+                                                                "url"     : url,
+                                                                "success" : function(response,status,xhr){
+                                                                            //LOG THE RESULT//
+                                                                            Log.addSuccess(response,url);
+                                                                            //APPEND A NEW EXAMPLE'S STRUCTURE//
+                                                                            $examplesArea.append(response);
+                                                                          },
+                                                                "error"   : function(xhr,status,error){
+                                                                              //LOG THE RESULT//
+                                                                              Log.addError(status,error,url);
+                                                                              return false;
+                                                                          }
+                                                             });
+                                                },
+                                        remove : function(){
+                                                    $node     = $(this),
+                                                    $example  = $node.parent().parent().remove();                                                  ;
+                                                  }
+                                      }
                     }
 };
 //GLOBAL OBJECTS//
