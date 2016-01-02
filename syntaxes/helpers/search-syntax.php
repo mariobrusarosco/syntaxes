@@ -34,7 +34,7 @@ if(empty($givenString)){
   return false;
 }
 //IF AT LEAST ONE LANGUAGE IS SELECTED AND SOME TEXT IS TYPED...CONNECT TO A DATABASE//
-$conn = DB::connect("local");
+$conn = DB::connect();
 //CREATE A FILTER -> AN ARRAY CONTAINING AN CONDITION EACH LANGUAGE THAT WILL BE USED IN THE SELECT QUERY --> getLangs()//
 $sqlFilter  = getLangs($chosenLangs);
 //CREATE A WHERE CONDITION TO SEARCH FOR A PATTERN TO THE GIVEN STRING//

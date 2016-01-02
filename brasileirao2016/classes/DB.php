@@ -6,15 +6,9 @@ final class DB{
 
   public function __construct(){ }
 
-  public static function connect($connType){
-    if($connType == "local"){
-
+  public static function connect(){
       $myPDO = new PDO("mysql:host=localhost;dbname=brasileiro2016","mario","brusarosco");
-
-    }else{
-      $myPDO = new PDO("mysql:host=localhost;dbname=cl58-bras2016","cl58-bras2016","K-TBqE6fE");
-    }
-
+      // $myPDO = new PDO("mysql:host=localhost;dbname=cl58-bras2016","cl58-bras2016","K-TBqE6fE");
     return $myPDO;
   }
 

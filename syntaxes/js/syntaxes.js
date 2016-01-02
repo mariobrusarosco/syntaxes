@@ -185,78 +185,105 @@ var Syntax = {
 
 
    newSyntax      : {
-                        newSyntaxForm   : {
-                                            //THIS FUNCTION WILL SET ALL BEHAVIORS FOR THE FORM OF A NEW SYNTAX//
-                                            run  : function(){
-                                                             var $main = $("main"),
-                                                                 $form = $main.find("#new_syntax_form"),
-                                                         addExampleStr = "#add_example_btn", //STORE THIS ID AS A STRING, IN CASE YOU NEED TO USE MORE THAN ONCE//
-                                                        $addExampleBtn = $form.find(addExampleStr), //STORE THE jQuery OBJECT FOR THE ADD EXAMPLE BUTTON//
-                                                      removeExampleStr = ".remove_example_btn", //STORE THIS CLASS AS A STRING, IN CASE YOU NEED TO USE MORE THAN ONCE//
-                                                     $removeExamplebtn = $form.find(removeExampleStr);//STORE THE jQuery OBJECT FOR ALL 'REMOVE EXAMPLE BUTTONS'//
 
-                                                    //SET THE EVENT HANDLER FOR A NEW EXAMPLE//
-                                                     $main.on("click",addExampleStr,Syntax.newSyntax.example.add);
-                                                    //SET THE EVENT HANDLER FOR REMOVE AN EXAMPLE//
-                                                     $main.on("click",removeExampleStr,Syntax.newSyntax.example.remove);
-                                                    console.log("newSyntaxForm is running");
-                                                  }
-                                          },
-
-                        newSyntaxFields : {
-                                            run   : function(){
-                                                    $("main").on("keypress","#new_syntax_form .text_field",function(event){
-                                                      var $node       = $(this);
-                                                    //       $nodeHeight = parseFloat($node.css("height").substring(0,($node.css("height").indexOf("px"))));
-                                                    //       which       = event.which,
-                                                    //       console.log($node);
-                                                    //       console.log($nodeHeight);
-                                                    //       console.log(typeof $nodeHeight);
-                                                    //   if(which === 13){
-                                                    //     //INCREASE FIELD'S HEIGHT IN 10px//
-                                                    //     $nodeHeight += 15;
-                                                    //     $node.css("height",$nodeHeight);
-                                                    //     console.log($nodeHeight);
-                                                    //     console.log($node.css("height"));
-                                                    //     // alert("fuckig enter!");
-                                                    //   };
-                                                    //   // console.log("a key was pressed inside a text field");
-                                                    //   console.log(event.which);
-                                                    });
-                                                    console.log("newSyntaxFields is running");
-                                                  }
-                                        },//END OF newSyntaxFields///
-                        example     : {
-                                        add    : function(){
-                                                    var $examplesArea = $("#examples_area"),
-                                                                  url = "./includes/example.html";
-                                                             $.ajax({
-                                                                "url"     : url,
-                                                                "success" : function(response,status,xhr){
+                      example     : {
+                                      add    : function(){
+                                                  var $examplesArea = $("#examples_area"),
+                                                                url = "./includes/example.html";
+                                                           $.ajax({
+                                                              "url"     : url,
+                                                              "success" : function(response,status,xhr){
+                                                                          //LOG THE RESULT//
+                                                                          Log.addSuccess(response,url);
+                                                                          //APPEND A NEW EXAMPLE'S STRUCTURE//
+                                                                          $examplesArea.append(response);
+                                                                        },
+                                                              "error"   : function(xhr,status,error){
                                                                             //LOG THE RESULT//
-                                                                            Log.addSuccess(response,url);
-                                                                            //APPEND A NEW EXAMPLE'S STRUCTURE//
-                                                                            $examplesArea.append(response);
-                                                                          },
-                                                                "error"   : function(xhr,status,error){
-                                                                              //LOG THE RESULT//
-                                                                              Log.addError(status,error,url);
-                                                                              return false;
-                                                                          }
-                                                             });
-                                                },
-                                        remove : function(){
-                                                    $node     = $(this),
-                                                    $example  = $node.parent().parent().remove();                                                  ;
-                                                  }
-                                      }
-                    }
-};
+                                                                            Log.addError(status,error,url);
+                                                                            return false;
+                                                                        }
+                                                           });
+                                              },
+                                      remove : function(){
+                                                  $node     = $(this),
+                                                  $example  = $node.parent().parent().remove();                                                  ;
+                                                }
+                                    }//END OF 'example'//
+                    },//END OF newSyntax//
+
+    saveSyntax    : {
+                      new      : function(event){
+                                    event.preventDefault();
+                                      var $node = $(this),
+                                          $form = $node.parent(),
+                                           data = $form.serialize();
+
+                                          $.ajax({
+                                            'url'      : url,
+                                            'data'     : data,
+                                            'type'     : post,
+                                            'success'  : function(response,status,xhr){
+
+                                                          //LOG THE RESULT//
+                                                          Log.addSuccess(response,url);
+                                                        },
+                                            'error'    : function(xhr,status,error){
+
+                                                          //LOG THE RESULT//
+                                                          Log.addError(status,error,url);
+                                                          return false;
+                                                        }
+
+                                          });
+                                          // console.log($node);
+                                          // console.log($form);
+                                          // console.log(teste);
+                                  },
+                      existing : function(){
+
+                                  }
+                    },
+    //
+    // saveSyntax    : function(event){
+    //                           event.preventDefault();
+    //                             var $node = $(this),
+    //                                 $form = $node.parent();
+    //
+    //                                 console.log($node);
+    //                                 console.log($form);
+    //                         },
+
+    syntaxForms   : {
+                        //THIS FUNCTION WILL SET ALL BEHAVIORS FOR THE FORM OF A NEW SYNTAX//
+                        run  : function(){
+                                         var $main = $("main"),
+                                  //=================== NEW SYNTAX MODAL =====================//
+                                             $form = $main.find("#new_syntax_form"),
+                                     addExampleStr = "#add_example_btn", //STORE THIS ID AS A STRING, IN CASE YOU NEED TO USE MORE THAN ONCE//
+                                    $addExampleBtn = $form.find(addExampleStr), //STORE THE jQuery OBJECT FOR THE ADD EXAMPLE BUTTON//
+                                  removeExampleStr = ".remove_example_btn", //STORE THIS CLASS AS A STRING, IN CASE YOU NEED TO USE MORE THAN ONCE//
+                                 $removeExamplebtn = $form.find(removeExampleStr);//STORE THE jQuery OBJECT FOR ALL 'REMOVE EXAMPLE BUTTONS'//
+                                        saveSyntax = "#save_syntax_btn", //STORE THIS CLASS AS A STRING, IN CASE YOU NEED TO USE MORE THAN ONCE//
+                                       $saveSyntax = $form.find(saveSyntax);//STORE THE jQuery OBJECT FOR ALL 'REMOVE EXAMPLE BUTTONS'//
+
+                                  //SET THE EVENT HANDLER FOR A NEW EXAMPLE//
+                                    $main.on("click",addExampleStr,Syntax.newSyntax.example.add);
+                                  //SET THE EVENT HANDLER FOR REMOVE AN EXAMPLE//
+                                    $main.on("click",removeExampleStr,Syntax.newSyntax.example.remove);
+                                  //SET THE EVENT HANDLER FOR SAVING A NEW SYNTAX//
+                                    $main.on("click",saveSyntax,Syntax.saveSyntax.new);
+
+                                //=================== NEW SYNTAX MODAL =====================//
+                                console.log("newSyntaxForm is running");
+                              }
+                      }//END OF 'syntaxForms'//
+};//END OF Syntax OBJECT//
+
 //GLOBAL OBJECTS//
 
   //FUNCTIONS TO RUN AUTOMATICALLY//
-  StartUp(Syntax.newSyntax.newSyntaxForm);
-  StartUp(Syntax.newSyntax.newSyntaxFields);
+  StartUp(Syntax.syntaxForms);
   //FUNCTIONS TO RUN AUTOMATICALLY//
 
 
@@ -268,7 +295,6 @@ $(document).ready(function(){
   $("main").on("click","#unselect_all_btn,#select_all_btn",Navigation.toggleLangs);
   //CREATE NEW SYNTAX//
   $("main").on("click","#new_syntax_btn",Syntax.openNewWindow);
-
 
 
 });

@@ -1,40 +1,39 @@
 <section id="new_syntax_area" class="new_syntax_area">
 
-  <form id="new_syntax_form" class="new_syntax_form" mehtod="" action="javascript:void(0)">
+  <form id="new_syntax_form" class="new_syntax_form">
 
-  <div class="syntax_section_box">
-    <label for="syntax_body_field" id="syntax_body_label" class="new_syntax_label">Syntax Body</label>
-    <!-- <input id="syntax_body_field" class="text_field" type="text" name="" placeholder="Type the syntax's main structure" required > -->
-    <textarea id="syntax_body_field" class="text_field" name="" placeholder="Type the syntax's main structure" required ></textarea>
-  </div>
+    <div class="syntax_section_box">
+      <label for="syntax_body_field" id="syntax_body_label" class="new_syntax_label">Syntax Body</label>
+      <!-- <input id="syntax_body_field" class="text_field" type="text" name="" placeholder="Type the syntax's main structure" required > -->
+      <textarea id="syntax_body_field" class="text_field" name="givenSyntaxBody" placeholder="Type the syntax's main structure"></textarea>
+    </div>
 
-  <div class="syntax_section_box">
-    <label for="syntax_desc_field" id="syntax_desc_label" class="new_syntax_label">Syntax Description</label>
-    <textarea id="syntax_desc_field" class="text_field" name="" placeholder="Type the syntax's description" required></textarea>
-  </div>
+    <div class="syntax_section_box">
+      <label for="syntax_desc_field" id="syntax_desc_label" class="new_syntax_label">Syntax Description</label>
+      <textarea id="syntax_desc_field" class="text_field" name="givenSyntaxDesc" placeholder="Type the syntax's description"></textarea>
+    </div>
 
-  <div class="clearfix"></div>
+    <div class="clearfix"></div>
 
-  <div class="syntax_section_box">
-    <label for="syntax_notes_field" id="syntax_notes_label" class="new_syntax_label">Syntax Notes</label>
-    <textarea id="syntax_notes_field" class="text_field" name="" placeholder="Type some notes about the syntax"></textarea>
-  </div>
+    <div class="syntax_section_box">
+      <label for="syntax_notes_field" id="syntax_notes_label" class="new_syntax_label">Syntax Notes</label>
+      <textarea id="syntax_notes_field" class="text_field" name="givenSyntaxNotes" placeholder="Type some notes about the syntax"></textarea>
+    </div>
 
-  <div class="syntax_section_box">
-    <label for="syntax_lang_field" id="syntax_lang_label" class="new_syntax_label">Select Language</label>
-    <!-- <span>Mario</spa> -->
-      <select id="syntax_lang)field">
-      <option>Java</option>
-      <option>PHP</option>
-      <option>Javascript</option>
-    </select>
+    <div class="syntax_section_box">
+      <label for="syntax_lang_field" id="syntax_lang_label" class="new_syntax_label">Select Language</label>
+      <select id="syntax_lang_field" name="givenLanguage">
+        <option value="1">Java</option>
+        <option value="2">PHP</option>
+        <option value="3">Javascript</option>
+      </select>
 
-    <button id="add_example_btn" class="add_example_btn">Add Example</button>
-  </div>
+      <button id="add_example_btn" class="add_example_btn" type="button">Add Example</button>
+    </div>
 
-  <div class="clearfix"></div>
+    <div class="clearfix"></div>
 
-  <div id="examples_area" class="examples_area"></div>
+    <div id="examples_area" class="examples_area"></div>
 
     <input id="save_syntax_btn" class="save_syntax_btn" type="submit" name="createSyntax" value="Create Syntax">
   </form>
