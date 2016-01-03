@@ -51,10 +51,10 @@ $query = $conn->query($insertSQL);
 //STORE THE NUMBER OF AFFECTED ROWS//
 $result = $query->rowCount();
 //GET THE LAST INSERTED ID//
-// echo $conn->lastInsertID();
+$syntaxID = $conn->lastInsertID();
 // echo "<pre>";
 // print_r($result);
-//IF ONE ROW IS THE RESULT, TELL THE USER THAT THE INSERT RUN SUCCESSFULLY//
+//IF ONE ROW ISN'T THE RESULT, TELL THE USER THAT THE INSERT HASN'T RUN SUCCESSFULLY//
 if($result < 1 || $result > 1){
   echo json_encode(
                   array(
@@ -64,19 +64,43 @@ if($result < 1 || $result > 1){
                   );
   $conn = null;
   return;
-}else{
+}
+//======= QUERY OK!! ========= QUERY OK!! ======//
+else{
+    //========== EXAMPLES ================//
+      if(isset($_POST['examples'])){
+        //CHANGE THE CURRENT TABLE//
+        $currTB = "example";
+        //IF SOME EXAMPLES WERE PASSED, THAN YOU NEED TO INSERTO THEM INTO THE DATABASE//
+        $examples = $_POST['examples'];
+        //LOOP THROUGH//
+        foreach($examples as $exampleBody){
+            //CREATE A INSERT SQL STATEMENT FOR EACH GIVEN EXAMPLE//
+          $currInsertSQL = new InsertSQL("{$currDB}.{$currTB}","{$currTB}.exampleID,{$currTB}.syntaxID,{$currTB}.exampleBody",[["'null'","'{$syntaxID}'","'{$exampleBody}'"]]);
+          $currInsertSQL->convertToStr();
+          // echo "<pre>";
+          // print_r($currInsertSQL);
+          $conn->query($currInsertSQL);
+        }
+      }
+
+
+
+
   echo json_encode(
                     array(
-                          'status' => 'success',
-                          'msg'    => 'New Syntax Saved!'
+                          'status'    => 'success',
+                          'msg'       => 'New Syntax Saved!',
+                          'syntaxID'  => $syntaxID
                         )
                   );
     $conn = null;
     return;
-}
-// print_r($insertSQL);
+  }
+}//END OF 'try' //
+//======= QUERY OK!! ========= QUERY OK!! ======//
 
-}
+//===== ERROR ======= ERROR ======== ERROR ==========//
 catch(PDOException $e){
   $error = $e->getMessage();
   echo json_encode(
@@ -89,4 +113,5 @@ catch(PDOException $e){
   $conn = null;
   return;
 }
+//===== ERROR ======= ERROR ======== ERROR ==========//
  ?>
