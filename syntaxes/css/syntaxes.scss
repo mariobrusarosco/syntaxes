@@ -275,8 +275,23 @@ nav{
 //===== ALERT AREA=======//
 
 //=====NEW SYNTAX AREA=====//
-.new_syntax_area{
+#new_syntax_area{
   padding: 35px 0 0 0;
+
+  .my_alert{
+    margin: 40px auto 0 auto;
+    height: 60px;
+    line-height: 2.4;
+    // background: #008c27;
+    // color: white;
+  }
+
+  #add_new_syntax_btn{
+    margin: 80px auto 0 auto;
+    height: 80px;
+    padding: 25px 50px;
+    font-size: 1.2em;
+  }
 }
 .new_syntax_form{
 
@@ -297,13 +312,12 @@ nav{
   option{
 
   }
+
 }
 .syntax_section_box{
   float: left;
   margin: 0 20px 30px 20px;
-
 }
-
 .new_syntax_label{
   display: inline-block;
   position: relative;
@@ -330,7 +344,8 @@ nav{
 }
 
 .add_example_btn,
-.save_syntax_btn{
+.save_syntax_btn,
+.add_new_syntax_btn{
   display: block;
   margin: 20px 0 0 10px;
   height: 40px;

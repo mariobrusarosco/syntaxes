@@ -34,11 +34,6 @@ $desc   = !empty($_POST['syntaxDesc'])  ? $_POST['syntaxDesc']  : 'null';
 $notes  = !empty($_POST['syntaxNotes']) ? $_POST['syntaxNotes'] : 'null';
 // //CREATE AN ARRAY TO STORE THE VALUES TO INSERT//
 $valuesToInsert   = ["'null'",$lang,"'{$body}'","'{$desc}'","'{$notes}'"];
-
-print_r($valuesToInsert);
-// foreach($_POST as $item => $value){
-//   array_push($valuesToInsert, $value);
-// }
 //CONNECT TO A DATABASE//
 $conn = DB::connect();
 //SET THE DATABASE NAME//
@@ -68,7 +63,7 @@ if($result < 1 || $result > 1){
   echo json_encode(
                     array(
                           'status' => 'success',
-                          'msg'    => 'New Syntax Saved'
+                          'msg'    => 'New Syntax Saved!'
                         )
                   );
     $conn = null;

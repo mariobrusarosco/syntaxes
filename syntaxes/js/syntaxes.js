@@ -207,7 +207,7 @@ var Syntax = {
                                               },
                                       remove : function(){
                                                   $node     = $(this),
-                                                  $example  = $node.parent().parent().remove();                                                  ;
+                                                  $example  = $node.parent().parent().remove();
                                                 }
                                     }//END OF 'example'//
                     },//END OF newSyntax//
@@ -233,7 +233,24 @@ var Syntax = {
                                             'data'    : data,
                                             'type'    : 'post',
                                             'success' : function(response){
-                                                            console.log("response: " + response);
+                                                            //CONVERT THE RESPONSE TO A JSON OBJECT//
+                                                            var currJSON = JSON.parse(response);
+                                                            //IN CASE DATA WAS SUCCESSFULLY INSERTED//
+                                                            if(currJSON['status'] === 'success'){
+                                                                var   $newSyntaxArea = $("#new_syntax_area").empty(),                                                                  //GET THE MODAL AND CLEAR ITS CONTENT//
+                                                                    $addNewSyntaxBtn = $("<button id='add_new_syntax_btn' class='add_new_syntax_btn'>Add New Syntax</button>"), //A BUTTON TO ADD ANOTHER SYNTAX//
+                                                                              $alert = $("</p>").addClass("my_alert warning").text(currJSON['msg']);                                    //AN ALERT MESSAGE//
+                                                              $newSyntaxArea.append($alert,$addNewSyntaxBtn);
+
+                                                            }
+                                                            //IN CASE IT WASN'T ...//
+                                                            else if(currJSON['status'] === 'error'){
+
+                                                            }
+                                                            //UNEXPECTED RESULT//
+                                                            else{
+
+                                                            }
                                                         }
                                           });
                                           // console.log($node);
@@ -241,6 +258,10 @@ var Syntax = {
                                           // console.log(data);
                                   },
                       existing : function(){
+
+                                  },
+
+                      alerts   : function(){
 
                                   }
                     },
@@ -260,12 +281,14 @@ var Syntax = {
                                          var $main = $("main"),
                                   //=================== NEW SYNTAX MODAL =====================//
                                              $form = $main.find("#new_syntax_form"),
-                                     addExampleStr = "#add_example_btn", //STORE THIS ID AS A STRING, IN CASE YOU NEED TO USE MORE THAN ONCE//
-                                    $addExampleBtn = $form.find(addExampleStr), //STORE THE jQuery OBJECT FOR THE ADD EXAMPLE BUTTON//
-                                  removeExampleStr = ".remove_example_btn", //STORE THIS CLASS AS A STRING, IN CASE YOU NEED TO USE MORE THAN ONCE//
+                                     addExampleStr = "#add_example_btn",          //STORE THIS ID AS A STRING, IN CASE YOU NEED TO USE MORE THAN ONCE//
+                                    $addExampleBtn = $form.find(addExampleStr),   //STORE THE jQuery OBJECT FOR THE ADD EXAMPLE BUTTON//
+                                  removeExampleStr = ".remove_example_btn",       //STORE THIS CLASS AS A STRING, IN CASE YOU NEED TO USE MORE THAN ONCE//
                                  $removeExamplebtn = $form.find(removeExampleStr);//STORE THE jQuery OBJECT FOR ALL 'REMOVE EXAMPLE BUTTONS'//
-                                        saveSyntax = "#save_syntax_btn", //STORE THIS CLASS AS A STRING, IN CASE YOU NEED TO USE MORE THAN ONCE//
-                                       $saveSyntax = $form.find(saveSyntax);//STORE THE jQuery OBJECT FOR ALL 'REMOVE EXAMPLE BUTTONS'//
+                                        saveSyntax = "#save_syntax_btn",          //STORE THIS ID AS A STRING, IN CASE YOU NEED TO USE MORE THAN ONCE//
+                                       $saveSyntax = $form.find(saveSyntax);      //STORE THE jQuery OBJECT FOR THE 'SAVE SYNTAX BUTTON'//
+                                      addNewSyntax = "#add_new_syntax_btn",          //STORE THIS ID AS A STRING, IN CASE YOU NEED TO USE MORE THAN ONCE//
+                                    $addNewSyntax  = $form.find(addNewSyntax);    //STORE THE jQuery OBJECT FOR 'ADD NEW SYNTAX BUTTON'//
 
                                   //SET THE EVENT HANDLER FOR A NEW EXAMPLE//
                                     $main.on("click",addExampleStr,Syntax.newSyntax.example.add);
@@ -273,6 +296,8 @@ var Syntax = {
                                     $main.on("click",removeExampleStr,Syntax.newSyntax.example.remove);
                                   //SET THE EVENT HANDLER FOR SAVING A NEW SYNTAX//
                                     $main.on("click",saveSyntax,Syntax.saveSyntax.new);
+                                  //SET THE EVENT HANDLER FOR CREATE A NEW SYNTAX AFTER SAVING A SUCCESSFUL ONE//
+                                    $main.on("click",addNewSyntax,Syntax.openNewWindow);
 
                                 //=================== NEW SYNTAX MODAL =====================//
                                 console.log("newSyntaxForm is running");
