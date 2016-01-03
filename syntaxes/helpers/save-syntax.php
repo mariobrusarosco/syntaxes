@@ -20,7 +20,7 @@ if(empty($_POST['syntaxLang']) || empty($_POST['syntaxBody'])){
   echo json_encode(
                     array(
                           "status" => "error",
-                          "msg"    => "Syntax's Language or Syntax's Body are mandatory field and at least one isn't set"
+                          "msg"    => "Syntax's Language or Syntax's Body are mandatory fields and at least one isn't set"
                          )
                   );
   return false;

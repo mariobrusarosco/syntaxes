@@ -233,24 +233,26 @@ var Syntax = {
                                             'data'    : data,
                                             'type'    : 'post',
                                             'success' : function(response){
-                                                            //CONVERT THE RESPONSE TO A JSON OBJECT//
-                                                            var currJSON = JSON.parse(response);
+                                                                  var currJSON = JSON.parse(response),                                                                    //CONVERT THE RESPONSE TO A JSON OBJECT//
+                                                                $newSyntaxArea = $("#new_syntax_area").empty(),                                                           //GET THE MODAL AND CLEAR ITS CONTENT//
+                                                              $addNewSyntaxBtn = $("<button id='add_new_syntax_btn' class='add_new_syntax_btn'>Add New Syntax</button>"), //A BUTTON TO ADD ANOTHER SYNTAX//
+                                                                        $alert = $("</p>").addClass("my_alert").text(currJSON['msg']);                            //AN ALERT MESSAGE//
                                                             //IN CASE DATA WAS SUCCESSFULLY INSERTED//
                                                             if(currJSON['status'] === 'success'){
-                                                                var   $newSyntaxArea = $("#new_syntax_area").empty(),                                                                  //GET THE MODAL AND CLEAR ITS CONTENT//
-                                                                    $addNewSyntaxBtn = $("<button id='add_new_syntax_btn' class='add_new_syntax_btn'>Add New Syntax</button>"), //A BUTTON TO ADD ANOTHER SYNTAX//
-                                                                              $alert = $("</p>").addClass("my_alert warning").text(currJSON['msg']);                                    //AN ALERT MESSAGE//
-                                                              $newSyntaxArea.append($alert,$addNewSyntaxBtn);
-
+                                                              $alert.addClass("warning");
                                                             }
                                                             //IN CASE IT WASN'T ...//
                                                             else if(currJSON['status'] === 'error'){
-
+                                                              $addNewSyntaxBtn.text("Try Again");
+                                                              $alert.addClass("error");
                                                             }
                                                             //UNEXPECTED RESULT//
                                                             else{
-
+                                                              console.log("The JSON object doesn't have a 'status' property");
+                                                              return false;
                                                             }
+                                                            //APPEND THE RESULT//
+                                                              $newSyntaxArea.append($alert,$addNewSyntaxBtn);
                                                         }
                                           });
                                           // console.log($node);

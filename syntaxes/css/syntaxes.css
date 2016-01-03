@@ -196,7 +196,8 @@ nav {
   #new_syntax_area .my_alert {
     margin: 40px auto 0 auto;
     height: 60px;
-    line-height: 2.4; }
+    line-height: 2.4;
+    width: 70%; }
   #new_syntax_area #add_new_syntax_btn {
     margin: 80px auto 0 auto;
     height: 80px;
