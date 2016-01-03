@@ -219,8 +219,8 @@ var Syntax = {
                                           $form = $node.parent(),
                                     $syntaxLang = $form.find("#syntax_lang_field").val(),
                                     $syntaxBody = $form.find("#syntax_body_field").val(),
-                                   $syntaxNotes = $form.find("#syntax_desc_field").val(),
                                     $syntaxDesc = $form.find("#syntax_notes_field").val(),
+                                   $syntaxNotes = $form.find("#syntax_desc_field").val(),
                                            url  = './helpers/save-syntax.php',
                                            data = {
                                                     'syntaxLang' : $syntaxLang,
