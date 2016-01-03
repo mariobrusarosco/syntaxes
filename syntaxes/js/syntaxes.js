@@ -217,28 +217,25 @@ var Syntax = {
                                     event.preventDefault();
                                       var $node = $(this),
                                           $form = $node.parent(),
-                                           data = $form.serialize();
+                                           url  = './helpers/save-syntax.php';
 
+                                      var data = {
+                                                    'syntaxLang' : 'lang',
+                                                    'syntaxBody' : 'body',
+                                                    'syntaxDesc' : 'desc',
+                                                    'syntaxNotes': 'notes'
+                                                  };
                                           $.ajax({
-                                            'url'      : url,
-                                            'data'     : data,
-                                            'type'     : post,
-                                            'success'  : function(response,status,xhr){
-
-                                                          //LOG THE RESULT//
-                                                          Log.addSuccess(response,url);
-                                                        },
-                                            'error'    : function(xhr,status,error){
-
-                                                          //LOG THE RESULT//
-                                                          Log.addError(status,error,url);
-                                                          return false;
+                                            'url'     : url,
+                                            'data'    : data,
+                                            'type'    : 'post',
+                                            'success' : function(response){
+                                                            console.log("response: " + response);
                                                         }
-
                                           });
                                           // console.log($node);
                                           // console.log($form);
-                                          // console.log(teste);
+                                          // console.log(data);
                                   },
                       existing : function(){
 
