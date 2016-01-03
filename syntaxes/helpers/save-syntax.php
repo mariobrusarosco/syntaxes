@@ -34,6 +34,9 @@ $desc   = !empty($_POST['syntaxDesc'])  ? $_POST['syntaxDesc']  : 'null';
 $notes  = !empty($_POST['syntaxNotes']) ? $_POST['syntaxNotes'] : 'null';
 // //CREATE AN ARRAY TO STORE THE VALUES TO INSERT//
 $valuesToInsert   = ["'null'",$lang,"'{$body}'","'{$desc}'","'{$notes}'"];
+
+try{
+
 //CONNECT TO A DATABASE//
 $conn = DB::connect();
 //SET THE DATABASE NAME//
@@ -47,6 +50,8 @@ $insertSQL->convertToStr();
 $query = $conn->query($insertSQL);
 //STORE THE NUMBER OF AFFECTED ROWS//
 $result = $query->rowCount();
+//GET THE LAST INSERTED ID//
+// echo $conn->lastInsertID();
 // echo "<pre>";
 // print_r($result);
 //IF ONE ROW IS THE RESULT, TELL THE USER THAT THE INSERT RUN SUCCESSFULLY//
@@ -71,4 +76,17 @@ if($result < 1 || $result > 1){
 }
 // print_r($insertSQL);
 
+}
+catch(PDOException $e){
+  $error = $e->getMessage();
+  echo json_encode(
+                  array(
+                        'status'  => "error",
+                        'msg'     => "Sorry, syntax could not be saved on the database.",
+                        'addInfo' => "{$error}"
+                       )
+                  );
+  $conn = null;
+  return;
+}
  ?>

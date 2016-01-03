@@ -208,6 +208,10 @@ var Syntax = {
                                       remove : function(){
                                                   $node     = $(this),
                                                   $example  = $node.parent().parent().remove();
+                                                },
+
+                                      save   : function(){
+
                                                 }
                                     }//END OF 'example'//
                     },//END OF newSyntax//
@@ -221,6 +225,8 @@ var Syntax = {
                                     $syntaxBody = $form.find("#syntax_body_field").val(),
                                     $syntaxDesc = $form.find("#syntax_notes_field").val(),
                                    $syntaxNotes = $form.find("#syntax_desc_field").val(),
+                                  $examplesArea = $("#examples_area"),
+                                     $examples  = $examplesArea.find("div.example"),
                                            url  = './helpers/save-syntax.php',
                                            data = {
                                                     'syntaxLang' : $syntaxLang,
@@ -228,33 +234,50 @@ var Syntax = {
                                                     'syntaxDesc' : $syntaxDesc,
                                                     'syntaxNotes': $syntaxNotes
                                                   };
+                                            console.log($examples);
                                           $.ajax({
                                             'url'     : url,
                                             'data'    : data,
                                             'type'    : 'post',
                                             'success' : function(response){
-                                                                  var currJSON = JSON.parse(response),                                                                    //CONVERT THE RESPONSE TO A JSON OBJECT//
-                                                                $newSyntaxArea = $("#new_syntax_area").empty(),                                                           //GET THE MODAL AND CLEAR ITS CONTENT//
-                                                              $addNewSyntaxBtn = $("<button id='add_new_syntax_btn' class='add_new_syntax_btn'>Add New Syntax</button>"), //A BUTTON TO ADD ANOTHER SYNTAX//
-                                                                        $alert = $("</p>").addClass("my_alert").text(currJSON['msg']);                            //AN ALERT MESSAGE//
-                                                            //IN CASE DATA WAS SUCCESSFULLY INSERTED//
-                                                            if(currJSON['status'] === 'success'){
-                                                              $alert.addClass("warning");
-                                                            }
-                                                            //IN CASE IT WASN'T ...//
-                                                            else if(currJSON['status'] === 'error'){
+                                                          var $newSyntaxArea = $("#new_syntax_area").empty(),                                                           //GET THE MODAL AND CLEAR ITS CONTENT//
+                                                            $addNewSyntaxBtn = $("<button id='add_new_syntax_btn' class='add_new_syntax_btn'>Add New Syntax</button>"), //A BUTTON TO ADD ANOTHER SYNTAX//
+                                                                      $alert = $("</p>").addClass("my_alert");                                                          //AN ALERT MESSAGE//
+
+                                                          //============ ERROR =============== ERROR ================= ERROR ===============//
+                                                          if(response[0] != '{'){//IF A JSON OBJECT ISN'T PROPERLY SET, ALERT THE USER AND CLOSE THE AJAX CLASS//
                                                               $addNewSyntaxBtn.text("Try Again");
                                                               $alert.addClass("error");
-                                                            }
-                                                            //UNEXPECTED RESULT//
-                                                            else{
-                                                              console.log("The JSON object doesn't have a 'status' property");
+                                                              //APPEND THE RESULT//
+                                                              $newSyntaxArea.append($alert.text("Sorry, syntax could not be saved on the database"),$addNewSyntaxBtn);
+                                                              var errorMsg = "There's something right before the JSON Object or there's no JSON Object at all";
+                                                              //LOG THE ERROR//
+                                                                Log.addError('error',errorMsg,url);
                                                               return false;
-                                                            }
-                                                            //APPEND THE RESULT//
-                                                              $newSyntaxArea.append($alert,$addNewSyntaxBtn);
-                                                        }
+                                                          }//============== ERROR =============== ERROR ================= ERROR ===============//
+
+                                                          else{
+                                                              var currJSON = JSON.parse(response);
+                                                                console.log(currJSON);                      //CONVERT THE RESPONSE TO A JSON OBJECT//
+                                                              //IN CASE DATA WAS SUCCESSFULLY INSERTED//
+                                                              if(currJSON['status'] === 'success') $alert.addClass("warning");
+                                                              //IN CASE IT WASN'T ...//
+                                                              else if(currJSON['status'] === 'error'){
+                                                                $addNewSyntaxBtn.text("Try Again");
+                                                                $alert.addClass("error");
+                                                                if(currJSON['addInfo']) console.log(currJSON['addInfo']);  //IF THERE'S ADDITIONAL INFORMATION, SHOW ON CONSOLE//
+                                                              }
+                                                              //APPEND THE RESULT//
+                                                                $newSyntaxArea.append($alert.text(currJSON['msg']),$addNewSyntaxBtn);
+                                                              }
+
+                                                      }//END OF 'success'//
                                           });
+
+                                          //UNEXPECTED RESULT//
+                                          // else if(currJSON['status'] === 'error'){
+                                          // }
+
                                           // console.log($node);
                                           // console.log($form);
                                           // console.log(data);
