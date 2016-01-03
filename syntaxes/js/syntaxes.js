@@ -217,13 +217,16 @@ var Syntax = {
                                     event.preventDefault();
                                       var $node = $(this),
                                           $form = $node.parent(),
-                                           url  = './helpers/save-syntax.php';
-
-                                      var data = {
-                                                    'syntaxLang' : 'lang',
-                                                    'syntaxBody' : 'body',
-                                                    'syntaxDesc' : 'desc',
-                                                    'syntaxNotes': 'notes'
+                                    $syntaxLang = $form.find("#syntax_lang_field").val(),
+                                    $syntaxBody = $form.find("#syntax_body_field").val(),
+                                   $syntaxNotes = $form.find("#syntax_desc_field").val(),
+                                    $syntaxDesc = $form.find("#syntax_notes_field").val(),
+                                           url  = './helpers/save-syntax.php',
+                                           data = {
+                                                    'syntaxLang' : $syntaxLang,
+                                                    'syntaxBody' : $syntaxBody,
+                                                    'syntaxDesc' : $syntaxDesc,
+                                                    'syntaxNotes': $syntaxNotes
                                                   };
                                           $.ajax({
                                             'url'     : url,

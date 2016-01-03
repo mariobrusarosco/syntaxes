@@ -33,6 +33,7 @@ $desc   = $_POST['syntaxDesc'];
 $notes  = $_POST['syntaxNotes'];
 
 
+
 // print_r($values);
 
 //IF SYNTAX'S DESCRIPTION OR THE SYNTAX'S NOTES ARE EMPTY, SET THEM TO NULL//
