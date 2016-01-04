@@ -45,15 +45,17 @@
   top: 0;
   left: 0;
   width: 130px;
+  border: 1px solid #03afb3;
   border-radius: 5px;
   color: white;
   box-shadow: 2px 2px 3px gray;
-  background: darkcyan; }
+  background: white; }
   .context_menu .context_menu_btn {
     display: block;
     padding: 10px 0 10px 15px;
     background: transparent;
     font-size: 0.9em;
+    color: darkcyan;
     cursor: pointer;
     transition: all 300ms ease; }
     .context_menu .context_menu_btn:first-child {
@@ -63,7 +65,30 @@
       border-bottom-left-radius: 5px;
       border-bottom-right-radius: 5px; }
     .context_menu .context_menu_btn:hover, .context_menu .context_menu_btn :active, .context_menu .context_menu_btn :focus {
-      background: #056565; }
+      background: #03afb3;
+      color: white; }
+
+.context_menu.confirmation {
+  width: 200px;
+  height: 100px;
+  color: #03afb3; }
+  .context_menu.confirmation p {
+    text-align: center;
+    margin: 15px 0 10px 0; }
+  .context_menu.confirmation div {
+    text-align: center; }
+  .context_menu.confirmation button {
+    padding: 10px;
+    border: 1px solid darkcyan;
+    border-radius: 5px;
+    background: white;
+    color: #03afb3;
+    transition: all 300ms ease;
+    cursor: pointer; }
+    .context_menu.confirmation button:hover, .context_menu.confirmation button :active, .context_menu.confirmation button :focus {
+      border-color: #03afb3;
+      background: #03afb3;
+      color: white; }
 
 nav {
   width: 100%;

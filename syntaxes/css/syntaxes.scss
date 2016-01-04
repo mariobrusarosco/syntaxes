@@ -71,16 +71,19 @@ main{
   left: 0;
   width: 130px;
   // height: 70px;
+  border: 1px solid $myDarkOcean;
   border-radius: 5px;
   color: white;
   box-shadow: 2px 2px 3px gray;
-  background: darkcyan;
+  // background: darkcyan;
+  background: white;
 
   .context_menu_btn{
     display: block;
     padding: 10px 0 10px 15px;
     background: transparent;
     font-size: 0.9em;
+    color: darkcyan;
     cursor: pointer;
     transition: $transitionAll300ease;
 
@@ -93,7 +96,38 @@ main{
       border-bottom-right-radius: 5px;
     }
     &:hover, :active, :focus{
-      background: rgb(5, 101, 101)
+      // background: rgb(5, 101, 101);
+      background: $myDarkOcean;
+      color: rgb(255,255,255);;
+    }
+  }
+}
+.context_menu.confirmation{
+  // background: red;
+  width: 200px;
+  height: 100px;
+  color: $myDarkOcean;
+
+  p{
+    text-align: center;
+    margin: 15px 0 10px 0;
+  }
+  div{
+    text-align: center;
+  }
+  button{
+    padding: 10px;
+    border: 1px solid darkcyan;
+    border-radius: 5px;
+    background: white;
+    color: $myDarkOcean;
+    transition: $transitionAll300ease;
+    cursor: pointer;
+
+    &:hover, :active, :focus{
+      border-color: $myDarkOcean;
+      background: $myDarkOcean;
+      color: rgb(255,255,255);
     }
   }
 }
