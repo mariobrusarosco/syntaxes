@@ -1,7 +1,4 @@
 <?php
-// echo "<pre>";
-// print_r($chosenLang = $_POST['lang']);
-
 //@param $selectedLangs --> an array containing all selected langs in a  HTML <form>//
 function getLangs($selectedLangs){
   //CREATE A FILTER THAT WILL BE USED IN A SELECT SQL STATEMENT//
@@ -19,37 +16,49 @@ function __autoload($class){
   require_once("../classes/{$class}.php");
 }
 
-//GET THE POST VARIABLES//
-$chosenLangs = isset($_POST['lang'])   ? $_POST['lang']   : null;
-$givenString = isset($_POST['string']) ? $_POST['string'] : null;
+//IF A $_POST VARIABLE OF 'lastQuery' IS SET... THIS FILE IS BEING CALLED FROM THE 'remove-syntax.php'//
+//SO, JUST PERFORM THE QUERY INSIDE THE VARIABLE $_SESSION['lastQuery'] AND CLOSE THE PROGRAM//
+session_start();
+if(isset($_POST['lastQuery'])){
+  //STORE THE LAST QUERY AS THE SQL STATEMENT TO BE EXECUTED//
+  $selectSQL = $_SESSION['lastQuery'];
+}else{
+  //THIS PART MUST BE CALLED FROM 'search-syntax.php'//
+    //GET THE POST VARIABLES//
+    $chosenLangs = isset($_POST['lang'])   ? $_POST['lang']   : null;
+    $givenString = isset($_POST['string']) ? $_POST['string'] : null;
 
-//IF NO LANGUAGE IS SELECTED...ECHO A JSON 'LOG' AND CLOSE THE PROGRAM//
-if(empty($chosenLangs)){
-  echo json_encode(array("status"=>"no language selected","msg"=>"Plese, select least one language"));
-  return false;
-}
-//IF NO TEXT IS PASSED TO PERFORM A SEARCH... ECHO A JSON 'LOG' AND CLOSE THE PROGRAM//
-if(empty($givenString)){
-  echo json_encode(array("status"=>"no string passed","msg"=>"Please, fill the search field with some text."));
-  return false;
-}
-//IF AT LEAST ONE LANGUAGE IS SELECTED AND SOME TEXT IS TYPED...CONNECT TO A DATABASE//
+    //IF NO LANGUAGE IS SELECTED...ECHO A JSON 'LOG' AND CLOSE THE PROGRAM//
+    if(empty($chosenLangs)){
+      echo json_encode(array("status"=>"no language selected","msg"=>"Plese, select least one language"));
+      return false;
+    }
+    //IF NO TEXT IS PASSED TO PERFORM A SEARCH... ECHO A JSON 'LOG' AND CLOSE THE PROGRAM//
+    if(empty($givenString)){
+      echo json_encode(array("status"=>"no string passed","msg"=>"Please, fill the search field with some text."));
+      return false;
+    }
+    //CREATE A FILTER -> AN ARRAY CONTAINING AN CONDITION EACH LANGUAGE THAT WILL BE USED IN THE SELECT QUERY --> getLangs()//
+    $sqlFilter  = getLangs($chosenLangs);
+    //CREATE A WHERE CONDITION TO SEARCH FOR A PATTERN TO THE GIVEN STRING//
+      //SEARCH FOR THE GIVEN STRING IN THE DESCRIPTION FIELD OF A SYNTAX//
+      $condition01 = new ConditionSQL("syntax.syntaxDesc","LIKE","'%{$givenString}%'");
+      //SEARCH FOR THE GIVEN STRING IN THE BODY FIELD OF A SYNTAX//
+      $condition02 = new ConditionSQL("syntax.syntaxBody","LIKE","'%{$givenString}%'","OR");
+    //CREATE ANOTHER FILTER//
+    $sqlFilter2 = (new FilterSQL())->addCondition($condition01)->addCondition($condition02)->setBoolOp("AND");
+    // print_r($sqlFilter2);
+    //CREATE A SELECT STATEMENT CLASS//
+    $selectSQL = (new SelectSQL("syntaxes.syntax","language.languageDesc,syntax.syntaxBody,syntax.syntaxDesc,syntaxNotes"));
+    // $selectSQL->join("INNER","syntaxes.language","languageID")->where($sqlFilter)->convertToStr();
+    $selectSQL->join("INNER","syntaxes.language","languageID")->where($sqlFilter)->where($sqlFilter2)->convertToStr();
+    //SAVE THE QUERY IN A $_SESSION VARIABLE//
+    $_SESSION['lastQuery'] = $selectSQL;
+    // print_r($selectSQL);
+}//THIS PART MUST BE CALLED FROM 'search-syntax.php'//
+
+///CONNECT TO THE DATABASE//
 $conn = DB::connect();
-//CREATE A FILTER -> AN ARRAY CONTAINING AN CONDITION EACH LANGUAGE THAT WILL BE USED IN THE SELECT QUERY --> getLangs()//
-$sqlFilter  = getLangs($chosenLangs);
-//CREATE A WHERE CONDITION TO SEARCH FOR A PATTERN TO THE GIVEN STRING//
-  //SEARCH FOR THE GIVEN STRING IN THE DESCRIPTION FIELD OF A SYNTAX//
-  $condition01 = new ConditionSQL("syntax.syntaxDesc","LIKE","'%{$givenString}%'");
-  //SEARCH FOR THE GIVEN STRING IN THE BODY FIELD OF A SYNTAX//
-  $condition02 = new ConditionSQL("syntax.syntaxBody","LIKE","'%{$givenString}%'","OR");
-//CREATE ANOTHER FILTER//
-$sqlFilter2 = (new FilterSQL())->addCondition($condition01)->addCondition($condition02)->setBoolOp("AND");
-// print_r($sqlFilter2);
-//CREATE A SELECT STATEMENT CLASS//
-$selectSQL = (new SelectSQL("syntaxes.syntax","language.languageDesc,syntax.syntaxBody,syntax.syntaxDesc,syntaxNotes"));
-// $selectSQL->join("INNER","syntaxes.language","languageID")->where($sqlFilter)->convertToStr();
-$selectSQL->join("INNER","syntaxes.language","languageID")->where($sqlFilter)->where($sqlFilter2)->convertToStr();
-// print_r($selectSQL);
 //PERFORM A QUERY//
 $query = $conn->query($selectSQL);
 //STORE THE RESULT OF AFFECTED ROWS//

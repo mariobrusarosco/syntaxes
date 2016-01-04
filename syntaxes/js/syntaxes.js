@@ -322,33 +322,59 @@ var Syntax = {
                                                                               })
                                                             );
 
-
+                                                  return $contextMenu;
 
                                             },//END OF 'openSyntax' //----------------------------------------------------------------------------------------------------------------------------------------------//
                           saveSyntax     : function(event){
 
                                             }//END OF 'saveSyntax' //----------------------------------------------------------------------------------------------------------------------------------------------//
                     },//END OF 'editSyntax'//------------------------------------------------------------------------------------------------------------------------------------------------------------------//
-        removeSyntax     : function(event){
-                            //CHECK IF THE USER IS REMOVING THE SYNTAX FROM THE TABLE RESULTS OR FROM THE SYNTAX MODAL CONTEXT//
-                            var $target = $(event.target);
-                            if($target.is(".context_menu_btn")){
-                                //SHOW THE USER A CONFIRMATION BOX INSIDE THE CONTEXT MENU//
-                                var $contextMenu = $("#context_menu");                               //GET THE CONTEXT MENU//
-                                    $contextMenu.empty();                                            //CLEAR ITS CONTENT//
-                                var $confirmationBox = $("<div id='remove_confirmation_box' class='confirmation_box'>                                         \
-                                                            <p>Still wanna remove it?</p>                                                                     \
-                                                            <div>                                                                                             \
-                                                              <button id='remove_syntax_menu_context_cancel_btn'  class='confirmation_btn'>Cancel</button>    \
-                                                              <button id='remove_syntax_menu_context_confirm_btn' class='confirmation_btn'>Remove</button>    \
-                                                            </div>                                                                                            \
-                                                          </div>");                                   //CREATE A CONFIRMATION BOX//
-                                    $contextMenu.addClass("confirmation").html($confirmationBox);     //ADD A CLASS 'confirmation' TO CHANGE THE CSS OF '.context_menu' AND INSERT THE CONFIRMATION BOX//
-                                console.log("Context menu REMOVING");
-                            }
-                            else if($target.is(".syntax_modal_btn")){
+        removeSyntax     : {
+                            options : function(){
+                                                    //CHECK IF THE USER IS REMOVING THE SYNTAX FROM THE TABLE RESULTS OR FROM THE SYNTAX MODAL CONTEXT//
+                                                    var $target = $(event.target);
+                                                    if($target.is(".context_menu_btn")){
+                                                        //SHOW THE USER A CONFIRMATION BOX INSIDE THE CONTEXT MENU//
+                                                        var $contextMenu = $("#context_menu");                               //GET THE CONTEXT MENU//
+                                                            $contextMenu.empty();                                            //CLEAR ITS CONTENT//
+                                                        var $confirmationBox = $("<div id='remove_confirmation_box' class='confirmation_box'>                                         \
+                                                                                    <p>Still wanna remove it?</p>                                                                     \
+                                                                                    <div>                                                                                             \
+                                                                                      <button id='remove_syntax_menu_context_cancel_btn'  class='confirmation_btn'>Cancel</button>    \
+                                                                                      <button id='remove_syntax_menu_context_confirm_btn' class='confirmation_btn'>Remove</button>    \
+                                                                                    </div>                                                                                            \
+                                                                                  </div>");                                   //CREATE A CONFIRMATION BOX//
+                                                            $contextMenu.addClass("confirmation").html($confirmationBox);     //ADD A CLASS 'confirmation' TO CHANGE THE CSS OF '.context_menu' AND INSERT THE CONFIRMATION BOX//
 
-                            };
+                                                            console.log("Context menu REMOVING");
+                                                       }
+                                                      else if($target.is(".syntax_modal_btn")){
+
+                                                      }
+                            },//END OF 'options' //----------------------------------------------------------------------------------------------------------------------------------------------//
+                            confirm : function(){
+                                      var url  = "helpers/search-syntax.php",
+                                          data = {
+                                                    lastQuery : true
+                                                 };
+
+                                          $.ajax({
+                                            'url'    : url,
+                                            'type'   : 'post',
+                                            'data'   : data,
+                                            'success': function(response){
+                                                          Search.loadResult(response);
+                                                      }
+                                          })
+                                        console.log("confirm exclusion");
+                                     },//END OF 'confirm' //----------------------------------------------------------------------------------------------------------------------------------------------//
+                            cancel  : function(event){
+                                        $("#context_menu").removeClass("confirmation")  //REMOVE THIS CLASS TO MAKE THE 'context_menu's' CSS RETURNS TO THE INITIAL STATE//
+                                                          .html("<span id='open_syntax_menu_context_btn' class='context_menu_btn'>Open</span>   \
+                                                                <span id='remove_syntax_menu_context_btn' class='context_menu_btn'>Remove</span>"
+                                                              );                       //INSERT THE TWO OPTIONS : 'open' and 'remove'//
+                                        console.log("cancel");
+                                     }//END OF 'cancel' //----------------------------------------------------------------------------------------------------------------------------------------------//
                           },//END OF 'removeSyntax' //----------------------------------------------------------------------------------------------------------------------------------------------//
        syntaxForms   : {
                            //THIS FUNCTION WILL SET ALL BEHAVIORS FOR THE FORM OF A NEW SYNTAX//
@@ -387,11 +413,15 @@ var Syntax = {
                                             $tbody = $table.find("tbody"),
                                               $row = $tbody.find("row");
 
-                                              //SET AN EVENT HANDLER FOR EDIT A SYNTAX//
+                                              //SET AN EVENT HANDLER TO EDIT A SYNTAX//
                                               $main.on("dblclick",".syntax_row",Syntax.editSyntax.openSyntax);
-                                              //SET AN EVENT HANDLER FOR REMOVE A SYNTAX//
-                                              $main.on("click","#remove_syntax_menu_context_btn, #remove_syntax",Syntax.removeSyntax);
-
+                                              //========REMOVE A SYNTAX=============//
+                                                  //SET AN EVENT HANDLER TO OPEN A SYNTAX BOX//
+                                                    $main.on("click","#remove_syntax_menu_context_btn, #remove_syntax",Syntax.removeSyntax.options);
+                                                  ///SET AN EVENT HANDLER TO THE 'CANCEL' BUTTON INSIDE A CONFIRMATION BOX(TO CANCEL THE SYNTAX'S EXCLUSION//
+                                                    $main.on("click","#remove_syntax_menu_context_cancel_btn",Syntax.removeSyntax.cancel);
+                                                  ///SET AN EVENT HANDLER TO THE 'CONFIRM' BUTTON INSIDE A CONFIRMATION BOX(TO CONFIRM THE SYNTAX'S EXCLUSION)//
+                                                    $main.on("click","#remove_syntax_menu_context_confirm_btn",Syntax.removeSyntax.confirm);
                                               console.log("syntaxResults is running");
                                       }
                          }
