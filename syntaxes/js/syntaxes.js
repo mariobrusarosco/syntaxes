@@ -6,7 +6,7 @@
 
 
 //====START UP FUNCTION =====//
-  //THIS FUNCTION IS SUPPOSED TO MAKE OTHER TO RUN//
+  //THIS FUNCTION IS SUPPOSED TO MAKE OTHERS TO RUN//
 function StartUp(myObject){
     $(document).ready(myObject.run);
 };
@@ -123,7 +123,7 @@ var Search = {
                          $syntaxBody  = $("<td/>").addClass("syntax_body").text(currentJSON[i]['syntaxBody']),
                          $syntaxNotes = $("<td/>").addClass("syntax_notes").text(currentJSON[i]['syntaxNotes']),
                         //CREATE THE ROW//
-                        $row = $("<tr/>").append($langDesc,$syntaxDesc,$syntaxBody,$syntaxNotes);
+                        $row = $("<tr/>").addClass("syntax_row").append($langDesc,$syntaxDesc,$syntaxBody,$syntaxNotes);
                         //INSERT THE ROW INTO THE <tbody>//
                         $tbody.append($row);
                         // console.log(currentJSON[i]);
@@ -173,7 +173,37 @@ var Page = {
                       //REMOVE EVENTS//
                       $(".overlay").off("click",Page.removeOverlay);
                       $("body").off("keyup",Page.removeOverlay);
-                    }
+                    },//END OF 'removeOverlay' //---------------------------------------------------------------------------//
+    contextMenu   : {
+                        open   : function(){
+                                      if($("#context_menu").length){
+                                          var $contextMenu = $("#context_menu");
+                                          return $contextMenu;
+                                      }else{
+                                        var $contextMenu = $("<div id='context_menu' class='context_menu'>\
+                                                                <span id='open_syntax_context_btn' class='context_menu_btn'>Open</span>\
+                                                                <span id='remove_syntax_context_btn' class='context_menu_btn'>Remove</span>\
+                                                              </div>");
+                                        return $contextMenu;
+                                      }//END OF 'else'//
+                                  },//END OF 'open'//---------------------------------------------------------------------------//
+                        close  : function(){
+                                  $("#context_menu").remove();
+                                }//END OF 'close' //---------------------------------------------------------------------------//
+                    },//END OF 'contextMenu' //---------------------------------------------------------------------------//
+
+    clicks         : {
+                        run : function(){
+                                $(document).click(function(event){
+                                  var $target = $(event.target);
+                                  //IF THE CLICKED ELEMENT IS ANYTHING BUT THE CONTEXT MENU OR ANY OF ITS BUTTONS... HIDE THE CONTEXT MENU...//
+                                  if(!$target.is(".context_menu_btn")) Page.contextMenu.close();
+                                  console.log($target);
+                                });
+                                console.log("All clicks at (document) are handled over here!!");
+                              }
+
+                     }
 };
 
 var Syntax = {
@@ -185,7 +215,6 @@ var Syntax = {
 
 
    newSyntax      : {
-
                       example     : {
                                       add    : function(){
                                                   var $examplesArea = $("#examples_area"),
@@ -204,17 +233,16 @@ var Syntax = {
                                                                             return false;
                                                                         }
                                                            });
-                                              },
+                                              },//----------------------------------------------------------------------------------------------------//
                                       remove : function(){
                                                   $node     = $(this),
                                                   $example  = $node.parent().parent().remove();
-                                                },
-
+                                                },//----------------------------------------------------------------------------------------------------//
                                       save   : function(){
 
-                                                }
+                                                }//----------------------------------------------------------------------------------------------------//
                                     }//END OF 'example'//
-                    },//END OF newSyntax//
+                    },//END OF newSyntax //----------------------------------------------------------------------------------------------------------------------//
 
     saveSyntax    : {
                       new      : function(event){
@@ -276,59 +304,87 @@ var Syntax = {
                                                       }//END OF 'success'//
                                           });//END OF THE AJAX CALL//
 
-                                  }, //END OF 'new'//
-                      existing : function(){
+                            }, //END OF 'new'////--------------------------------------------------------------------------------------------------------------------------------------------------------------//
+                    },// END OF 'saveSyntax'//---------------------------------------------------------------------------------------------------------------------------------------------------------------------//
 
-                                  },
+      editSyntax    : {
+                          openSyntax    :  function(event){
+                                                var $node = $(this);
+                                                var $myModal = $(".my_modal").load("./includes/new-syntax.html");
+                                                // console.log($node);
+                                                // console.log(event.target);
+                                                // console.log($contextMenu);
 
-                      alerts   : function(){
+                                                var $contextMenu = Page.contextMenu.open();
+                                                $("main").append($contextMenu.css({
+                                                                                'top'  : event.pageY ,
+                                                                                'left' : event.pageX
+                                                                              })
+                                                            );
 
-                                  }
-                    },
-    //
-    // saveSyntax    : function(event){
-    //                           event.preventDefault();
-    //                             var $node = $(this),
-    //                                 $form = $node.parent();
-    //
-    //                                 console.log($node);
-    //                                 console.log($form);
-    //                         },
 
-    syntaxForms   : {
-                        //THIS FUNCTION WILL SET ALL BEHAVIORS FOR THE FORM OF A NEW SYNTAX//
-                        run  : function(){
-                                         var $main = $("main"),
-                                  //=================== NEW SYNTAX MODAL =====================//
-                                             $form = $main.find("#new_syntax_form"),
-                                     addExampleStr = "#add_example_btn",          //STORE THIS ID AS A STRING, IN CASE YOU NEED TO USE MORE THAN ONCE//
-                                    $addExampleBtn = $form.find(addExampleStr),   //STORE THE jQuery OBJECT FOR THE ADD EXAMPLE BUTTON//
-                                  removeExampleStr = ".remove_example_btn",       //STORE THIS CLASS AS A STRING, IN CASE YOU NEED TO USE MORE THAN ONCE//
-                                 $removeExamplebtn = $form.find(removeExampleStr);//STORE THE jQuery OBJECT FOR ALL 'REMOVE EXAMPLE BUTTONS'//
-                                        saveSyntax = "#save_syntax_btn",          //STORE THIS ID AS A STRING, IN CASE YOU NEED TO USE MORE THAN ONCE//
-                                       $saveSyntax = $form.find(saveSyntax);      //STORE THE jQuery OBJECT FOR THE 'SAVE SYNTAX BUTTON'//
-                                      addNewSyntax = "#add_new_syntax_btn",          //STORE THIS ID AS A STRING, IN CASE YOU NEED TO USE MORE THAN ONCE//
-                                    $addNewSyntax  = $form.find(addNewSyntax);    //STORE THE jQuery OBJECT FOR 'ADD NEW SYNTAX BUTTON'//
 
-                                  //SET THE EVENT HANDLER FOR A NEW EXAMPLE//
-                                    $main.on("click",addExampleStr,Syntax.newSyntax.example.add);
-                                  //SET THE EVENT HANDLER FOR REMOVE AN EXAMPLE//
-                                    $main.on("click",removeExampleStr,Syntax.newSyntax.example.remove);
-                                  //SET THE EVENT HANDLER FOR SAVING A NEW SYNTAX//
-                                    $main.on("click",saveSyntax,Syntax.saveSyntax.new);
-                                  //SET THE EVENT HANDLER FOR CREATE A NEW SYNTAX AFTER SAVING A SUCCESSFUL ONE//
-                                    $main.on("click",addNewSyntax,Syntax.openNewWindow);
+                                            },//END OF 'openSyntax' //----------------------------------------------------------------------------------------------------------------------------------------------//
+                          saveSyntax     : function(event){
 
-                                //=================== NEW SYNTAX MODAL =====================//
-                                console.log("newSyntaxForm is running");
-                              }
-                      }//END OF 'syntaxForms'//
+                                            }//END OF 'saveSyntax' //----------------------------------------------------------------------------------------------------------------------------------------------//
+                    },//END OF 'editSyntax'//------------------------------------------------------------------------------------------------------------------------------------------------------------------//
+        removeSyntax     : function(event){
+
+                          },//END OF 'removeSyntax' //----------------------------------------------------------------------------------------------------------------------------------------------//
+       syntaxForms   : {
+                           //THIS FUNCTION WILL SET ALL BEHAVIORS FOR THE FORM OF A NEW SYNTAX//
+                           run  : function(){
+                                            var $main = $("main"),
+                                     //=================== NEW SYNTAX MODAL =====================//
+                                                $form = $main.find("#new_syntax_form"),
+                                        addExampleStr = "#add_example_btn",          //STORE THIS ID AS A STRING, IN CASE YOU NEED TO USE MORE THAN ONCE//
+                                       $addExampleBtn = $form.find(addExampleStr),   //STORE THE jQuery OBJECT FOR THE ADD EXAMPLE BUTTON//
+                                     removeExampleStr = ".remove_example_btn",       //STORE THIS CLASS AS A STRING, IN CASE YOU NEED TO USE MORE THAN ONCE//
+                                    $removeExamplebtn = $form.find(removeExampleStr);//STORE THE jQuery OBJECT FOR ALL 'REMOVE EXAMPLE BUTTONS'//
+                                           saveSyntax = "#save_syntax_btn",          //STORE THIS ID AS A STRING, IN CASE YOU NEED TO USE MORE THAN ONCE//
+                                          $saveSyntax = $form.find(saveSyntax);      //STORE THE jQuery OBJECT FOR THE 'SAVE SYNTAX BUTTON'//
+                                         addNewSyntax = "#add_new_syntax_btn",          //STORE THIS ID AS A STRING, IN CASE YOU NEED TO USE MORE THAN ONCE//
+                                       $addNewSyntax  = $form.find(addNewSyntax);    //STORE THE jQuery OBJECT FOR 'ADD NEW SYNTAX BUTTON'//
+
+                                     //SET THE EVENT HANDLER FOR A NEW EXAMPLE//
+                                       $main.on("click",addExampleStr,Syntax.newSyntax.example.add);
+                                     //SET THE EVENT HANDLER FOR REMOVE AN EXAMPLE//
+                                       $main.on("click",removeExampleStr,Syntax.newSyntax.example.remove);
+                                     //SET THE EVENT HANDLER FOR SAVING A NEW SYNTAX//
+                                       $main.on("click",saveSyntax,Syntax.saveSyntax.new);
+                                     //SET THE EVENT HANDLER FOR CREATE A NEW SYNTAX AFTER SAVING A SUCCESSFUL ONE//
+                                       $main.on("click",addNewSyntax,Syntax.openNewWindow);
+                                   //=================== NEW SYNTAX MODAL =====================//
+
+                                   console.log("newSyntaxForm is running");
+                                 }
+                         },//END OF 'syntaxForms'//
+
+      syntaxResults  :   {
+                           run     :  function(){
+                                        var $main  = $("main"),
+                                            $table = $main.find("table"),
+                                            $thead = $table.find("thead"),
+                                            $tbody = $table.find("tbody"),
+                                              $row = $tbody.find("row");
+
+                                              //SET AN EVENT HANDLER FOR EDIT A SYNTAX//
+                                              $main.on("dblclick",".syntax_row",Syntax.editSyntax.openSyntax);
+                                              //SET AN EVENT HANDLER FOR REMOVE A SYNTAX//
+                                              $main.on("click","#remove_syntax_context_btn #remove_syntax",Syntax.removeSyntax);
+
+                                              console.log("syntaxResults is running");
+                                      }
+                         }
 };//END OF Syntax OBJECT//
 
 //GLOBAL OBJECTS//
 
   //FUNCTIONS TO RUN AUTOMATICALLY//
   StartUp(Syntax.syntaxForms);
+  StartUp(Syntax.syntaxResults);
+  StartUp(Page.clicks);
   //FUNCTIONS TO RUN AUTOMATICALLY//
 
 
