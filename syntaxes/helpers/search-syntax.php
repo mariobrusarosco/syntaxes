@@ -49,7 +49,7 @@ if(isset($_POST['lastQuery'])){
     $sqlFilter2 = (new FilterSQL())->addCondition($condition01)->addCondition($condition02)->setBoolOp("AND");
     // print_r($sqlFilter2);
     //CREATE A SELECT STATEMENT CLASS//
-    $selectSQL = (new SelectSQL("syntaxes.syntax","language.languageDesc,syntax.syntaxBody,syntax.syntaxDesc,syntaxNotes"));
+    $selectSQL = (new SelectSQL("syntaxes.syntax","language.languageDesc,syntax.syntaxID,syntax.syntaxBody,syntax.syntaxDesc,syntaxNotes"));
     // $selectSQL->join("INNER","syntaxes.language","languageID")->where($sqlFilter)->convertToStr();
     $selectSQL->join("INNER","syntaxes.language","languageID")->where($sqlFilter)->where($sqlFilter2)->convertToStr();
     //SAVE THE QUERY IN A $_SESSION VARIABLE//

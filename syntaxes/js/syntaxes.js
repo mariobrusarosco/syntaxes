@@ -123,10 +123,10 @@ var Search = {
                          $syntaxBody  = $("<td/>").addClass("syntax_body").text(currentJSON[i]['syntaxBody']),
                          $syntaxNotes = $("<td/>").addClass("syntax_notes").text(currentJSON[i]['syntaxNotes']),
                         //CREATE THE ROW//
-                        $row = $("<tr/>").addClass("syntax_row").append($langDesc,$syntaxDesc,$syntaxBody,$syntaxNotes);
+                        $row = $("<tr/>").addClass("syntax_row").attr("data-id",currentJSON[i]['syntaxID']).append($langDesc,$syntaxDesc,$syntaxBody,$syntaxNotes);
                         //INSERT THE ROW INTO THE <tbody>//
                         $tbody.append($row);
-                        // console.log(currentJSON[i]);
+                        console.log(currentJSON[i]);
                   }//END OF for() LOOP//
                 //===========================================================================//
                 //RETURN THE NAVIGATION TO THE INITIAL STATE//
@@ -310,12 +310,8 @@ var Syntax = {
       editSyntax    : {
                           openSyntax    :  function(event){
                                                 var $node = $(this);
-                                                var $myModal = $(".my_modal").load("./includes/new-syntax.html");
-                                                // console.log($node);
-                                                // console.log(event.target);
-                                                // console.log($contextMenu);
-
-                                                var $contextMenu = Page.contextMenu.open();
+                                                    $node.addClass("selected_row"),
+                                                    $contextMenu = Page.contextMenu.open();
                                                 $("main").append($contextMenu.css({
                                                                                 'top'  : event.pageY ,
                                                                                 'left' : event.pageX
@@ -353,7 +349,32 @@ var Syntax = {
                                                       }
                             },//END OF 'options' //----------------------------------------------------------------------------------------------------------------------------------------------//
                             confirm : function(){
-                                      var url  = "helpers/search-syntax.php",
+                                    //START THE FIRST AJAX CALL -> REMOVE THE SELETED SYNTAX//
+                                      var    $node = $(this),
+                                               url = "helpers/remove-syntax.php",
+                                          syntaxID = $("main").find(".selected_row").attr("data-id"),
+                                              data = {
+                                                        'syntaxID' : syntaxID
+                                                     };
+
+                                              $.ajax({
+                                                      'url'     :  url,
+                                                      'type'    : 'post',
+                                                      'data'    :  data,
+                                                      'success' :  function(response){
+                                                                      console.log("delete");
+                                                                    // Log.addSuccess();
+                                                                  },
+                                                      'error'   : function(){
+                                                                    // Log.addError();
+                                                                  },
+                                                       
+
+                                                    });
+                                              console.log("row data id :" + syntaxID);
+
+                                    //START THE SECOND AJAX CALL -> PERFORMING THE SAME QUERY AGAIN, AFTER REMOVING A SYNTAX//
+                                          url  = "helpers/search-syntax.php";
                                           data = {
                                                     lastQuery : true
                                                  };
@@ -364,8 +385,10 @@ var Syntax = {
                                             'data'   : data,
                                             'success': function(response){
                                                           Search.loadResult(response);
+                                                          console.log("search");
                                                       }
                                           })
+                                          //PERFORMING THE SAME QUERY AGAIN, AFTER REMOVING A SYNTAX//
                                         console.log("confirm exclusion");
                                      },//END OF 'confirm' //----------------------------------------------------------------------------------------------------------------------------------------------//
                             cancel  : function(event){
