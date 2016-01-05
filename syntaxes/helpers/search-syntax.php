@@ -46,7 +46,8 @@ if(isset($_POST['lastQuery'])){
       //SEARCH FOR THE GIVEN STRING IN THE BODY FIELD OF A SYNTAX//
       $condition02 = new ConditionSQL("syntax.syntaxBody","LIKE","'%{$givenString}%'","OR");
     //CREATE ANOTHER FILTER//
-    $sqlFilter2 = (new FilterSQL())->addCondition($condition01)->addCondition($condition02)->setBoolOp("AND");
+    $sqlFilter2 = new FilterSQL();
+    $sqlFilter2->addCondition($condition01)->addCondition($condition02)->setBoolOp("AND");
     // print_r($sqlFilter2);
     //CREATE A SELECT STATEMENT CLASS//
     $selectSQL = (new SelectSQL("syntaxes.syntax","language.languageDesc,syntax.syntaxID,syntax.syntaxBody,syntax.syntaxDesc,syntaxNotes"));
