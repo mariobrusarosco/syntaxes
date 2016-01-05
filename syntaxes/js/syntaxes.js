@@ -362,33 +362,33 @@ var Syntax = {
                                                       'type'    : 'post',
                                                       'data'    :  data,
                                                       'success' :  function(response){
-                                                                      console.log("delete");
-                                                                    // Log.addSuccess();
+                                                                          //LOG THE FIRST AJAX CALL//
+                                                                          Log.addSuccess(response,url);
+
+                                                                          //START THE SECOND AJAX CALL -> PERFORMING THE SAME QUERY AGAIN, AFTER REMOVING A SYNTAX//
+                                                                          url  = "helpers/search-syntax.php";
+                                                                          data = {
+                                                                                    lastQuery : true
+                                                                                 };
+
+                                                                          $.ajax({
+                                                                            'url'    : url,
+                                                                            'type'   : 'post',
+                                                                            'data'   : data,
+                                                                            'success': function(response2){
+                                                                                          Search.loadResult(response2);
+                                                                                          //LOG THE SECOND AJAX CALL//
+                                                                                          Log.addSuccess(response2,url);
+                                                                                      }
+                                                                          })
+                                                                          //PERFORMING THE SAME QUERY AGAIN, AFTER REMOVING A SYNTAX//
                                                                   },
                                                       'error'   : function(){
                                                                     // Log.addError();
                                                                   },
-                                                       
+
 
                                                     });
-                                              console.log("row data id :" + syntaxID);
-
-                                    //START THE SECOND AJAX CALL -> PERFORMING THE SAME QUERY AGAIN, AFTER REMOVING A SYNTAX//
-                                          url  = "helpers/search-syntax.php";
-                                          data = {
-                                                    lastQuery : true
-                                                 };
-
-                                          $.ajax({
-                                            'url'    : url,
-                                            'type'   : 'post',
-                                            'data'   : data,
-                                            'success': function(response){
-                                                          Search.loadResult(response);
-                                                          console.log("search");
-                                                      }
-                                          })
-                                          //PERFORMING THE SAME QUERY AGAIN, AFTER REMOVING A SYNTAX//
                                         console.log("confirm exclusion");
                                      },//END OF 'confirm' //----------------------------------------------------------------------------------------------------------------------------------------------//
                             cancel  : function(event){
