@@ -38,24 +38,28 @@ if(isset($_POST['lastQuery'])){
       echo json_encode(array("status"=>"no string passed","msg"=>"Please, fill the search field with some text."));
       return false;
     }
+    //SET THE CURRENT DATABASE//
+    // $currDB = "syntaxes";        //LOCAL//
+    $currDB = "`cl58-syntaxes`";    //REMOTE//
+    //SET THE CURRENT MAIN TABLE//
+    $currTB = "`syntax`";
     //CREATE A FILTER -> AN ARRAY CONTAINING AN CONDITION EACH LANGUAGE THAT WILL BE USED IN THE SELECT QUERY --> getLangs()//
     $sqlFilter  = getLangs($chosenLangs);
     //CREATE A WHERE CONDITION TO SEARCH FOR A PATTERN TO THE GIVEN STRING//
       //SEARCH FOR THE GIVEN STRING IN THE DESCRIPTION FIELD OF A SYNTAX//
-      $condition01 = new ConditionSQL("syntax.syntaxDesc","LIKE","'%{$givenString}%'");
+        $condition01 = new ConditionSQL("{$currTB}.syntaxDesc","LIKE","'%{$givenString}%'");
       //SEARCH FOR THE GIVEN STRING IN THE BODY FIELD OF A SYNTAX//
-      $condition02 = new ConditionSQL("syntax.syntaxBody","LIKE","'%{$givenString}%'","OR");
+        $condition02 = new ConditionSQL("{$currTB}.syntaxBody","LIKE","'%{$givenString}%'","OR");
     //CREATE ANOTHER FILTER//
     $sqlFilter2 = new FilterSQL();
     $sqlFilter2->addCondition($condition01)->addCondition($condition02)->setBoolOp("AND");
     // print_r($sqlFilter2);
     //CREATE A SELECT STATEMENT CLASS//
-    $selectSQL = (new SelectSQL("syntaxes.syntax","language.languageDesc,syntax.syntaxID,syntax.syntaxBody,syntax.syntaxDesc,syntaxNotes"));
+      $selectSQL = (new SelectSQL("{$currDB}.{$currTB}","language.languageDesc,{$currTB}.syntaxID,{$currTB}.syntaxBody,{$currTB}.syntaxDesc,{$currTB}.syntaxNotes"));
     // $selectSQL->join("INNER","syntaxes.language","languageID")->where($sqlFilter)->convertToStr();
-    $selectSQL->join("INNER","syntaxes.language","languageID")->where($sqlFilter)->where($sqlFilter2)->convertToStr();
+    $selectSQL->join("INNER","{$currDB}.language","languageID")->where($sqlFilter)->where($sqlFilter2)->convertToStr();
     //SAVE THE QUERY IN A $_SESSION VARIABLE//
     $_SESSION['lastQuery'] = $selectSQL;
-    // print_r($selectSQL);
 }//THIS PART MUST BE CALLED FROM 'search-syntax.php'//
 
 ///CONNECT TO THE DATABASE//

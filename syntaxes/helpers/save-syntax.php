@@ -33,18 +33,20 @@ $body   = $_POST['syntaxBody'];
 $desc   = !empty($_POST['syntaxDesc'])  ? $_POST['syntaxDesc']  : 'null';
 $notes  = !empty($_POST['syntaxNotes']) ? $_POST['syntaxNotes'] : 'null';
 // //CREATE AN ARRAY TO STORE THE VALUES TO INSERT//
-$valuesToInsert   = ["'null'",$lang,"'{$body}'","'{$desc}'","'{$notes}'"];
+// $valuesToInsert   = ["'null'",$lang,"'{$body}'","'{$desc}'","'{$notes}'"];
+$valuesToInsert   = array("null",$lang,"'{$body}'","'{$desc}'","'{$notes}'");
 
 try{
 
 //CONNECT TO A DATABASE//
 $conn = DB::connect();
-//SET THE DATABASE NAME//
-$currDB = "syntaxes";
-//SET THE TABLE TO INSERT THE ROW//
-$currTB = "syntax";
+//SET THE CURRENT DATABASE//
+// $currDB = "syntaxes";        //LOCAL//
+$currDB = "`cl58-syntaxes`";    //REMOTE//
+//SET THE CURRENT MAIN TABLE//
+$currTB = "`syntax`";
 //CREATE AN SQL INSERT STATEMENT//
-$insertSQL = new InsertSQL("{$currDB}.{$currTB}","{$currTB}.syntaxID,{$currTB}.languageID,{$currTB}.syntaxBody,{$currTB}.syntaxDesc,{$currTB}.syntaxNotes",[$valuesToInsert]);
+$insertSQL = new InsertSQL("{$currDB}.{$currTB}","{$currTB}.syntaxID,{$currTB}.languageID,{$currTB}.syntaxBody,{$currTB}.syntaxDesc,{$currTB}.syntaxNotes",array($valuesToInsert));
 $insertSQL->convertToStr();
 //PERFORM A QUERY//
 $query = $conn->query($insertSQL);
@@ -76,7 +78,7 @@ else{
         //LOOP THROUGH//
         foreach($examples as $exampleBody){
             //CREATE A INSERT SQL STATEMENT FOR EACH GIVEN EXAMPLE//
-          $currInsertSQL = new InsertSQL("{$currDB}.{$currTB}","{$currTB}.exampleID,{$currTB}.syntaxID,{$currTB}.exampleBody",[["'null'","'{$syntaxID}'","'{$exampleBody}'"]]);
+          $currInsertSQL = new InsertSQL("{$currDB}.{$currTB}","{$currTB}.exampleID,{$currTB}.syntaxID,{$currTB}.exampleBody",array(array("'null'","'{$syntaxID}'","'{$exampleBody}'")));
           $currInsertSQL->convertToStr();
           // echo "<pre>";
           // print_r($currInsertSQL);

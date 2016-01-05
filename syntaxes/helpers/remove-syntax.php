@@ -22,7 +22,8 @@ if(empty($_POST)){
   //CREATE A CONDITION//
   $cond   = new ConditionSQL("{$currTB}.syntaxID","=","{$syntaxID}");
   //CREATE A FILTER//
-  $filter = (new FilterSQL())->addCondition($cond);
+  $filter = new FilterSQL();
+  $filter->addCondition($cond);
   //ADD THIS FILTER INTO THE DELETE STATEMENT//
   $deleteExamples = $deleteExamples->where($filter)->convertToStr();
   //PERFORM THE QUERY//
@@ -35,14 +36,15 @@ if(empty($_POST)){
   //CREATE A CONDITION//
   $cond = new ConditionSQL("{$currTB}.syntaxID","=","{$syntaxID}");
   //CREATE A FILTER//
-  $filter = (new FilterSQL())->addCondition($cond);
+  $filter = new FilterSQL();
+  $filter->addCondition($cond);
   //ADD THIS FILTER INTO THE DELETE STATEMENT//
   $deleteSyntax = $deleteSyntax->where($filter)->convertToStr();
   //PERFORM THE QUERY//
   $query = $conn->query($deleteSyntax);
   // echo "<pre>";
-  print_r($deleteExamples);
-  print_r($deleteSyntax);
+  // print_r($deleteExamples);
+  // print_r($deleteSyntax);
   // print_r($syntaxID);
 }
  ?>

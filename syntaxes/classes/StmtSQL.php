@@ -9,7 +9,7 @@ abstract class StmtSQL{
 
   protected $strStmt;
 
-  protected $whereClause = [];
+  protected $whereClause = array();
   protected $orderByClause = NULL;
   protected $limitClause   = NULL;
 
