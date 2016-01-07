@@ -11,28 +11,8 @@ function StartUp(myObject){
     $(document).ready(myObject.run);
 };
 //====START UP FUNCTION =====//
-
-//GLOBAL OBJECTS//
-var Log    = {
-  success    : [],
-  addSuccess : function(response,url){
-                var obj = {};
-                    obj['response']  = response;
-                    obj['status']    = "ajax call successfully";
-                    obj['address']   = url;
-                    Log.success.push(obj);
-              },
-  errors     : [],
-  addError   : function(givenStatus,givenError,url){
-                var obj = {};
-                    obj['status']      = givenStatus;
-                    obj['description'] = givenError;
-                    obj['address']     = url;
-
-                    Log.errors.push(obj);
-              }
-};
-
+//
+// //GLOBAL OBJECTS//
 var Search = {
   query    : function(event){
               event.preventDefault();
@@ -131,7 +111,18 @@ var Search = {
                 //===========================================================================//
                 //RETURN THE NAVIGATION TO THE INITIAL STATE//
                 $("#show_hide_nav_btn").prop("checked",false);
-             }//END OF loadResult()//
+             },//END OF loadResult()//
+
+  navigation  :{
+                 toggleLangs : function(event){
+                                  var $form = $("#search_form");
+                                  if($(event.target).attr("id") === "select_all_btn"){
+                                    $form.find(".lang_option_input").prop("checked",true);
+                                  }else{
+                                    $form.find(".lang_option_input").prop("checked",false);
+                                  };
+                               }
+                }//END OF toogleLangs//
 };
 
 var Navigation = {
@@ -466,7 +457,7 @@ $(document).ready(function(){
   //SEARCH SYNTAX BUTTON//
   $("main").on("click","#submit_search_btn",Search.query);
   //SELECT OR UNSELECT ALL//
-  $("main").on("click","#unselect_all_btn,#select_all_btn",Navigation.toggleLangs);
+  $("main").on("click","#unselect_all_btn,#select_all_btn",Search.navigation.toggleLangs);
   //CREATE NEW SYNTAX//
   $("main").on("click","#new_syntax_btn",Syntax.openNewWindow);
 
