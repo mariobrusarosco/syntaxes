@@ -7,6 +7,7 @@ require_once("includes/header.html");
 <body>
 
   <main>
+
   <?php
     //    NAVIGATION   //
     require_once('includes/navigation.html');
@@ -14,57 +15,7 @@ require_once("includes/header.html");
     //TABLE OF A SEARCH RESULTS//
     require_once("includes/table-results.html");
   ?>
-    <!-- <section>
-      <ul>
-        <li>test</li>
-        <li>test</li>
-        <li>test</li>
-        <li>test</li>
-        <li>test</li>
-        <li>test</li>
-        <li>test</li>
-        <li>test</li>
-        <li>test</li>
-        <li>test</li>
-        <li>test</li>
-        <li>test</li>
-        <li>test</li>
-        <li>test</li>
-        <li>test</li>
-        <li>test</li>
-        <li>test</li>
-        <li>test</li>
-        <li>test</li>
-        <li>test</li>
-        <li>test</li>
-        <li>test</li>
-        <li>test</li>
-        <li>test</li>
-        <li>test</li>
-        <li>test</li>
-        <li>test</li>
-        <li>test</li>
-        <li>test</li>
-        <li>test</li>
-        <li>test</li>
-        <li>test</li>
-        <li>test</li>
-        <li>test</li>
-        <li>test</li>
-        <li>test</li>
-        <li>test</li>
-        <li>test</li>
-        <li>test</li>
-        <li>test</li>
-        <li>test</li>
-        <li>test</li>
-        <li>test</li>
-        <li>test</li>
-        <li>test</li>
-        <li>test</li>
-        <li>test</li>
-      </ul>
-    </section> -->
+
   </main>
    <!-- //   FOOTER // -->
 
@@ -72,6 +23,7 @@ require_once("includes/header.html");
    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
    <!-- MY SCRIPT -->
    <script src="js/syntaxes.js"></script>
+   <!-- <script src="js/elastic.js"></script> -->
   </body>
 
 </html>

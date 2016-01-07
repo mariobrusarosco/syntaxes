@@ -4,6 +4,7 @@
   border: 0;
   box-sizing: border-box;
   font-family: sans-serif;
+  outline: none;
 }
 
 .clearfix{
@@ -13,23 +14,135 @@
 }
 
 //VARIABLES//
-$blue2Btn : rgb(2,179,255);
-
+$myDarkOcean : rgb(3,175,179);
+$removeExampleColor: rgb(255, 66, 19);
+$transitionAll300ease: all 300ms ease;
 //VARIABLES///
 
 main{
 
 }
 
+//=====GLOBAL ELEMENTS======/
+.close_btn{
+  position: relative;
+  float: right;
+  top: 15px;
+  right: 25px;
+  font-size: 2.4em;
+  color: rgb(255,255,255);
+  cursor: pointer;
+
+  &:hover, :active{
+    font-size: 2.5em;
+  }
+}
+
+.my_modal{
+  width: 90%;
+  height: 550px;
+  // box-shadow: 1px 3px 5px 2px lightgray;
+  background: rgb(255,255,255);
+  margin: 0 auto;
+  margin-top: 25px;
+  overflow: scroll;
+
+}
+//=====GLOBAL ELEMENTS======/
+
+//====PAGE OVERLAY=====//
+#overlay{
+    position: fixed;
+    z-index: 10000;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    // background: rgba(42, 43, 43, 0.90);
+    background: rgba(5, 97, 86, 0.27);
+}
+//====PAGE OVERLAY=====//
+
+//====MENU CONTEXT====//
+.context_menu{
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 130px;
+  // height: 70px;
+  border: 1px solid $myDarkOcean;
+  border-radius: 5px;
+  color: white;
+  box-shadow: 2px 2px 3px gray;
+  // background: darkcyan;
+  background: white;
+
+  .context_menu_btn{
+    display: block;
+    padding: 10px 0 10px 15px;
+    background: transparent;
+    font-size: 0.9em;
+    color: darkcyan;
+    cursor: pointer;
+    transition: $transitionAll300ease;
+
+    &:first-child{
+      border-top-left-radius: 5px;
+      border-top-right-radius: 5px;
+    }
+    &:last-child{
+      border-bottom-left-radius: 5px;
+      border-bottom-right-radius: 5px;
+    }
+    &:hover, :active, :focus{
+      // background: rgb(5, 101, 101);
+      background: $myDarkOcean;
+      color: rgb(255,255,255);;
+    }
+  }
+}
+.context_menu.confirmation{
+  // background: red;
+  width: 200px;
+  height: 100px;
+  color: $myDarkOcean;
+
+  p{
+    text-align: center;
+    margin: 15px 0 10px 0;
+  }
+  div{
+    text-align: center;
+  }
+  button{
+    padding: 10px;
+    border: 1px solid darkcyan;
+    border-radius: 5px;
+    background: white;
+    color: $myDarkOcean;
+    transition: $transitionAll300ease;
+    cursor: pointer;
+
+    &:hover, :active, :focus{
+      border-color: $myDarkOcean;
+      background: $myDarkOcean;
+      color: rgb(255,255,255);
+    }
+  }
+}
+//====MENU CONTEXT====//
+
 nav{
   width: 100%;
   position: fixed;
   top: -55px;
   z-index: 1;
-  background: rgb(50,110,136);
+  background: white;
+  // background: rgb(50,110,136);
   padding: 10px 0px 10px 15px;
   overflow: hidden;
-
+  box-shadow: 0px 1px 13px 2px gray;
   transition: top 200ms ease;
 }
 
@@ -46,16 +159,26 @@ nav{
     height: 30px;
     padding: 10px 15px;
     margin: 20px 0 5px 0;
+    border: 1px solid lightgray;
+    border-radius: 3px;
     font-size: 0.9em;
     color: gray;
+
+    &:focus{
+      border: 1px solid $myDarkOcean;
+      // color: $myDarkOcean;
+    }
   }
 
   .submit_btn{
     height: 30px;
-    padding: 6px 15px 6px;
+    // background: white;
+    background: $myDarkOcean;
+    padding: 5px 15px;
+    // border: 1px solid gray;
+    border-radius: 3px;
     color: white;
     font-size: 1em;
-    background: $blue2Btn;
     cursor: pointer;
   }
 
@@ -66,20 +189,26 @@ nav{
     width: auto;
     padding: 10px;
     margin: 0 10px 0 0;
-    background-color: darken($blue2Btn, 20);
-    border: 1px solid $blue2Btn;
+    background: white;
+    border: 1px solid lightgray;
     border-radius: 3px;
-    color: white;
     text-align: center;
+    color:  $myDarkOcean;
+    cursor: pointer;
+    transition: all 200ms ease;
 
-    transition: background-color,color 200ms ease;
+    &:hover, :active{
+      border: 1px solid $myDarkOcean;
+      color: darken($myDarkOcean, 20);
+      box-shadow: 0 1px 4px lightgray;
+    }
   }
 
   //ALL LANG OPTIONS WHEN THEIR CHECKED//
   .lang_option_input:checked+label{
+    border: 1px solid darken($myDarkOcean, 20);
+    background: darken($myDarkOcean, 20);
     color: white;
-    background:  $blue2Btn;
-    border: 1px solid transparent;
   }
 
   //HIDE THE CHECKBOX//
@@ -90,44 +219,271 @@ nav{
 
 }// END OF .search_form
 
-  //OPTIONS TO SHOW OR HIDE THE NAVBAR//
+//===== NAVBAR OPTIONS=======//
+
+  //HIDE AND SHOW THE NAVIGATION BAR//
   .show_hide_nav_label{
     position: fixed;
     z-index: 2;
-    top: 8px;
-    right: 15px;
-    padding: 5px 15px;
+    top: 18px;
+    right: 100px;
+    padding: 5px 10px;
     border-radius: 4px;
-    background: $blue2Btn;
+    background: $myDarkOcean;
     color: white;
-    font-size: 1.6em;
+    font-size: 0.95em;
     cursor: pointer;
-
     transition: all 200ms ease;
 
     &::after{
-      content: "+";
+      content: "show";
     }
-
   }
-
-
   .show_hide_nav_btn{
     display: none;
   }
   .show_hide_nav_btn:checked~nav{
     top: 0;
   }
-
   .show_hide_nav_btn:checked+label{
-    top: 60px;
+    top: 10px;
+    right: 90px;
 
     &::after{
-      content: "-";
+      content: "hide";
       padding: 0px 3px;
-      font-size: 1.1em;
+      font-size: 0.95em;
+    }
+  }//HIDE AND SHOW THE NAVIGATION BAR//
+
+  //BUTTONS: select all, unselect all, new syntax//
+  #new_syntax_btn,
+  #select_all_btn,
+  #unselect_all_btn{
+    z-index: 3;
+    position: absolute;
+    color: white;
+    cursor: pointer;
+  }
+
+  #new_syntax_btn{
+    right: 13px;
+    top: 8px;
+    height: 40px;
+    width: 40px;
+    border-radius: 20px;
+    // border: 2px solid white;
+    box-shadow: 1px 1px 1px 0px gray;
+    font-size: 1.3em;
+    background: $myDarkOcean;
+    transition: top 400ms ease;
+
+    &:hover,:active{
+      background: darken($myDarkOcean, 10);
     }
   }
+  .show_hide_nav_btn:checked~#new_syntax_btn{
+    top: 30px;
+    height: 60px;
+    width: 60px;
+    border-radius: 30px;
+    box-shadow: 1px 4px 2px 0px gray;
+    font-size: 1.6em;
+  }
+
+  #select_all_btn,
+  #unselect_all_btn{
+    display: none;
+    right: 90px;
+    padding: 4px 10px;
+    // box-shadow: 0px 2px 7px -1px transparent inset;
+    border: 1px solid lightgray;
+    border-radius: 2px;
+    font-size: 0.9em;
+    color: gray;
+
+    &:hover, :active{
+      // font-size: 1em;
+      // font-weight: bold;
+      // box-shadow: 0px 2px 7px -1px white inset;
+      border: 1px solid $myDarkOcean;
+      color: $myDarkOcean;
+      // box-shadow: 0px 2px 7px -1px $myDarkOcean inset;
+    }
+  }
+  #select_all_btn{
+    top:50px;
+  }
+
+  #unselect_all_btn{
+    top: 80px;
+  }
+
+  .show_hide_nav_btn:checked~#select_all_btn,
+  .show_hide_nav_btn:checked~#unselect_all_btn{
+    display: inline-block;
+  }//BUTTONS: select all, unselect all, new syntax//
+//===== NAVBAR OPTIONS=======//
+
+//===== ALERT AREA=======//
+.my_alert{
+  width: 40%;
+  height: 35px;
+  margin: 10px 0 0 0;
+  padding: 10px 15px;
+  border-radius: 5px;
+  text-align: center;
+}
+.my_alert.warning{
+  color: rgb(0, 140, 39);
+  border: 1px solid rgb(0, 140, 39);
+}
+.my_alert.error{
+  background: rgba(255, 0, 0, 0.7);
+  color: #FFFFFF;
+}
+//===== ALERT AREA=======//
+
+//=====NEW SYNTAX AREA=====//
+#new_syntax_area{
+  padding: 35px 0 0 0;
+
+  .my_alert{
+    margin: 40px auto 0 auto;
+    height: 60px;
+    line-height: 2.4;
+    width: 70%;
+    // background: #008c27;
+    // color: white;
+  }
+
+  #add_new_syntax_btn{
+    margin: 80px auto 0 auto;
+    height: 80px;
+    padding: 25px 50px;
+    font-size: 1.2em;
+  }
+}
+.new_syntax_form{
+
+  label{
+
+  }
+  input{
+
+  }
+  textarea{
+
+  }
+  select{
+    padding: 10px;
+    background: $myDarkOcean;
+    color: rgb(255,255,255);
+  }
+  option{
+
+  }
+
+}
+.syntax_section_box{
+  float: left;
+  margin: 0 20px 30px 20px;
+}
+.new_syntax_label{
+  display: inline-block;
+  position: relative;
+  top: -125px;
+  width: 170px;
+  padding-left: 10px;
+  margin-right: 10px;
+  color: gray;
+}
+
+// #syntax_body_label,
+#syntax_lang_label{
+  top: 0;
+}
+.text_field{
+  height: 140px;
+  max-height: 140px;
+  width: 300px;
+  max-width: 300px;
+  // max-width: 200px;
+  padding: 15px 0 0 10px;
+  border: 1px solid lightgray;
+  border-radius: 3px;
+}
+
+.add_example_btn,
+.save_syntax_btn,
+.add_new_syntax_btn{
+  display: block;
+  margin: 20px 0 0 10px;
+  height: 40px;
+  padding: 5px 15px;
+  font-size: 0.85em;
+  border: 1px solid $myDarkOcean;
+  border-radius: 3px;
+  color: $myDarkOcean;
+  text-align: center;
+  background: rgb(255,255,255);
+  cursor: pointer;
+  transition: $transitionAll300ease;
+
+  &:hover,:active{
+    background: $myDarkOcean;
+    color: rgb(255,255,255);
+  }
+}
+
+.save_syntax_btn{
+  position: fixed;
+  right: 168px;
+  top: 460px;
+}
+.examples_area{
+  border-top: 1px solid lightgray;
+  padding: 15px 0 0 0;
+  max-width: 1140px;
+}
+.example{
+  width: 420px;
+  height: 260px;
+  padding: 10px 55px 0 0;
+  margin-bottom: 0;
+  // border-right: 1px solid lightgray;
+
+  span{
+    color: $myDarkOcean;
+  }
+  .example_title{
+
+  }
+  .remove_example_btn{
+    margin-left: 235px;
+    padding: 2px 7px;
+    border: 1px solid $removeExampleColor;
+    border-radius: 4px;
+    color: $removeExampleColor;
+    font-size: 0.8em;
+    cursor: pointer;
+    transition: $transitionAll300ease;
+
+    &:hover,:active,:focus{
+      background: $removeExampleColor;
+      color: rgb(255,255,255);
+    }
+  }
+  .example_text_field{
+    width: 380px;
+    max-width: 380px;
+    height: 190px;
+    max-height: 210px;
+    margin-top: 10px;
+  }
+}
+
+//=====NEW SYNTAX AREA=====//
 
 
 section{

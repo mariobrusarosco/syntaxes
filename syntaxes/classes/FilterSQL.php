@@ -1,7 +1,7 @@
 <?php
 class FilterSQL{
 
-  private     $conditions = [];
+  private     $conditions = array();
   protected   $booleanOperator;
   private     $strFilter;
 

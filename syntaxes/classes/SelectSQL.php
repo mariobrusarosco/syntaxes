@@ -2,8 +2,6 @@
 
 class SelectSQL extends StmtSQL{
 
-  private $orderByClause = NULL;
-  private $limitClause   = NULL;
 
   function __construct($tables,$fields = '*'){
     $this->tables   = "FROM {$tables} ";
@@ -32,7 +30,7 @@ class SelectSQL extends StmtSQL{
       }
       $this->strStmt .= "{$this->orderByClause} {$this->limitClause}";
     }
-    return $this;
+    return $this->strStmt;
   }
 
   function __tostring(){

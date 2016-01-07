@@ -16,7 +16,7 @@ class InsertSQL extends StmtSQL{
     $this->newValues      = $this->values($values);
     // $this->newValues      = SELF::values($values);
   }
-
+  //@param $values MUST BE BETWEEN BRACKTS : [$values] OR [$values1,$values2,$values3...] //
   function values(array $values){
     foreach($values as $row){
       $this->newValues[] = "(". implode(",",$row) . ")";

@@ -3,21 +3,102 @@
   margin: 0;
   border: 0;
   box-sizing: border-box;
-  font-family: sans-serif; }
+  font-family: sans-serif;
+  outline: none; }
 
 .clearfix {
   margin: 0 auto;
   display: block;
   clear: both; }
 
+.close_btn {
+  position: relative;
+  float: right;
+  top: 15px;
+  right: 25px;
+  font-size: 2.4em;
+  color: white;
+  cursor: pointer; }
+  .close_btn:hover, .close_btn :active {
+    font-size: 2.5em; }
+
+.my_modal {
+  width: 90%;
+  height: 550px;
+  background: white;
+  margin: 0 auto;
+  margin-top: 25px;
+  overflow: scroll; }
+
+#overlay {
+  position: fixed;
+  z-index: 10000;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(5, 97, 86, 0.27); }
+
+.context_menu {
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 130px;
+  border: 1px solid #03afb3;
+  border-radius: 5px;
+  color: white;
+  box-shadow: 2px 2px 3px gray;
+  background: white; }
+  .context_menu .context_menu_btn {
+    display: block;
+    padding: 10px 0 10px 15px;
+    background: transparent;
+    font-size: 0.9em;
+    color: darkcyan;
+    cursor: pointer;
+    transition: all 300ms ease; }
+    .context_menu .context_menu_btn:first-child {
+      border-top-left-radius: 5px;
+      border-top-right-radius: 5px; }
+    .context_menu .context_menu_btn:last-child {
+      border-bottom-left-radius: 5px;
+      border-bottom-right-radius: 5px; }
+    .context_menu .context_menu_btn:hover, .context_menu .context_menu_btn :active, .context_menu .context_menu_btn :focus {
+      background: #03afb3;
+      color: white; }
+
+.context_menu.confirmation {
+  width: 200px;
+  height: 100px;
+  color: #03afb3; }
+  .context_menu.confirmation p {
+    text-align: center;
+    margin: 15px 0 10px 0; }
+  .context_menu.confirmation div {
+    text-align: center; }
+  .context_menu.confirmation button {
+    padding: 10px;
+    border: 1px solid darkcyan;
+    border-radius: 5px;
+    background: white;
+    color: #03afb3;
+    transition: all 300ms ease;
+    cursor: pointer; }
+    .context_menu.confirmation button:hover, .context_menu.confirmation button :active, .context_menu.confirmation button :focus {
+      border-color: #03afb3;
+      background: #03afb3;
+      color: white; }
+
 nav {
   width: 100%;
   position: fixed;
   top: -55px;
   z-index: 1;
-  background: #326e88;
+  background: white;
   padding: 10px 0px 10px 15px;
   overflow: hidden;
+  box-shadow: 0px 1px 13px 2px gray;
   transition: top 200ms ease; }
 
 .search_form .search_field {
@@ -25,14 +106,19 @@ nav {
   height: 30px;
   padding: 10px 15px;
   margin: 20px 0 5px 0;
+  border: 1px solid lightgray;
+  border-radius: 3px;
   font-size: 0.9em;
   color: gray; }
+  .search_form .search_field:focus {
+    border: 1px solid #03afb3; }
 .search_form .submit_btn {
   height: 30px;
-  padding: 6px 15px 6px;
+  background: #03afb3;
+  padding: 5px 15px;
+  border-radius: 3px;
   color: white;
   font-size: 1em;
-  background: #02b3ff;
   cursor: pointer; }
 .search_form .lang_option_label {
   display: inline-block;
@@ -40,33 +126,38 @@ nav {
   width: auto;
   padding: 10px;
   margin: 0 10px 0 0;
-  background-color: #006c9b;
-  border: 1px solid #02b3ff;
+  background: white;
+  border: 1px solid lightgray;
   border-radius: 3px;
-  color: white;
   text-align: center;
-  transition: background-color,color 200ms ease; }
+  color: #03afb3;
+  cursor: pointer;
+  transition: all 200ms ease; }
+  .search_form .lang_option_label:hover, .search_form .lang_option_label :active {
+    border: 1px solid #03afb3;
+    color: #014d4f;
+    box-shadow: 0 1px 4px lightgray; }
 .search_form .lang_option_input:checked + label {
-  color: white;
-  background: #02b3ff;
-  border: 1px solid transparent; }
+  border: 1px solid #014d4f;
+  background: #014d4f;
+  color: white; }
 .search_form .lang_option_input {
   display: none; }
 
 .show_hide_nav_label {
   position: fixed;
   z-index: 2;
-  top: 8px;
-  right: 15px;
-  padding: 5px 15px;
+  top: 18px;
+  right: 100px;
+  padding: 5px 10px;
   border-radius: 4px;
-  background: #02b3ff;
+  background: #03afb3;
   color: white;
-  font-size: 1.6em;
+  font-size: 0.95em;
   cursor: pointer;
   transition: all 200ms ease; }
   .show_hide_nav_label::after {
-    content: "+"; }
+    content: "show"; }
 
 .show_hide_nav_btn {
   display: none; }
@@ -75,11 +166,184 @@ nav {
   top: 0; }
 
 .show_hide_nav_btn:checked + label {
-  top: 60px; }
+  top: 10px;
+  right: 90px; }
   .show_hide_nav_btn:checked + label::after {
-    content: "-";
+    content: "hide";
     padding: 0px 3px;
-    font-size: 1.1em; }
+    font-size: 0.95em; }
+
+#new_syntax_btn,
+#select_all_btn,
+#unselect_all_btn {
+  z-index: 3;
+  position: absolute;
+  color: white;
+  cursor: pointer; }
+
+#new_syntax_btn {
+  right: 13px;
+  top: 8px;
+  height: 40px;
+  width: 40px;
+  border-radius: 20px;
+  box-shadow: 1px 1px 1px 0px gray;
+  font-size: 1.3em;
+  background: #03afb3;
+  transition: top 400ms ease; }
+  #new_syntax_btn:hover, #new_syntax_btn :active {
+    background: #027e81; }
+
+.show_hide_nav_btn:checked ~ #new_syntax_btn {
+  top: 30px;
+  height: 60px;
+  width: 60px;
+  border-radius: 30px;
+  box-shadow: 1px 4px 2px 0px gray;
+  font-size: 1.6em; }
+
+#select_all_btn,
+#unselect_all_btn {
+  display: none;
+  right: 90px;
+  padding: 4px 10px;
+  border: 1px solid lightgray;
+  border-radius: 2px;
+  font-size: 0.9em;
+  color: gray; }
+  #select_all_btn:hover, #select_all_btn :active,
+  #unselect_all_btn:hover,
+  #unselect_all_btn :active {
+    border: 1px solid #03afb3;
+    color: #03afb3; }
+
+#select_all_btn {
+  top: 50px; }
+
+#unselect_all_btn {
+  top: 80px; }
+
+.show_hide_nav_btn:checked ~ #select_all_btn,
+.show_hide_nav_btn:checked ~ #unselect_all_btn {
+  display: inline-block; }
+
+.my_alert {
+  width: 40%;
+  height: 35px;
+  margin: 10px 0 0 0;
+  padding: 10px 15px;
+  border-radius: 5px;
+  text-align: center; }
+
+.my_alert.warning {
+  color: #008c27;
+  border: 1px solid #008c27; }
+
+.my_alert.error {
+  background: rgba(255, 0, 0, 0.7);
+  color: #FFFFFF; }
+
+#new_syntax_area {
+  padding: 35px 0 0 0; }
+  #new_syntax_area .my_alert {
+    margin: 40px auto 0 auto;
+    height: 60px;
+    line-height: 2.4;
+    width: 70%; }
+  #new_syntax_area #add_new_syntax_btn {
+    margin: 80px auto 0 auto;
+    height: 80px;
+    padding: 25px 50px;
+    font-size: 1.2em; }
+
+.new_syntax_form select {
+  padding: 10px;
+  background: #03afb3;
+  color: white; }
+
+.syntax_section_box {
+  float: left;
+  margin: 0 20px 30px 20px; }
+
+.new_syntax_label {
+  display: inline-block;
+  position: relative;
+  top: -125px;
+  width: 170px;
+  padding-left: 10px;
+  margin-right: 10px;
+  color: gray; }
+
+#syntax_lang_label {
+  top: 0; }
+
+.text_field {
+  height: 140px;
+  max-height: 140px;
+  width: 300px;
+  max-width: 300px;
+  padding: 15px 0 0 10px;
+  border: 1px solid lightgray;
+  border-radius: 3px; }
+
+.add_example_btn,
+.save_syntax_btn,
+.add_new_syntax_btn {
+  display: block;
+  margin: 20px 0 0 10px;
+  height: 40px;
+  padding: 5px 15px;
+  font-size: 0.85em;
+  border: 1px solid #03afb3;
+  border-radius: 3px;
+  color: #03afb3;
+  text-align: center;
+  background: white;
+  cursor: pointer;
+  transition: all 300ms ease; }
+  .add_example_btn:hover, .add_example_btn :active,
+  .save_syntax_btn:hover,
+  .save_syntax_btn :active,
+  .add_new_syntax_btn:hover,
+  .add_new_syntax_btn :active {
+    background: #03afb3;
+    color: white; }
+
+.save_syntax_btn {
+  position: fixed;
+  right: 168px;
+  top: 460px; }
+
+.examples_area {
+  border-top: 1px solid lightgray;
+  padding: 15px 0 0 0;
+  max-width: 1140px; }
+
+.example {
+  width: 420px;
+  height: 260px;
+  padding: 10px 55px 0 0;
+  margin-bottom: 0; }
+  .example span {
+    color: #03afb3; }
+  .example .remove_example_btn {
+    margin-left: 235px;
+    padding: 2px 7px;
+    border: 1px solid #ff4213;
+    border-radius: 4px;
+    color: #ff4213;
+    font-size: 0.8em;
+    cursor: pointer;
+    transition: all 300ms ease; }
+    .example .remove_example_btn:hover, .example .remove_example_btn :active, .example .remove_example_btn :focus {
+      background: #ff4213;
+      color: white; }
+  .example .example_text_field {
+    width: 380px;
+    max-width: 380px;
+    height: 190px;
+    max-height: 210px;
+    margin-top: 10px; }
 
 section {
   padding-top: 90px; }
