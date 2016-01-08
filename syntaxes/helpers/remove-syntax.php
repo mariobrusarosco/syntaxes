@@ -3,6 +3,7 @@ function __autoload($class){
   require_once("../classes/{$class}.php");
 }
 
+print_r($_POST);
 if(empty($_POST)){
   echo json_encode(
         array("status" => "error",
