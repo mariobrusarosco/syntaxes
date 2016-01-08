@@ -11,28 +11,8 @@ function StartUp(myObject){
     $(document).ready(myObject.run);
 };
 //====START UP FUNCTION =====//
-
-//GLOBAL OBJECTS//
-var Log    = {
-  success    : [],
-  addSuccess : function(response,url){
-                var obj = {};
-                    obj['response']  = response;
-                    obj['status']    = "ajax call successfully";
-                    obj['address']   = url;
-                    Log.success.push(obj);
-              },
-  errors     : [],
-  addError   : function(givenStatus,givenError,url){
-                var obj = {};
-                    obj['status']      = givenStatus;
-                    obj['description'] = givenError;
-                    obj['address']     = url;
-
-                    Log.errors.push(obj);
-              }
-};
-
+//
+// //GLOBAL OBJECTS//
 var Search = {
   query    : function(event){
               event.preventDefault();
@@ -131,7 +111,18 @@ var Search = {
                 //===========================================================================//
                 //RETURN THE NAVIGATION TO THE INITIAL STATE//
                 $("#show_hide_nav_btn").prop("checked",false);
-             }//END OF loadResult()//
+             },//END OF loadResult()//
+
+  navigation  :{
+                 toggleLangs : function(event){
+                                  var $form = $("#search_form");
+                                  if($(event.target).attr("id") === "select_all_btn"){
+                                    $form.find(".lang_option_input").prop("checked",true);
+                                  }else{
+                                    $form.find(".lang_option_input").prop("checked",false);
+                                  };
+                               }
+                }//END OF toogleLangs//
 };
 
 var Navigation = {
@@ -251,8 +242,8 @@ var Syntax = {
                                           $form = $node.parent(),
                                     $syntaxLang = $form.find("#syntax_lang_field").val(),
                                     $syntaxBody = $form.find("#syntax_body_field").val(),
-                                    $syntaxDesc = $form.find("#syntax_notes_field").val(),
-                                   $syntaxNotes = $form.find("#syntax_desc_field").val(),
+                                    $syntaxDesc = $form.find("#syntax_desc_field").val(),
+                                   $syntaxNotes = $form.find("#syntax_notes_field").val(),
                                   $examplesArea = $("#examples_area"),
                                        examples = [],
                                       $examples = $examplesArea.find("div.example")
@@ -327,6 +318,7 @@ var Syntax = {
                     },//END OF 'editSyntax'//------------------------------------------------------------------------------------------------------------------------------------------------------------------//
         removeSyntax     : {
                             options : function(){
+                                                $("tr.selected_row").removeClass("selected_row");//REMOVE THE .selected_row CLASS...//
                                                     //CHECK IF THE USER IS REMOVING THE SYNTAX FROM THE TABLE RESULTS OR FROM THE SYNTAX MODAL CONTEXT//
                                                     var $target = $(event.target);
                                                     if($target.is(".context_menu_btn")){
@@ -349,6 +341,7 @@ var Syntax = {
                                                       }
                             },//END OF 'options' //----------------------------------------------------------------------------------------------------------------------------------------------//
                             confirm : function(){
+
                                     //START THE FIRST AJAX CALL -> REMOVE THE SELETED SYNTAX//
                                       var    $node = $(this),
                                                url = "helpers/remove-syntax.php",
@@ -464,7 +457,7 @@ $(document).ready(function(){
   //SEARCH SYNTAX BUTTON//
   $("main").on("click","#submit_search_btn",Search.query);
   //SELECT OR UNSELECT ALL//
-  $("main").on("click","#unselect_all_btn,#select_all_btn",Navigation.toggleLangs);
+  $("main").on("click","#unselect_all_btn,#select_all_btn",Search.navigation.toggleLangs);
   //CREATE NEW SYNTAX//
   $("main").on("click","#new_syntax_btn",Syntax.openNewWindow);
 

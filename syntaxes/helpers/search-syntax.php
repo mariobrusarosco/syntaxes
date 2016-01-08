@@ -27,7 +27,7 @@ if(isset($_POST['lastQuery'])){
     //GET THE POST VARIABLES//
     $chosenLangs = isset($_POST['lang'])   ? $_POST['lang']   : null;
     $givenString = isset($_POST['string']) ? $_POST['string'] : null;
-    //IF NO LANGUAGE IS SELECTED...ECHO A JSON 'LOG' AND CLOSE THE PROGRAM//
+  //IF NO LANGUAGE IS SELECTED...ECHO A JSON 'LOG' AND CLOSE THE PROGRAM//
     if(empty($chosenLangs)){
       echo json_encode(array("status"=>"no language selected","msg"=>"Plese, select least one language"));
       return false;
@@ -38,7 +38,7 @@ if(isset($_POST['lastQuery'])){
       return false;
     }
     //SET THE CURRENT DATABASE//
-    $currDB = "syntaxes";        //LOCAL//
+    $currDB = "syntaxes";      //LOCAL//
     // $currDB = "`cl58-syntaxes`";    //REMOTE//
     //SET THE CURRENT MAIN TABLE//
     $currTB = "`syntax`";
@@ -76,7 +76,6 @@ if(empty($result)){
 }
 //ECHO THE QUERY RESULT//
 echo json_encode($result);
-
 // print_r($result);
 // print_r($query);
 // print_r($selectSQL);

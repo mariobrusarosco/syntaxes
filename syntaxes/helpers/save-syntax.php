@@ -41,8 +41,8 @@ try{
 //CONNECT TO A DATABASE//
 $conn = DB::connect();
 //SET THE CURRENT DATABASE//
-// $currDB = "syntaxes";        //LOCAL//
-$currDB = "`cl58-syntaxes`";    //REMOTE//
+$currDB = "syntaxes";        //LOCAL//
+// $currDB = "`cl58-syntaxes`";    //REMOTE//
 //SET THE CURRENT MAIN TABLE//
 $currTB = "`syntax`";
 //CREATE AN SQL INSERT STATEMENT//
