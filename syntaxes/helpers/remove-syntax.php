@@ -3,7 +3,6 @@ function __autoload($class){
   require_once("../classes/{$class}.php");
 }
 
-print_r($_POST);
 if(empty($_POST)){
   echo json_encode(
         array("status" => "error",
@@ -16,8 +15,8 @@ if(empty($_POST)){
   //CONNECT TO THE DATABASE//
   $conn = DB::connect();
   //SET THE CURRENT DATABASE//
-  // $currDB = "syntaxes";        //LOCAL//
-  $currDB = "`cl58-syntaxes`";    //REMOTE//
+  $currDB = "syntaxes";        //LOCAL//
+  // $currDB = "`cl58-syntaxes`";    //REMO TE//
   //SET THE CURRENT MAIN TABLE//
   $currTB = "`example`";
   //CREATE A DELETE SQL STATEMENT//
@@ -29,8 +28,8 @@ if(empty($_POST)){
   $filter->addCondition($cond);
   //ADD THIS FILTER INTO THE DELETE STATEMENT//
   $deleteExamples = $deleteExamples->where($filter)->convertToStr();
-  echo "<pre>";
-  print_r($deleteExamples);
+  // echo "<pre>";
+  // print_r($deleteExamples);
   //PERFORM THE QUERY//
   $query = $conn->query($deleteExamples);
 
