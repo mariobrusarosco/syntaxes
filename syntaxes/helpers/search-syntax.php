@@ -74,9 +74,8 @@ if(empty($result)){
   echo json_encode(array("status"=>"no results found","msg"=>"No results were found. Please, type again"));
   return false;
 }
-
-}
-
+//ECHO THE QUERY RESULT//
+echo json_encode($result);
 // print_r($result);
 // print_r($query);
 // print_r($selectSQL);
