@@ -301,6 +301,7 @@ var Syntax = {
       editSyntax    : {
                           openSyntax    :  function(event){
                                                 var $node = $(this);
+                                                    $("tr.selected_row").removeClass("selected_row");//REMOVE THE PREVIOUS .selected_row CLASS...//
                                                     $node.addClass("selected_row"),
                                                     $contextMenu = Page.contextMenu.open();
                                                 $("main").append($contextMenu.css({
@@ -318,7 +319,7 @@ var Syntax = {
                     },//END OF 'editSyntax'//------------------------------------------------------------------------------------------------------------------------------------------------------------------//
         removeSyntax     : {
                             options : function(){
-                                                $("tr.selected_row").removeClass("selected_row");//REMOVE THE .selected_row CLASS...//
+
                                                     //CHECK IF THE USER IS REMOVING THE SYNTAX FROM THE TABLE RESULTS OR FROM THE SYNTAX MODAL CONTEXT//
                                                     var $target = $(event.target);
                                                     if($target.is(".context_menu_btn")){
