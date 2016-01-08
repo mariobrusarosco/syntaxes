@@ -2,19 +2,20 @@
 var Log    = {
   success    : [],
   addSuccess : function(response,url){
-                var obj = {};
-                    obj['response']  = response;
-                    obj['status']    = "ajax call successfully";
-                    obj['address']   = url;
-                    Log.success.push(obj);
+                var obj = {
+                      'response']  : response;
+                      'status'     : "ajax call successfully";
+                      'address'    : url
+                    };
+                  Log.success.push(obj);
               },
   errors     : [],
   addError   : function(givenStatus,givenError,url){
-                var obj = {};
-                    obj['status']      = givenStatus;
-                    obj['description'] = givenError;
-                    obj['address']     = url;
-
-                    Log.errors.push(obj);
+                var obj = {
+                      'status']      : givenStatus;
+                      'description'] : givenError;
+                      'address']     : url;
+                    };
+                Log.errors.push(obj);
               }
 };
