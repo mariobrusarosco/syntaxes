@@ -20,3 +20,6 @@ var Log    = {
                 Log.errors.push(obj);
               }
 };
+
+
+// OBJECT ORIENTED VERSION //
