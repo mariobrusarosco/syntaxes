@@ -50,17 +50,24 @@ class myAjax{
     this.log       = {};
   }
 
+  setUrl(url){
+    this.url = url;
+    return this;
+  }
   setSuccess(fn){
     this.success = fn;
     return this;
   }
-
   setError(fn){
     this.error = fn;
     return this;
   }
+  setDatatype(datatype){
+    this.datatype = datatype;
+    return this;
+  }
 
-  call(){
+  callAjax(){
       switch(this.method){
         case "json":
           return $.getJSON();

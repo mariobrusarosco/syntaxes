@@ -211,20 +211,27 @@ var Syntax = {
                                       add    : function(){
                                                   var $examplesArea = $("#examples_area"),
                                                                 url = "./includes/example.html";
-                                                           $.ajax({
-                                                              "url"     : url,
-                                                              "success" : function(response,status,xhr){
-                                                                          //LOG THE RESULT//
-                                                                          Log.addSuccess(response,url);
-                                                                          //APPEND A NEW EXAMPLE'S STRUCTURE//
-                                                                          $examplesArea.append(response);
-                                                                        },
-                                                              "error"   : function(xhr,status,error){
-                                                                            //LOG THE RESULT//
-                                                                            Log.addError(status,error,url);
-                                                                            return false;
-                                                                        }
-                                                           });
+
+                                                          //data,url,success,error,datatype,method,jquery
+                                                          var addAjax = new myAjax(null,url,null,null,null,null,true);
+                                                              addAjax.callAjax().done(function(response){
+                                                                              Log.addSuccess(response,url);
+                                                                              $examplesArea.append(response);
+                                                                            });
+                                                          //  $.ajax({
+                                                          //     "url"     : url,
+                                                          //     "success" : function(response,status,xhr){
+                                                          //                 //LOG THE RESULT//
+                                                          //                 Log.addSuccess(response,url);
+                                                          //                 //APPEND A NEW EXAMPLE'S STRUCTURE//
+                                                          //                 $examplesArea.append(response);
+                                                          //               },
+                                                          //     "error"   : function(xhr,status,error){
+                                                          //                   //LOG THE RESULT//
+                                                          //                   Log.addError(status,error,url);
+                                                          //                   return false;
+                                                          //               }
+                                                          //  });
                                               },//----------------------------------------------------------------------------------------------------//
                                       remove : function(){
                                                   $node     = $(this),
