@@ -38,13 +38,22 @@ class LogOOP{
                       'address'            : url          || "no address was passed"
                     });
     this.showLog();
+    return this;
   }
 
-  addSuccess(){
-
+  addSuccess(response,url){
+    this.allSucess.push({
+                      'response'  : response,
+                      'status'    : 'ajax call successfully',
+                      'address'   : url
+                   });
+    this.showLog();
+    return this;
   }
 
   showLog(){
+    if(!this.allErrors.length && !this.allSucess.length) console.log("No data logged yet");
+    
     for(var index in this.allErrors){
       console.log("Error # " + index);
       console.log(" \t" + Object.keys(this.allErrors[index])[0] + " ==> " + this.allErrors[index]['error type']);
@@ -52,6 +61,8 @@ class LogOOP{
       console.log(" \t" + Object.keys(this.allErrors[index])[2] + " ==> " + this.allErrors[index]['address']);
       console.log("\n");
     }
+
+    return this;
   }
 
 }
