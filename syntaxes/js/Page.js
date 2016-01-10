@@ -47,18 +47,19 @@ class LogOOP{
                       'address'            : url          || "no address was passed"
                     });
     //AFTER THAT, CALL .showLog() TELLING IT THE TYPE OF ACTION TO BE SHOWN ON CONSOLE. CONSOLE SHOULD SHOW ALL DATA INSIDE THE ARRAY 'dataLogged'//
-    // this.showLog(this.allErrors['name']);
+    this.showLog(this.allErrors['name']);
     //RETURN THE OBJECT ITSELF//
     return this;
   }
-  //
+
+
   addSuccess(response,url){
     this.allSuccess.dataLogged.push({
                       'response'  : response                  || "no response came back",
                       'status'    : 'ajax call successfully',
                       'address'   : url                       || "no address was passed"
                    });
-    // this.showLog();
+    this.showLog(this.allSucess);
     return this;
   }
 
@@ -122,30 +123,12 @@ class LogOOP{
               }
               console.log("\n");
             }
+          }//IF A TYPE OF ACTION IS NOT SET TO VISIBLE, SHOW AN ALERT ON CONSOLE//
+          else{
+            console.log("This type of action is currently not visible to be logged: " + action[index]['name'] + " Actions");
           }
-        }
-      }
-    //IF NOTHING IS LOGGED YET//
-  //   if(!this.allErrors.dataLogged.length && !this.allSucess.dataLogged.length){
-  //     console.log("No data logged yet"); //TELL THE USER//
-  //     return this; //CLOSE THE PROGRAM//
-  //   }
-  //
-  //   for()
-  //   //IF NO SUCCESS LOG IS STORE, JUST SHOW THE ERRORS//
-  //   if(!this.allSuccess.length){
-  //     for(var index in this.allErrors){
-  //       console.log("Error # " + index);
-  //       console.log(" \t" + Object.keys(this.allErrors[index])[0] + " ==> " + this.allErrors[index]['error type']);
-  //       console.log(" \t" + Object.keys(this.allErrors[index])[1] + " ==> " + this.allErrors[index]['error description']);
-  //       console.log(" \t" + Object.keys(this.allErrors[index])[2] + " ==> " + this.allErrors[index]['address']);
-  //       console.log("\n");
-  //     }else{
-  //       for()
-  //     }
-  //   }
-  //
-  //   return this;
+        }//END OF for(var index in action)//
+      }//END OF ELSE//
   }//END OF .showLog()//
 
 }
