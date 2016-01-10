@@ -68,8 +68,12 @@ class LogOOP{
    showLog(actions){
     // IF NOTHING WAS PASSAED AS PARAMETER//
       if(!actions){
-        console.log("No parameter was passed to showLog()"); //TELL THE ERROR//
-        return this;                                        //CLOSE THE PROGRAM//
+        console.log("No parameter was passed to showLog()");              //TELL THE ERROR//
+        return this;                                                      //RETURN THE OBJECT ITSELF//
+      }
+      else if(actions.toLowerCase() !== "all" && actions.toLowerCase() !== "successfull" && actions.toLowerCase() !== "failed"){
+        console.log("A wrong parameter was passsed to showLog()");        //TELL THE ERROR//
+        return this;                                                      //RETURN THE OBJECT ITSELF//
       }
     // IF SOMETHING WAS PASSAED...//
       else{
