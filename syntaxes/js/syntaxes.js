@@ -1,3 +1,4 @@
+"use strict";
 // //====== AJAX SETUP FUNCTION ========//
 // $(document).ajaxError(function(xhr,status,error,url){
                 // Log.addError(status,error,url);
@@ -402,9 +403,9 @@ var Syntax = {
                                         addExampleStr = "#add_example_btn",          //STORE THIS ID AS A STRING, IN CASE YOU NEED TO USE MORE THAN ONCE//
                                        $addExampleBtn = $form.find(addExampleStr),   //STORE THE jQuery OBJECT FOR THE ADD EXAMPLE BUTTON//
                                      removeExampleStr = ".remove_example_btn",       //STORE THIS CLASS AS A STRING, IN CASE YOU NEED TO USE MORE THAN ONCE//
-                                    $removeExamplebtn = $form.find(removeExampleStr);//STORE THE jQuery OBJECT FOR ALL 'REMOVE EXAMPLE BUTTONS'//
+                                    $removeExamplebtn = $form.find(removeExampleStr),//STORE THE jQuery OBJECT FOR ALL 'REMOVE EXAMPLE BUTTONS'//
                                            saveSyntax = "#save_syntax_btn",          //STORE THIS ID AS A STRING, IN CASE YOU NEED TO USE MORE THAN ONCE//
-                                          $saveSyntax = $form.find(saveSyntax);      //STORE THE jQuery OBJECT FOR THE 'SAVE SYNTAX BUTTON'//
+                                          $saveSyntax = $form.find(saveSyntax),      //STORE THE jQuery OBJECT FOR THE 'SAVE SYNTAX BUTTON'//
                                          addNewSyntax = "#add_new_syntax_btn",          //STORE THIS ID AS A STRING, IN CASE YOU NEED TO USE MORE THAN ONCE//
                                        $addNewSyntax  = $form.find(addNewSyntax);    //STORE THE jQuery OBJECT FOR 'ADD NEW SYNTAX BUTTON'//
 

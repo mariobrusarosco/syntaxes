@@ -1,3 +1,5 @@
+"use strict";
+
 //GLOBAL OBJECTS//
 var Log    = {
   success    : [],
@@ -23,3 +25,35 @@ var Log    = {
 
 
 // OBJECT ORIENTED VERSION //
+class LogOOP{
+  constructor(){
+    this.allSucess   = [];
+    this.allErrors   = [];
+  }
+
+  addError(errorType,errorDesc,url){
+    this.allErrors.push({
+                      'error type'         : errorType    || "no error type was passed",
+                      'error description'  : errorDesc    || "no error description was passed",
+                      'address'            : url          || "no address was passed"
+                    });
+    this.showLog();
+  }
+
+  addSuccess(){
+
+  }
+
+  showLog(){
+    for(var index in this.allErrors){
+      console.log("Error # " + index);
+      console.log(" \t" + Object.keys(this.allErrors[index])[0] + " ==> " + this.allErrors[index]['error type']);
+      console.log(" \t" + Object.keys(this.allErrors[index])[1] + " ==> " + this.allErrors[index]['error description']);
+      console.log(" \t" + Object.keys(this.allErrors[index])[2] + " ==> " + this.allErrors[index]['address']);
+      console.log("\n");
+    }
+  }
+
+}
+
+var test = new LogOOP();
