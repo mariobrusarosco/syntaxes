@@ -24,46 +24,75 @@ var Log    = {
 };
 
 
-// OBJECT ORIENTED VERSION //
+
+
+
+
+
+
+
+
+
+
+
+
+
+class myAjax{
+  constructor(data,url,success,error,datatype,method,jquery){
+    this.data      = data                     || {};
+    this.url       = url                      || "no url was passed";
+    this.success   = success                  || "no function defined when the call is successfull";
+    this.error     = error                    || "no function defined when the call fails";
+    this.datatype  = datatype                 || null;
+    this.method    = method                   || 'ajax';
+    // this.method    = this.setMethod(method)   || 'post';
+    this.jquery    = jquery                   || false;
+    this.log       = {};
+  }
+
+  setSuccess(fn){
+    this.success = fn;
+    return this;
+  }
+
+  setError(fn){
+    this.error = fn;
+    return this;
+  }
+
+  call(){
+      switch(this.method){
+        case "json":
+          return $.getJSON();
+          break;
+        default:
+          return $.ajax({
+                          'url'     : this.url,
+                          'data'    : this.data,
+                          'method'  : 'post',
+                          'success' : this.success
+                        }
+                 );
+      }
+  }
+}
+
+//                    data,url,success,error,datatype,method,jquery)
+var mySucces =  function(response){
+                  alert(response);
+                }
+var ajax = new myAjax("myData","./helpers/search-syntax.php",mySucces,null,"json","ajax",true);
+
 class LogOOP{
   constructor(){
-    this.allSuccess   = {
-                          'name'       : 'Successfull',
-                          'visible'    : true,
-                          'dataLogged' : []
-    };
-    this.allErrors   = {
-                          'name'       : 'Failed',
-                          'visible'    : true,
-                          'dataLogged' : []
-    };
+    this.allAjax = []; //ARRAY TO STORE ALL LOGS FROM AJAX CALLS//
   }
 
-  addError(errorType,errorDesc,url){
-    //INSERT DATA INTO THE ARRAY THAT IS INSIDE THE OBJECT//
-    this.allErrors.dataLogged.push({
-                      'error type'         : errorType    || "no error type was passed",
-                      'error description'  : errorDesc    || "no error description was passed",
-                      'address'            : url          || "no address was passed"
-                    });
-    //AFTER THAT, CALL .showLog() TELLING IT THE TYPE OF ACTION TO BE SHOWN ON CONSOLE. CONSOLE SHOULD SHOW ALL DATA INSIDE THE ARRAY 'dataLogged'//
-    this.showLog(this.allErrors['name']);
-    //RETURN THE OBJECT ITSELF//
-    return this;
+  addAjax(param){
+    this.allAjax.push(param.log);
   }
 
 
-  addSuccess(response,url){
-    this.allSuccess.dataLogged.push({
-                      'response'  : response                  || "no response came back",
-                      'status'    : 'ajax call successfully',
-                      'address'   : url                       || "no address was passed"
-                   });
-    this.showLog(this.allSucess);
-    return this;
-  }
-
-  // PARAMETERS
   // actions : string (caseinsensitive)
     // case string : must be => 'all' || 'sucessfull' || 'failed'
    showLog(actions){
@@ -78,28 +107,10 @@ class LogOOP{
       }
     // IF SOMETHING WAS PASSAED...//
       else{
-          /* STRUCTURE EXAMPLE
-          typeOfAction{
-                      'nameProp'       : 'nameVal',
-                      'visibleProp'    : 'visibleVal',
-                      'dataLoggedProp' : [
-                                            === OBJECT #0 ====
-                                          {
-                                            'key1'  : "value1",
-                                            'key2'  : "value2"
-                                          },
-                                            === OBJECT #1 ====
-                                          {
-                                            'key1'  : "value1",
-                                            'key2'  : "value3",
-                                            'key3'  : "value3"
-                                          }
-                                      ]
-                  }
-          STRUCTURE EXAMPLE */
-
         //STORE ALL TYPES OF ACTIONS INSIDE A VARIABLE//
-        var action = [this.allErrors,this.allSuccess];
+        var action = [
+                      this.allAjax
+                     ];
         //FOR EACH TYPE OF ACTION//
         for(var index in action){
           //CHECK IF THE TYPE OF ACTION IS SET TO BE VISIBLE//
@@ -109,10 +120,10 @@ class LogOOP{
             //GO THE THE ACTION ARRAY NAMED 'dataLogged'.//
             var dataLogged = action[index]['dataLogged'];
               //IF THIS ARRAY IS EMPTY... TELL IT ON CONSOLE AND JUMP TO THE NEXT ITERATION//
-              // if(dataLogged.length === 0){
-              //   console.log("Nothing stored inside of " + action[index]['name'] + " Actions yet");
-              //   continue;
-              // };
+              if(dataLogged.length === 0){
+                console.log("Nothing stored inside of " + action[index]['name'] + " Actions yet");
+                continue;
+              };
             //FOR EACH LOG INSIDE OF '.dataLogged//
             for(var index2 in dataLogged){
               //STORE AN ARRAY CONTAINING THE LOG'S KEYS INSIDE A VARIABLE//
@@ -131,6 +142,6 @@ class LogOOP{
       }//END OF ELSE//
   }//END OF .showLog()//
 
-}
+}//END OF CLASS LogOOP//
 
 var test = new LogOOP();
