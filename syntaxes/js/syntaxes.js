@@ -62,7 +62,7 @@ var Search = {
             },//END OF query()//
  loadResult: function(givenJSON){
                 //PARSE THE JSON//
-                currentJSON = JSON.parse(givenJSON);
+                var currentJSON = JSON.parse(givenJSON);
 
                 //===========================================================================//
                 //CHECK IF THE 'status' PROPERTY WAS PASSED WITHIN THE JSON OBJECT//
