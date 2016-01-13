@@ -30,7 +30,8 @@
   margin-top: 25px;
   overflow: scroll; }
 
-#overlay {
+#overlay,
+#overlay2 {
   position: fixed;
   z-index: 10000;
   top: 0;

@@ -51,7 +51,8 @@ main{
 //=====GLOBAL ELEMENTS======/
 
 //====PAGE OVERLAY=====//
-#overlay{
+#overlay,
+#overlay2{
     position: fixed;
     z-index: 10000;
     top: 0;
@@ -60,6 +61,9 @@ main{
     height: 100%;
     // background: rgba(42, 43, 43, 0.90);
     background: rgba(0, 0, 0, 0.67);
+}
+#overlay2{
+
 }
 //====PAGE OVERLAY=====//
 

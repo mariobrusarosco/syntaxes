@@ -146,11 +146,34 @@ var test = new LogOOP();
 */
 class Overlay{
   constructor(width,height,top,bottom,centered){
-    this.width     =
-    this.height    =
-    this.width     =
-    this.width     =
-    this.centered  = 
+    this.width     =  width    || "0";
+    this.height    =  height   || "0";
+    this.top       =  top      || "0";
+    this.bottom    =  bottom   || "0";
+    this.centered  =  centered || true;
+
+    this.create();
+    this.run();
+  }
+
+  create(){
+    //IF AN ELEMENT WITH A ID OF 'overlay' ALREADY EXISTS THAN USE IT, OTHERWISE CREATE A NEW ONE//
+    if(!$("#overlay2").length){
+      var $overlay = $("<div id='overlay2'></div>").appendTo("main");
+    }
+    else{
+      var $overlay = $("#overlay2");
+    }
+    console.log("Overlay has been created");
+  }
+
+  remove(){
+    $("#overlay2").remove();
+  }
+
+  run(){
+    //SET THE EVENT HANDLER TO THE OVERLAY...IF ITS CLICKED, IT SHOULD REMOVE ITSELF//
+    $("main").on("click","#overlay2",this.remove);
   }
 }
 
@@ -159,11 +182,13 @@ class Overlay{
 class Syntax2{
   constructor(){
 
+    this.run();
     return this;
   }
 
   editSyntax(){
-      console.log("Edit Syntax");
+      var overlay =  new Overlay();
+      // console.log("Edit Syntax");
   }
 
   run(){

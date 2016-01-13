@@ -466,6 +466,5 @@ $(document).ready(function(){
 
   //FUNCTIONS TO RUN AUTOMATICALLY//
   var activeSyntax = new Syntax2();
-      activeSyntax.run();
 
 });
