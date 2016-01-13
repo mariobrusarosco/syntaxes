@@ -410,8 +410,10 @@ nav{
   max-width: 300px;
   // max-width: 200px;
   padding: 15px 0 0 10px;
-  border: 1px solid lightgray;
-  border-radius: 3px;
+  /* border: 1px solid lightgray; */
+  border-radius: 5px;
+  color: #6E6C6C;
+  background: rgba(4, 156, 159, 0.53)
 }
 
 .add_example_btn,
