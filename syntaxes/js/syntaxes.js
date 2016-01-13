@@ -454,6 +454,7 @@ var Syntax = {
   //FUNCTIONS TO RUN AUTOMATICALLY//
 
 
+
 $(document).ready(function(){
 
   //SEARCH SYNTAX BUTTON//
@@ -463,5 +464,8 @@ $(document).ready(function(){
   //CREATE NEW SYNTAX//
   $("main").on("click","#new_syntax_btn",Syntax.openNewWindow);
 
+  //FUNCTIONS TO RUN AUTOMATICALLY//
+  var activeSyntax = new Syntax2();
+      activeSyntax.run();
 
 });

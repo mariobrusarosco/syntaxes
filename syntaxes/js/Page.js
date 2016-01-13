@@ -134,3 +134,42 @@ class LogOOP{
 }
 
 var test = new LogOOP();
+
+/*
+*
+* width    : integer
+* height   : integer
+* top      : integer
+* bottom   : integer
+* centered : boolean
+*
+*/
+class Overlay{
+  constructor(width,height,top,bottom,centered){
+    this.width     =
+    this.height    =
+    this.width     =
+    this.width     =
+    this.centered  = 
+  }
+}
+
+
+//============== SYNTAX======================//
+class Syntax2{
+  constructor(){
+
+    return this;
+  }
+
+  editSyntax(){
+      console.log("Edit Syntax");
+  }
+
+  run(){
+    //SET THE EVENT HANDLER FOR A SINGLE CLICK ON A SYNTAX//
+    $("main").on("click", ".syntax_row", this.editSyntax);
+    console.log("Syntax 2 is running");
+  }
+}
+//============== SYNTAX======================//
