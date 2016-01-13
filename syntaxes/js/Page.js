@@ -145,25 +145,21 @@ var test = new LogOOP();
 *
 */
 class Overlay{
-  constructor(width,height,top,bottom,centered){
-    this.width     =  width    || "0";
-    this.height    =  height   || "0";
-    this.top       =  top      || "0";
-    this.bottom    =  bottom   || "0";
-    this.centered  =  centered || true;
-
-    this.create();
-    this.run();
-  }
-
-  create(){
+    constructor(){
     //IF AN ELEMENT WITH A ID OF 'overlay' ALREADY EXISTS THAN USE IT, OTHERWISE CREATE A NEW ONE//
     if(!$("#overlay2").length){
-      var $overlay = $("<div id='overlay2'></div>").appendTo("main");
+      var $overlay = $("<div id='overlay2'></div>").appendTo("main")
     }
     else{
       var $overlay = $("#overlay2");
     }
+    //RUN AN EVENT HANDLERS FROM THIS CLASS//
+    this.run();
+    //RETURN THE OBJECT ITSELF//
+    return this;
+  }
+
+  create(){
     console.log("Overlay has been created");
   }
 
@@ -175,19 +171,35 @@ class Overlay{
     //SET THE EVENT HANDLER TO THE OVERLAY...IF ITS CLICKED, IT SHOULD REMOVE ITSELF//
     $("main").on("click","#overlay2",this.remove);
   }
-}
+}//END OF CLASS Overlay//
 
+class Modal{
+  constructor(width,height,top,bottom,centered){
+    this.width     =  width    || "0";
+    this.height    =  height   || "0";
+    this.top       =  top      || null;
+    this.bottom    =  bottom   || null;
+    this.centered  =  centered || true;
+
+    $modal.css({
+                  'width'  : this.width,
+                  'height' : this.height,
+                  'top'    : this.top,
+                  'bottom' : this.bottom
+                 });
+   }
+}//END OF CLASS Modal//
 
 //============== SYNTAX======================//
 class Syntax2{
   constructor(){
 
     this.run();
-    return this;
+    // return this;
   }
 
   editSyntax(){
-      var overlay =  new Overlay();
+      var overlay =  new Overlay(200,200,40).create();
       // console.log("Edit Syntax");
   }
 
