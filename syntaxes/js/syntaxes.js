@@ -227,7 +227,7 @@ var Syntax = {
                                                            });
                                               },//----------------------------------------------------------------------------------------------------//
                                       remove : function(){
-                                                  $node     = $(this),
+                                                  var $node     = $(this),
                                                   $example  = $node.parent().parent().remove();
                                                 },//----------------------------------------------------------------------------------------------------//
                                       save   : function(){
@@ -303,8 +303,8 @@ var Syntax = {
                           openSyntax    :  function(event){
                                                 var $node = $(this);
                                                     $("tr.selected_row").removeClass("selected_row");//REMOVE THE PREVIOUS .selected_row CLASS...//
-                                                    $node.addClass("selected_row"),
-                                                    $contextMenu = Page.contextMenu.open();
+                                                    $node.addClass("selected_row");
+                                                    var $contextMenu = Page.contextMenu.open();
                                                 $("main").append($contextMenu.css({
                                                                                 'top'  : event.pageY ,
                                                                                 'left' : event.pageX
