@@ -135,24 +135,13 @@ class LogOOP{
 
 var currentLog = new LogOOP();
 
-/*
-*
-* width    : integer
-* height   : integer
-* top      : integer
-* bottom   : integer
-* centered : boolean
-*
-*/
+
 class Overlay{
     constructor(){
     //IF AN ELEMENT WITH A ID OF 'overlay' ALREADY EXISTS THAN USE IT, OTHERWISE CREATE A NEW ONE//
-    if(!$("#overlay2").length){
-      var $overlay = $("<div id='overlay2'></div>").appendTo("main")
-    }
-    else{
-      var $overlay = $("#overlay2");
-    }
+    var $overlay = (!$("#overlay2").length) ? $("<div id='overlay2'></div>") : $("#overlay2");
+          $overlay.appendTo("main")
+
     //RUN AN EVENT HANDLERS FROM THIS CLASS//
     this.run();
     //RETURN THE OBJECT ITSELF//
@@ -173,25 +162,28 @@ class Overlay{
   }
 }//END OF CLASS Overlay//
 
+/*
+* id       : string
+* width    : integer
+* height   : integer
+* top      : integer
+* bottom   : integer
+* centered : boolean
+*
+*/
 class Modal{
-  constructor(width,height,top,bottom,centered){
+  constructor(id,width,height,top,bottom,centered){
+    this.id        =  id       || null;
     this.width     =  width    || "0";
     this.height    =  height   || "0";
     this.top       =  top      || null;
     this.bottom    =  bottom   || null;
     this.centered  =  centered || true;
-    //
-    // $modal.css({
-    //               'width'  : this.width,
-    //               'height' : this.height,
-    //               'top'    : this.top,
-    //               'bottom' : this.bottom
-    //              });
-
     //RETURN THE OBJECT//
     return this;
    }//END OF THE CONSTRUCTOR METHOD//
 
+  //NO PARAMETERS REQUIRED//
    insert(){
      //IF THERE'S NO OVERLAY TO APPEND THE MODAL//
      if(!$("#overlay2").length){
@@ -207,7 +199,18 @@ class Modal{
      }
      //END OF ACTIONS WHEN THERE'S NO OVERLAY TO APPEND THE MODAL//
 
-    //  retu
+     ///IF THERE'S AN OVERLAY, IT'S OKAY TO APPEND THE MODAL//
+       var $overlay = $("#overlay2");
+       //IF THERE'S ALREADY A MODAL WITH THE ID USED TO INSTANTIATE THE MODAL USE IT , OTHERWISE CREATE A NEW ONE//                                                                         //GET THE OVERLAY
+       var $modal   = (!$("#" + this.id).length) ? $("<div class='modal' id='" + this.id + "'" + "></div>") : $("#" + this.id);
+            $modal.css({                                //SET THE CSS DATA
+              'width'   : this.width,
+              'height'  : this.height,
+              'top'     : this.top,
+              'bottom'  : this.bottom
+            })
+            .appendTo($overlay);
+                                                        //APPEND THE MODAL
    }//END OF insert()//
 
 }//END OF CLASS Modal//
@@ -221,8 +224,9 @@ class Syntax2{
   }
 
   editSyntax(){
-      var overlay =  new Overlay(200,200,40).create();
-      // console.log("Edit Syntax");
+      var overlay = new Overlay().create();
+      var modal   = new Modal("edit_syntax").insert();
+      console.log("Edit Syntax");
   }
 
   run(){
