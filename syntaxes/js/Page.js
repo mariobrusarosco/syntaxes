@@ -133,7 +133,7 @@ class LogOOP{
 
 }
 
-var test = new LogOOP();
+var currentLog = new LogOOP();
 
 /*
 *
@@ -180,14 +180,36 @@ class Modal{
     this.top       =  top      || null;
     this.bottom    =  bottom   || null;
     this.centered  =  centered || true;
+    //
+    // $modal.css({
+    //               'width'  : this.width,
+    //               'height' : this.height,
+    //               'top'    : this.top,
+    //               'bottom' : this.bottom
+    //              });
 
-    $modal.css({
-                  'width'  : this.width,
-                  'height' : this.height,
-                  'top'    : this.top,
-                  'bottom' : this.bottom
-                 });
-   }
+    //RETURN THE OBJECT//
+    return this;
+   }//END OF THE CONSTRUCTOR METHOD//
+
+   insert(){
+     //IF THERE'S NO OVERLAY TO APPEND THE MODAL//
+     if(!$("#overlay2").length){
+        //CHECK IF THERE'S AN log Object ALREADY CREATED//
+         if(typeof currentLog === 'undefined'){ //IF NOT...//
+           console.log("Could not find an object of LogOOP to log the error.////  path: /class Modal/alert()");
+         }
+         else{  //IF IT IS//
+         //LOG THE ERROR//
+           currentLog.addError("missing html element","Couldn't find an overlay element to append the modal.","/class Modal/alert()/");
+         }
+         return this;
+     }
+     //END OF ACTIONS WHEN THERE'S NO OVERLAY TO APPEND THE MODAL//
+
+    //  retu
+   }//END OF insert()//
+
 }//END OF CLASS Modal//
 
 //============== SYNTAX======================//
