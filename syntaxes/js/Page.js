@@ -166,19 +166,26 @@ class Overlay{
 * id       : string
 * width    : integer
 * height   : integer
+* position : string -> 'fixed','absolute','relative'
 * top      : integer
 * bottom   : integer
+* left     : integer
+* right    : integer
 * centered : boolean
 *
 */
 class Modal{
-  constructor(id,width,height,top,bottom,centered){
+  constructor(id,width,height,centered,position,top,bottom,left,right){
     this.id        =  id       || null;
     this.width     =  width    || "0";
     this.height    =  height   || "0";
     this.top       =  top      || null;
+    //IF THE PARAMETER FOR centered IS FALSE, OR ISN'T PASSED, SET IT TO NULL. IF IT'S TRUE, SET THE VALUE OF '0 auto' FOR IT
+    this.centered  =  (centered === true) ? '0 auto' : null || null
+    this.position  =  position || 'initial';
     this.bottom    =  bottom   || null;
-    this.centered  =  centered || true;
+    this.left      =  left     || null;
+    this.right     =  right    || null;
     //RETURN THE OBJECT//
     return this;
    }//END OF THE CONSTRUCTOR METHOD//
@@ -207,10 +214,15 @@ class Modal{
               'width'   : this.width,
               'height'  : this.height,
               'top'     : this.top,
-              'bottom'  : this.bottom
+              'top'     : this.top,
+              'margin'  : this.centered,
+              'position': this.position,
+              'bottom'  : this.bottom,
+              'left'    : this.left,
+              'right'   : this.right
             })
-            .appendTo($overlay);
-                                                        //APPEND THE MODAL
+            .appendTo($overlay);   //APPEND THE MODAL
+
    }//END OF insert()//
 
 }//END OF CLASS Modal//
@@ -225,7 +237,8 @@ class Syntax2{
 
   editSyntax(){
       var overlay = new Overlay().create();
-      var modal   = new Modal("edit_syntax").insert();
+      //(id,width,height,centered,position,top,bottom,left,right)
+      var modal   = new Modal("edit_syntax",100,200,true).insert();
       console.log("Edit Syntax");
   }
 
