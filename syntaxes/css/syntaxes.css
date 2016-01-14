@@ -11,6 +11,9 @@
   display: block;
   clear: both; }
 
+.center_block {
+  margin: 0 auto; }
+
 .close_btn {
   position: relative;
   float: right;
@@ -29,6 +32,10 @@
   margin: 0 auto;
   margin-top: 25px;
   overflow: scroll; }
+
+.modal {
+  margin-top: 25px;
+  background: white; }
 
 #overlay,
 #overlay2 {

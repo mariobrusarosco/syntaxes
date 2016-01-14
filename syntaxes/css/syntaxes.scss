@@ -13,10 +13,15 @@
   clear: both;
 }
 
+.center_block{
+  margin: 0 auto;
+}
 //VARIABLES//
-$myDarkOcean : rgb(3,175,179);
+$white: rgb(255,255,255);
+$myDarkOcean: rgb(3,175,179);
 $removeExampleColor: rgb(255, 66, 19);
 $transitionAll300ease: all 300ms ease;
+
 //VARIABLES///
 
 main{
@@ -48,7 +53,8 @@ main{
   overflow: scroll;
 }
 .modal{
-  
+  margin-top: 25px;
+  background: $white;
 }
 //=====GLOBAL ELEMENTS======/
 

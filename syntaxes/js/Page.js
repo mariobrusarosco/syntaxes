@@ -181,7 +181,8 @@ class Modal{
     this.height    =  height   || "0";
     this.top       =  top      || null;
     //IF THE PARAMETER FOR centered IS FALSE, OR ISN'T PASSED, SET IT TO NULL. IF IT'S TRUE, SET THE VALUE OF '0 auto' FOR IT
-    this.centered  =  (centered === true) ? '0 auto' : null || null
+    this.centered  =  centered || null;
+    // this.centered  =  (centered === true) ? '0 auto' : null || null
     this.position  =  position || 'initial';
     this.bottom    =  bottom   || null;
     this.left      =  left     || null;
@@ -207,7 +208,8 @@ class Modal{
      //END OF ACTIONS WHEN THERE'S NO OVERLAY TO APPEND THE MODAL//
 
      ///IF THERE'S AN OVERLAY, IT'S OKAY TO APPEND THE MODAL//
-       var $overlay = $("#overlay2");
+       var $overlay = $("#overlay2"),
+           that = this; //STORE THIS VARIABLE FOR FUTURE USE IN NESTED FUNCTIONS. WILL BE THE SAME AS 'this'
        //IF THERE'S ALREADY A MODAL WITH THE ID USED TO INSTANTIATE THE MODAL USE IT , OTHERWISE CREATE A NEW ONE//                                                                         //GET THE OVERLAY
        var $modal   = (!$("#" + this.id).length) ? $("<div class='modal' id='" + this.id + "'" + "></div>") : $("#" + this.id);
             $modal.css({                                //SET THE CSS DATA
@@ -215,14 +217,14 @@ class Modal{
               'height'  : this.height,
               'top'     : this.top,
               'top'     : this.top,
-              'margin'  : this.centered,
               'position': this.position,
               'bottom'  : this.bottom,
               'left'    : this.left,
               'right'   : this.right
             })
-            .appendTo($overlay);   //APPEND THE MODAL
-
+            .appendTo($overlay)   //APPEND THE MODAL
+            .addClass(function(){
+              if(that.centered === true) return "center_block";});//CENTER THE MODAL//
    }//END OF insert()//
 
 }//END OF CLASS Modal//
@@ -238,7 +240,7 @@ class Syntax2{
   editSyntax(){
       var overlay = new Overlay().create();
       //(id,width,height,centered,position,top,bottom,left,right)
-      var modal   = new Modal("edit_syntax",100,200,true).insert();
+      var modal   = new Modal("edit_syntax",1200,500,true).insert();
       console.log("Edit Syntax");
   }
 
