@@ -135,7 +135,40 @@ class LogOOP{
 
 var currentLog = new LogOOP();
 
+//============== NAVIGATON BAR ======================//
+class NavigationBar{
+  constructor(){
 
+    this.run();
+    return this;
+  }
+
+  toggleLangs(event){
+    var $target = $(event.target),
+        $node   = $(this),
+        $form   = $node.nextAll("nav").children("form");
+
+    if($target.is("#select_all_btn")){
+      $form.find(".lang_option_input").prop("checked",true);
+    }else{
+      $form.find(".lang_option_input").prop("checked",false);
+    }
+
+    toggleBar(){
+      
+    }
+  }
+
+  run(){
+    //SET THE EVENT HANDLER TO HIDE OR SHOW THE BAR//
+    $("main").on("click","#select_all_btn,#unselect_all_btn",this.toggleLangs);
+    console.log("Event handlers for the navigation bar");
+  }
+}
+//============== NAVIGATON BAR ======================//
+
+
+//============== OVERLAY ======================//
 class Overlay{
     constructor(){
     //IF AN ELEMENT WITH A ID OF 'overlay' ALREADY EXISTS THAN USE IT, OTHERWISE CREATE A NEW ONE//
@@ -161,7 +194,10 @@ class Overlay{
     $("main").on("click","#overlay2",this.remove);
   }
 }//END OF CLASS Overlay//
+//============== OVERLAY ======================//
 
+
+//============== MODAL ======================//
 /*
 * id       : string
 * width    : integer
@@ -180,9 +216,7 @@ class Modal{
     this.width     =  width    || "0";
     this.height    =  height   || "0";
     this.top       =  top      || null;
-    //IF THE PARAMETER FOR centered IS FALSE, OR ISN'T PASSED, SET IT TO NULL. IF IT'S TRUE, SET THE VALUE OF '0 auto' FOR IT
     this.centered  =  centered || null;
-    // this.centered  =  (centered === true) ? '0 auto' : null || null
     this.position  =  position || 'initial';
     this.bottom    =  bottom   || null;
     this.left      =  left     || null;
@@ -223,23 +257,22 @@ class Modal{
               'right'   : this.right
             })
             .appendTo($overlay)   //APPEND THE MODAL
-            .addClass(function(){
-              if(that.centered === true) return "center_block";});//CENTER THE MODAL//
+            .addClass(function(){if(that.centered === true) return "center_block";});//CENTER THE MODAL//
    }//END OF insert()//
 
 }//END OF CLASS Modal//
+//============== MODAL ======================//
 
 //============== SYNTAX======================//
 class Syntax2{
   constructor(){
-
     this.run();
-    // return this;
+    return this;
   }
 
   editSyntax(){
       var overlay = new Overlay().create();
-      //(id,width,height,centered,position,top,bottom,left,right)
+                              //(id,width,height,centered,position,top,bottom,left,right)
       var modal   = new Modal("edit_syntax",1200,500,true).insert();
       console.log("Edit Syntax");
   }
